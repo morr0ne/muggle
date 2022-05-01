@@ -1,0 +1,14 @@
+[package]
+name = "muggle"
+version = "0.1.0"
+edition = "2021"
+authors = ["Federico Maria Morrone <contact@morrone.dev>"]
+description = "Terribily typed opengl wrapper"
+
+[dependencies]
+tracing = { version = "0.1.34", optional = true, default-features = false, features = ["std"] }
+num_enum = "0.5.7"
+
+[features]
+trace-errors = ["tracing"]
+trace-calls = ["tracing"]
