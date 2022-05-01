@@ -2,8 +2,12 @@
 name = "muggle"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
 authors = ["Federico Maria Morrone <contact@morrone.dev>"]
-description = "Terribily typed opengl wrapper"
+description = "A typed, correct, and unneeded opengl wrapper that doesn't hide anything but feels more rusty"
+readme = "README.md"
+documentation = "https://docs.rs/muggle"
+repository = "https://github.com/morr0ne/muggle"
 
 [dependencies]
 tracing = { version = "0.1.34", optional = true, default-features = false, features = ["std"] }
