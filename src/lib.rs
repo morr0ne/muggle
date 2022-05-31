@@ -156,6 +156,8 @@ impl Context {
     /// gl.set_active_texture(Texture::TEXTURE12 + 7)
     /// ``` 
     /// to get the texture unit at index 19
+    /// # Errors
+    /// GL_INVALID_ENUM is generated if the texture index is more than  GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1
     pub unsafe fn set_active_texture(&self, texture: Texture) {
         self.ActiveTexture(texture.inner())
     }
