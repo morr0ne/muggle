@@ -10,8 +10,8 @@ documentation = "https://docs.rs/muggle"
 repository = "https://github.com/morr0ne/muggle"
 
 [dependencies]
-tracing = { version = "0.1.34", optional = true, default-features = false, features = ["std"] }
 num_enum = "0.5.7"
+tracing = { version = "0.1.34", optional = true, default-features = false, features = ["std"] }
 
 [features]
 trace-errors = ["tracing"]
