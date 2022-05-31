@@ -286,6 +286,8 @@ impl Context {
         Program::new(self.CreateProgram())
     }
 
+    /// # Errors
+    /// GL_INVALID_OPERATION is generated if the shader has already been attached to the program
     pub unsafe fn attach_shader(&self, program: Program, shader: Shader) {
         self.AttachShader(program.inner(), shader.inner())
     }
