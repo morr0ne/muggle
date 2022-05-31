@@ -5,7 +5,7 @@ use std::{
     borrow::Cow,
     ffi::{c_void, CStr, CString},
     num::NonZeroU32,
-    ops::Deref,
+    ops::{Add, Deref, Sub},
 };
 
 mod enums;
@@ -65,6 +65,64 @@ impl UniformLocation {
     }
 }
 
+#[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct Texture(u32);
+
+impl Texture {
+    pub const TEXTURE0: Self = Self(GL_TEXTURE0);
+    pub const TEXTURE1: Self = Self(GL_TEXTURE1);
+    pub const TEXTURE2: Self = Self(GL_TEXTURE2);
+    pub const TEXTURE3: Self = Self(GL_TEXTURE3);
+    pub const TEXTURE4: Self = Self(GL_TEXTURE4);
+    pub const TEXTURE5: Self = Self(GL_TEXTURE5);
+    pub const TEXTURE6: Self = Self(GL_TEXTURE6);
+    pub const TEXTURE7: Self = Self(GL_TEXTURE7);
+    pub const TEXTURE8: Self = Self(GL_TEXTURE8);
+    pub const TEXTURE9: Self = Self(GL_TEXTURE9);
+    pub const TEXTURE10: Self = Self(GL_TEXTURE10);
+    pub const TEXTURE11: Self = Self(GL_TEXTURE11);
+    pub const TEXTURE12: Self = Self(GL_TEXTURE12);
+    pub const TEXTURE13: Self = Self(GL_TEXTURE13);
+    pub const TEXTURE14: Self = Self(GL_TEXTURE14);
+    pub const TEXTURE15: Self = Self(GL_TEXTURE15);
+    pub const TEXTURE16: Self = Self(GL_TEXTURE16);
+    pub const TEXTURE17: Self = Self(GL_TEXTURE17);
+    pub const TEXTURE18: Self = Self(GL_TEXTURE18);
+    pub const TEXTURE19: Self = Self(GL_TEXTURE19);
+    pub const TEXTURE20: Self = Self(GL_TEXTURE20);
+    pub const TEXTURE21: Self = Self(GL_TEXTURE21);
+    pub const TEXTURE22: Self = Self(GL_TEXTURE22);
+    pub const TEXTURE23: Self = Self(GL_TEXTURE23);
+    pub const TEXTURE24: Self = Self(GL_TEXTURE24);
+    pub const TEXTURE25: Self = Self(GL_TEXTURE25);
+    pub const TEXTURE26: Self = Self(GL_TEXTURE26);
+    pub const TEXTURE27: Self = Self(GL_TEXTURE27);
+    pub const TEXTURE28: Self = Self(GL_TEXTURE28);
+    pub const TEXTURE29: Self = Self(GL_TEXTURE29);
+    pub const TEXTURE30: Self = Self(GL_TEXTURE30);
+    pub const TEXTURE31: Self = Self(GL_TEXTURE31);
+
+    pub const fn inner(&self) -> u32 {
+        self.0
+    }
+}
+
+impl Add for Texture {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Texture(self.0 + rhs.0)
+    }
+}
+
+impl Sub for Texture {
+    type Output = Self;
+
+    fn sub(self, rhs: Self) -> Self::Output {
+        Texture(self.0 - rhs.0)
+    }
+}
+
 pub struct Context {
     raw: RawContext,
 }
@@ -93,8 +151,13 @@ impl Context {
         self.ActiveShaderProgram(pipeline.inner(), program.inner())
     }
 
+    /// [Texture](Texture) implements Add/Sub for u32, so (assuming you are in a valid gl context) you could for example write the following code
+    /// ```no_run
+    /// gl.set_active_texture(Texture::TEXTURE12 + 7)
+    /// ``` 
+    /// to get the texture unit at index 19
     pub unsafe fn set_active_texture(&self, texture: Texture) {
-        self.ActiveTexture(texture.into())
+        self.ActiveTexture(texture.inner())
     }
 
     /// # Usage
