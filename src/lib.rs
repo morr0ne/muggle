@@ -89,11 +89,11 @@ impl Context {
     /// TODO
     /// # Errors
     /// TODO: GL_INVALID_OPERATION when the program has not been linked successefully, somehow prevent that from happening.
-    pub unsafe fn active_shader_program(&self, pipeline: PipeLine, program: Program) {
+    pub unsafe fn set_active_shader_program(&self, pipeline: PipeLine, program: Program) {
         self.ActiveShaderProgram(pipeline.inner(), program.inner())
     }
 
-    pub unsafe fn active_texture(&self, texture: Texture) {
+    pub unsafe fn set_active_texture(&self, texture: Texture) {
         self.ActiveTexture(texture.into())
     }
 
@@ -317,7 +317,7 @@ impl Context {
         }
     }
 
-    pub unsafe fn viewport(&self, x: i32, y: i32, width: u32, height: u32) {
+    pub unsafe fn set_viewport(&self, x: i32, y: i32, width: u32, height: u32) {
         // debug_assert!()
         self.Viewport(x, y, width as i32, height as i32)
     }
