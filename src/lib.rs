@@ -397,6 +397,7 @@ impl Context {
         self.Uniform4f(location.inner() as i32, x, y, z, w);
     }
 
+    // TODO: strong typing
     pub unsafe fn begin_conditional_render(&self, id: GLuint, mode: GLenum) {
         self.BeginConditionalRender(id, mode)
     }
