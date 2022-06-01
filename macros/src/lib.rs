@@ -6,7 +6,7 @@ use syn::{parse::Parse, punctuated::Punctuated, Ident, LitStr, Token};
 struct Input {
     ident: Ident,
     suffix: Option<LitStr>,
-    constants: Punctuated<Ident, Token![,]>,
+    constants: Punctuated<Ident, Option<Token![,]>>,
 }
 
 impl Parse for Input {
