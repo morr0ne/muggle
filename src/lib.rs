@@ -4,7 +4,7 @@
 use std::{
     borrow::Cow,
     ffi::{c_void, CStr, CString},
-    ops::{Add, Deref, Sub},
+    ops::Deref,
 };
 
 pub mod gl;
@@ -21,7 +21,6 @@ mod objects;
 
 pub use enums::*;
 pub use objects::*;
-
 
 pub struct Context {
     raw: RawContext,
