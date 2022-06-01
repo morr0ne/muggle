@@ -77,6 +77,7 @@ impl Parameter {
 
 gl_enum! { StringParameter GL_VENDOR GL_RENDERER GL_VERSION GL_SHADING_LANGUAGE_VERSION }
 
+// TODO: Allow custom attributes for macro
 #[derive(
     Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, IntoPrimitive, FromPrimitive,
 )]
