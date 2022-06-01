@@ -123,6 +123,22 @@ impl Sub for Texture {
     }
 }
 
+impl Add<u32> for Texture {
+    type Output = Self;
+
+    fn add(self, rhs: u32) -> Self::Output {
+        Texture(self.0 + rhs)
+    }
+}
+
+impl Sub<u32> for Texture {
+    type Output = Self;
+
+    fn sub(self, rhs: u32) -> Self::Output {
+        Texture(self.0 - rhs)
+    }
+}
+
 pub struct Context {
     raw: RawContext,
 }
