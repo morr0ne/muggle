@@ -1,3 +1,8 @@
+#![allow(unreachable_code)]
+#![allow(clippy::too_many_arguments)]
+#![allow(nonstandard_style)]
+#![allow(clippy::let_and_return)]
+
 #[cfg(feature = "trace-calls")]
 use tracing::{error, trace};
 
