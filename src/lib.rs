@@ -154,7 +154,7 @@ impl Context {
     /// [Texture](Texture) implements Add/Sub for u32, so (assuming you are in a valid gl context) you could for example write the following code
     /// ```no_run
     /// gl.set_active_texture(Texture::TEXTURE12 + 7)
-    /// ``` 
+    /// ```
     /// to get the texture unit at index 19
     /// # Errors
     /// GL_INVALID_ENUM is generated if the texture index is more than  GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1
@@ -395,5 +395,13 @@ impl Context {
 
     pub unsafe fn uniform_4_f32(&self, location: UniformLocation, x: f32, y: f32, z: f32, w: f32) {
         self.Uniform4f(location.inner() as i32, x, y, z, w);
+    }
+
+    pub unsafe fn begin_conditional_render(&self, id: GLuint, mode: GLenum) {
+        self.BeginConditionalRender(id, mode)
+    }
+
+    pub unsafe fn end_conditional_render(&self) {
+        self.EndConditionalRender()
     }
 }
