@@ -6,7 +6,7 @@ use std::{
     ffi::{c_void, CStr, CString},
 };
 
- mod gl;
+mod gl;
 pub mod phosphorus;
 
 #[doc(hidden)]
@@ -25,6 +25,10 @@ pub struct Context {
 }
 
 impl Context {
+    pub const fn raw(&self) -> &RawContext {
+        &self.raw
+    }
+
     pub unsafe fn load<F>(loader_function: F) -> gl::Result<Self>
     where
         F: FnMut(&CStr) -> *const c_void,
