@@ -6247,52 +6247,71 @@ impl Gl {
 
     pub unsafe fn ActiveShaderProgram(&self, pipeline: GLuint, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ActiveShaderProgram()");
+        trace!(
+            "Calling glActiveShaderProgram({:?}, {:?})",
+            pipeline,
+            program
+        );
         (self.glActiveShaderProgram)(pipeline, program)
     }
     pub unsafe fn ActiveTexture(&self, texture: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ActiveTexture()");
+        trace!("Calling glActiveTexture({:#X})", texture);
         (self.glActiveTexture)(texture)
     }
     pub unsafe fn AttachShader(&self, program: GLuint, shader: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling AttachShader()");
+        trace!("Calling glAttachShader({:?}, {:?})", program, shader);
         (self.glAttachShader)(program, shader)
     }
     pub unsafe fn BeginConditionalRender(&self, id: GLuint, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BeginConditionalRender()");
+        trace!("Calling glBeginConditionalRender({:?}, {:#X})", id, mode);
         (self.glBeginConditionalRender)(id, mode)
     }
     pub unsafe fn BeginQuery(&self, target: GLenum, id: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BeginQuery()");
+        trace!("Calling glBeginQuery({:#X}, {:?})", target, id);
         (self.glBeginQuery)(target, id)
     }
     pub unsafe fn BeginQueryIndexed(&self, target: GLenum, index: GLuint, id: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BeginQueryIndexed()");
+        trace!(
+            "Calling glBeginQueryIndexed({:#X}, {:?}, {:?})",
+            target,
+            index,
+            id
+        );
         (self.glBeginQueryIndexed)(target, index, id)
     }
     pub unsafe fn BeginTransformFeedback(&self, primitiveMode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BeginTransformFeedback()");
+        trace!("Calling glBeginTransformFeedback({:#X})", primitiveMode);
         (self.glBeginTransformFeedback)(primitiveMode)
     }
     pub unsafe fn BindAttribLocation(&self, program: GLuint, index: GLuint, name: *const GLchar) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindAttribLocation()");
+        trace!(
+            "Calling glBindAttribLocation({:?}, {:?}, {:p})",
+            program,
+            index,
+            name
+        );
         (self.glBindAttribLocation)(program, index, name)
     }
     pub unsafe fn BindBuffer(&self, target: GLenum, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindBuffer()");
+        trace!("Calling glBindBuffer({:#X}, {:?})", target, buffer);
         (self.glBindBuffer)(target, buffer)
     }
     pub unsafe fn BindBufferBase(&self, target: GLenum, index: GLuint, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindBufferBase()");
+        trace!(
+            "Calling glBindBufferBase({:#X}, {:?}, {:?})",
+            target,
+            index,
+            buffer
+        );
         (self.glBindBufferBase)(target, index, buffer)
     }
     pub unsafe fn BindBufferRange(
@@ -6304,7 +6323,14 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindBufferRange()");
+        trace!(
+            "Calling glBindBufferRange({:#X}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            index,
+            buffer,
+            offset,
+            size
+        );
         (self.glBindBufferRange)(target, index, buffer, offset, size)
     }
     pub unsafe fn BindBuffersBase(
@@ -6315,7 +6341,13 @@ impl Gl {
         buffers: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindBuffersBase()");
+        trace!(
+            "Calling glBindBuffersBase({:#X}, {:?}, {:?}, {:p})",
+            target,
+            first,
+            count,
+            buffers
+        );
         (self.glBindBuffersBase)(target, first, count, buffers)
     }
     pub unsafe fn BindBuffersRange(
@@ -6328,12 +6360,25 @@ impl Gl {
         sizes: *const GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindBuffersRange()");
+        trace!(
+            "Calling glBindBuffersRange({:#X}, {:?}, {:?}, {:p}, {:p}, {:p})",
+            target,
+            first,
+            count,
+            buffers,
+            offsets,
+            sizes
+        );
         (self.glBindBuffersRange)(target, first, count, buffers, offsets, sizes)
     }
     pub unsafe fn BindFragDataLocation(&self, program: GLuint, color: GLuint, name: *const GLchar) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindFragDataLocation()");
+        trace!(
+            "Calling glBindFragDataLocation({:?}, {:?}, {:p})",
+            program,
+            color,
+            name
+        );
         (self.glBindFragDataLocation)(program, color, name)
     }
     pub unsafe fn BindFragDataLocationIndexed(
@@ -6344,12 +6389,22 @@ impl Gl {
         name: *const GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindFragDataLocationIndexed()");
+        trace!(
+            "Calling glBindFragDataLocationIndexed({:?}, {:?}, {:?}, {:p})",
+            program,
+            colorNumber,
+            index,
+            name
+        );
         (self.glBindFragDataLocationIndexed)(program, colorNumber, index, name)
     }
     pub unsafe fn BindFramebuffer(&self, target: GLenum, framebuffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindFramebuffer()");
+        trace!(
+            "Calling glBindFramebuffer({:#X}, {:?})",
+            target,
+            framebuffer
+        );
         (self.glBindFramebuffer)(target, framebuffer)
     }
     pub unsafe fn BindImageTexture(
@@ -6363,57 +6418,85 @@ impl Gl {
         format: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindImageTexture()");
+        trace!(
+            "Calling glBindImageTexture({:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X})",
+            unit,
+            texture,
+            level,
+            layered,
+            layer,
+            access,
+            format
+        );
         (self.glBindImageTexture)(unit, texture, level, layered, layer, access, format)
     }
     pub unsafe fn BindImageTextures(&self, first: GLuint, count: GLsizei, textures: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindImageTextures()");
+        trace!(
+            "Calling glBindImageTextures({:?}, {:?}, {:p})",
+            first,
+            count,
+            textures
+        );
         (self.glBindImageTextures)(first, count, textures)
     }
     pub unsafe fn BindProgramPipeline(&self, pipeline: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindProgramPipeline()");
+        trace!("Calling glBindProgramPipeline({:?})", pipeline);
         (self.glBindProgramPipeline)(pipeline)
     }
     pub unsafe fn BindRenderbuffer(&self, target: GLenum, renderbuffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindRenderbuffer()");
+        trace!(
+            "Calling glBindRenderbuffer({:#X}, {:?})",
+            target,
+            renderbuffer
+        );
         (self.glBindRenderbuffer)(target, renderbuffer)
     }
     pub unsafe fn BindSampler(&self, unit: GLuint, sampler: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindSampler()");
+        trace!("Calling glBindSampler({:?}, {:?})", unit, sampler);
         (self.glBindSampler)(unit, sampler)
     }
     pub unsafe fn BindSamplers(&self, first: GLuint, count: GLsizei, samplers: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindSamplers()");
+        trace!(
+            "Calling glBindSamplers({:?}, {:?}, {:p})",
+            first,
+            count,
+            samplers
+        );
         (self.glBindSamplers)(first, count, samplers)
     }
     pub unsafe fn BindTexture(&self, target: GLenum, texture: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindTexture()");
+        trace!("Calling glBindTexture({:#X}, {:?})", target, texture);
         (self.glBindTexture)(target, texture)
     }
     pub unsafe fn BindTextureUnit(&self, unit: GLuint, texture: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindTextureUnit()");
+        trace!("Calling glBindTextureUnit({:?}, {:?})", unit, texture);
         (self.glBindTextureUnit)(unit, texture)
     }
     pub unsafe fn BindTextures(&self, first: GLuint, count: GLsizei, textures: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindTextures()");
+        trace!(
+            "Calling glBindTextures({:?}, {:?}, {:p})",
+            first,
+            count,
+            textures
+        );
         (self.glBindTextures)(first, count, textures)
     }
     pub unsafe fn BindTransformFeedback(&self, target: GLenum, id: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindTransformFeedback()");
+        trace!("Calling glBindTransformFeedback({:#X}, {:?})", target, id);
         (self.glBindTransformFeedback)(target, id)
     }
     pub unsafe fn BindVertexArray(&self, array: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindVertexArray()");
+        trace!("Calling glBindVertexArray({:?})", array);
         (self.glBindVertexArray)(array)
     }
     pub unsafe fn BindVertexBuffer(
@@ -6424,7 +6507,13 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindVertexBuffer()");
+        trace!(
+            "Calling glBindVertexBuffer({:?}, {:?}, {:?}, {:?})",
+            bindingindex,
+            buffer,
+            offset,
+            stride
+        );
         (self.glBindVertexBuffer)(bindingindex, buffer, offset, stride)
     }
     pub unsafe fn BindVertexBuffers(
@@ -6436,37 +6525,59 @@ impl Gl {
         strides: *const GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BindVertexBuffers()");
+        trace!(
+            "Calling glBindVertexBuffers({:?}, {:?}, {:p}, {:p}, {:p})",
+            first,
+            count,
+            buffers,
+            offsets,
+            strides
+        );
         (self.glBindVertexBuffers)(first, count, buffers, offsets, strides)
     }
     pub unsafe fn BlendColor(&self, red: GLfloat, green: GLfloat, blue: GLfloat, alpha: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendColor()");
+        trace!(
+            "Calling glBlendColor({:?}, {:?}, {:?}, {:?})",
+            red,
+            green,
+            blue,
+            alpha
+        );
         (self.glBlendColor)(red, green, blue, alpha)
     }
     pub unsafe fn BlendEquation(&self, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendEquation()");
+        trace!("Calling glBlendEquation({:#X})", mode);
         (self.glBlendEquation)(mode)
     }
     pub unsafe fn BlendEquationSeparate(&self, modeRGB: GLenum, modeAlpha: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendEquationSeparate()");
+        trace!(
+            "Calling glBlendEquationSeparate({:#X}, {:#X})",
+            modeRGB,
+            modeAlpha
+        );
         (self.glBlendEquationSeparate)(modeRGB, modeAlpha)
     }
     pub unsafe fn BlendEquationSeparatei(&self, buf: GLuint, modeRGB: GLenum, modeAlpha: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendEquationSeparatei()");
+        trace!(
+            "Calling glBlendEquationSeparatei({:?}, {:#X}, {:#X})",
+            buf,
+            modeRGB,
+            modeAlpha
+        );
         (self.glBlendEquationSeparatei)(buf, modeRGB, modeAlpha)
     }
     pub unsafe fn BlendEquationi(&self, buf: GLuint, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendEquationi()");
+        trace!("Calling glBlendEquationi({:?}, {:#X})", buf, mode);
         (self.glBlendEquationi)(buf, mode)
     }
     pub unsafe fn BlendFunc(&self, sfactor: GLenum, dfactor: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendFunc()");
+        trace!("Calling glBlendFunc({:#X}, {:#X})", sfactor, dfactor);
         (self.glBlendFunc)(sfactor, dfactor)
     }
     pub unsafe fn BlendFuncSeparate(
@@ -6477,7 +6588,13 @@ impl Gl {
         dfactorAlpha: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendFuncSeparate()");
+        trace!(
+            "Calling glBlendFuncSeparate({:#X}, {:#X}, {:#X}, {:#X})",
+            sfactorRGB,
+            dfactorRGB,
+            sfactorAlpha,
+            dfactorAlpha
+        );
         (self.glBlendFuncSeparate)(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha)
     }
     pub unsafe fn BlendFuncSeparatei(
@@ -6489,12 +6606,19 @@ impl Gl {
         dstAlpha: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendFuncSeparatei()");
+        trace!(
+            "Calling glBlendFuncSeparatei({:?}, {:#X}, {:#X}, {:#X}, {:#X})",
+            buf,
+            srcRGB,
+            dstRGB,
+            srcAlpha,
+            dstAlpha
+        );
         (self.glBlendFuncSeparatei)(buf, srcRGB, dstRGB, srcAlpha, dstAlpha)
     }
     pub unsafe fn BlendFunci(&self, buf: GLuint, src: GLenum, dst: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlendFunci()");
+        trace!("Calling glBlendFunci({:?}, {:#X}, {:#X})", buf, src, dst);
         (self.glBlendFunci)(buf, src, dst)
     }
     pub unsafe fn BlitFramebuffer(
@@ -6511,7 +6635,7 @@ impl Gl {
         filter: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlitFramebuffer()");
+        trace!("Calling glBlitFramebuffer({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X})", srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter);
         (self.glBlitFramebuffer)(
             srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter,
         )
@@ -6532,7 +6656,7 @@ impl Gl {
         filter: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BlitNamedFramebuffer()");
+        trace!("Calling glBlitNamedFramebuffer({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X})", readFramebuffer,drawFramebuffer,srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter);
         (self.glBlitNamedFramebuffer)(
             readFramebuffer,
             drawFramebuffer,
@@ -6556,7 +6680,13 @@ impl Gl {
         usage: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BufferData()");
+        trace!(
+            "Calling glBufferData({:#X}, {:?}, {:p}, {:#X})",
+            target,
+            size,
+            data,
+            usage
+        );
         (self.glBufferData)(target, size, data, usage)
     }
     pub unsafe fn BufferStorage(
@@ -6567,7 +6697,13 @@ impl Gl {
         flags: GLbitfield,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BufferStorage()");
+        trace!(
+            "Calling glBufferStorage({:#X}, {:?}, {:p}, {:?})",
+            target,
+            size,
+            data,
+            flags
+        );
         (self.glBufferStorage)(target, size, data, flags)
     }
     pub unsafe fn BufferSubData(
@@ -6578,12 +6714,18 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling BufferSubData()");
+        trace!(
+            "Calling glBufferSubData({:#X}, {:?}, {:?}, {:p})",
+            target,
+            offset,
+            size,
+            data
+        );
         (self.glBufferSubData)(target, offset, size, data)
     }
     pub unsafe fn CheckFramebufferStatus(&self, target: GLenum) -> GLenum {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CheckFramebufferStatus()");
+        trace!("Calling glCheckFramebufferStatus({:#X})", target);
         (self.glCheckFramebufferStatus)(target)
     }
     pub unsafe fn CheckNamedFramebufferStatus(
@@ -6592,17 +6734,21 @@ impl Gl {
         target: GLenum,
     ) -> GLenum {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CheckNamedFramebufferStatus()");
+        trace!(
+            "Calling glCheckNamedFramebufferStatus({:?}, {:#X})",
+            framebuffer,
+            target
+        );
         (self.glCheckNamedFramebufferStatus)(framebuffer, target)
     }
     pub unsafe fn ClampColor(&self, target: GLenum, clamp: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClampColor()");
+        trace!("Calling glClampColor({:#X}, {:#X})", target, clamp);
         (self.glClampColor)(target, clamp)
     }
     pub unsafe fn Clear(&self, mask: GLbitfield) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Clear()");
+        trace!("Calling glClear({:?})", mask);
         (self.glClear)(mask)
     }
     pub unsafe fn ClearBufferData(
@@ -6614,7 +6760,14 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferData()");
+        trace!(
+            "Calling glClearBufferData({:#X}, {:#X}, {:#X}, {:#X}, {:p})",
+            target,
+            internalformat,
+            format,
+            r#type,
+            data
+        );
         (self.glClearBufferData)(target, internalformat, format, r#type, data)
     }
     pub unsafe fn ClearBufferSubData(
@@ -6628,7 +6781,16 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferSubData()");
+        trace!(
+            "Calling glClearBufferSubData({:#X}, {:#X}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            internalformat,
+            offset,
+            size,
+            format,
+            r#type,
+            data
+        );
         (self.glClearBufferSubData)(target, internalformat, offset, size, format, r#type, data)
     }
     pub unsafe fn ClearBufferfi(
@@ -6639,37 +6801,64 @@ impl Gl {
         stencil: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferfi()");
+        trace!(
+            "Calling glClearBufferfi({:#X}, {:?}, {:?}, {:?})",
+            buffer,
+            drawbuffer,
+            depth,
+            stencil
+        );
         (self.glClearBufferfi)(buffer, drawbuffer, depth, stencil)
     }
     pub unsafe fn ClearBufferfv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferfv()");
+        trace!(
+            "Calling glClearBufferfv({:#X}, {:?}, {:p})",
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearBufferfv)(buffer, drawbuffer, value)
     }
     pub unsafe fn ClearBufferiv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferiv()");
+        trace!(
+            "Calling glClearBufferiv({:#X}, {:?}, {:p})",
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearBufferiv)(buffer, drawbuffer, value)
     }
     pub unsafe fn ClearBufferuiv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearBufferuiv()");
+        trace!(
+            "Calling glClearBufferuiv({:#X}, {:?}, {:p})",
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearBufferuiv)(buffer, drawbuffer, value)
     }
     pub unsafe fn ClearColor(&self, red: GLfloat, green: GLfloat, blue: GLfloat, alpha: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearColor()");
+        trace!(
+            "Calling glClearColor({:?}, {:?}, {:?}, {:?})",
+            red,
+            green,
+            blue,
+            alpha
+        );
         (self.glClearColor)(red, green, blue, alpha)
     }
     pub unsafe fn ClearDepth(&self, depth: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearDepth()");
+        trace!("Calling glClearDepth({:?})", depth);
         (self.glClearDepth)(depth)
     }
     pub unsafe fn ClearDepthf(&self, d: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearDepthf()");
+        trace!("Calling glClearDepthf({:?})", d);
         (self.glClearDepthf)(d)
     }
     pub unsafe fn ClearNamedBufferData(
@@ -6681,7 +6870,14 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedBufferData()");
+        trace!(
+            "Calling glClearNamedBufferData({:?}, {:#X}, {:#X}, {:#X}, {:p})",
+            buffer,
+            internalformat,
+            format,
+            r#type,
+            data
+        );
         (self.glClearNamedBufferData)(buffer, internalformat, format, r#type, data)
     }
     pub unsafe fn ClearNamedBufferSubData(
@@ -6695,7 +6891,16 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedBufferSubData()");
+        trace!(
+            "Calling glClearNamedBufferSubData({:?}, {:#X}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            buffer,
+            internalformat,
+            offset,
+            size,
+            format,
+            r#type,
+            data
+        );
         (self.glClearNamedBufferSubData)(buffer, internalformat, offset, size, format, r#type, data)
     }
     pub unsafe fn ClearNamedFramebufferfi(
@@ -6707,7 +6912,14 @@ impl Gl {
         stencil: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedFramebufferfi()");
+        trace!(
+            "Calling glClearNamedFramebufferfi({:?}, {:#X}, {:?}, {:?}, {:?})",
+            framebuffer,
+            buffer,
+            drawbuffer,
+            depth,
+            stencil
+        );
         (self.glClearNamedFramebufferfi)(framebuffer, buffer, drawbuffer, depth, stencil)
     }
     pub unsafe fn ClearNamedFramebufferfv(
@@ -6718,7 +6930,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedFramebufferfv()");
+        trace!(
+            "Calling glClearNamedFramebufferfv({:?}, {:#X}, {:?}, {:p})",
+            framebuffer,
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearNamedFramebufferfv)(framebuffer, buffer, drawbuffer, value)
     }
     pub unsafe fn ClearNamedFramebufferiv(
@@ -6729,7 +6947,13 @@ impl Gl {
         value: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedFramebufferiv()");
+        trace!(
+            "Calling glClearNamedFramebufferiv({:?}, {:#X}, {:?}, {:p})",
+            framebuffer,
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearNamedFramebufferiv)(framebuffer, buffer, drawbuffer, value)
     }
     pub unsafe fn ClearNamedFramebufferuiv(
@@ -6740,12 +6964,18 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearNamedFramebufferuiv()");
+        trace!(
+            "Calling glClearNamedFramebufferuiv({:?}, {:#X}, {:?}, {:p})",
+            framebuffer,
+            buffer,
+            drawbuffer,
+            value
+        );
         (self.glClearNamedFramebufferuiv)(framebuffer, buffer, drawbuffer, value)
     }
     pub unsafe fn ClearStencil(&self, s: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearStencil()");
+        trace!("Calling glClearStencil({:?})", s);
         (self.glClearStencil)(s)
     }
     pub unsafe fn ClearTexImage(
@@ -6757,7 +6987,14 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearTexImage()");
+        trace!(
+            "Calling glClearTexImage({:?}, {:?}, {:#X}, {:#X}, {:p})",
+            texture,
+            level,
+            format,
+            r#type,
+            data
+        );
         (self.glClearTexImage)(texture, level, format, r#type, data)
     }
     pub unsafe fn ClearTexSubImage(
@@ -6775,7 +7012,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClearTexSubImage()");
+        trace!("Calling glClearTexSubImage({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})", texture,level,xoffset,yoffset,zoffset,width,height,depth,format,r#type,data);
         (self.glClearTexSubImage)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth, format, r#type, data,
         )
@@ -6787,12 +7024,17 @@ impl Gl {
         timeout: GLuint64,
     ) -> GLenum {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClientWaitSync()");
+        trace!(
+            "Calling glClientWaitSync({:?}, {:?}, {:?})",
+            sync,
+            flags,
+            timeout
+        );
         (self.glClientWaitSync)(sync, flags, timeout)
     }
     pub unsafe fn ClipControl(&self, origin: GLenum, depth: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ClipControl()");
+        trace!("Calling glClipControl({:#X}, {:#X})", origin, depth);
         (self.glClipControl)(origin, depth)
     }
     pub unsafe fn ColorMask(
@@ -6803,7 +7045,13 @@ impl Gl {
         alpha: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ColorMask()");
+        trace!(
+            "Calling glColorMask({:?}, {:?}, {:?}, {:?})",
+            red,
+            green,
+            blue,
+            alpha
+        );
         (self.glColorMask)(red, green, blue, alpha)
     }
     pub unsafe fn ColorMaski(
@@ -6815,12 +7063,19 @@ impl Gl {
         a: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ColorMaski()");
+        trace!(
+            "Calling glColorMaski({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            r,
+            g,
+            b,
+            a
+        );
         (self.glColorMaski)(index, r, g, b, a)
     }
     pub unsafe fn CompileShader(&self, shader: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompileShader()");
+        trace!("Calling glCompileShader({:?})", shader);
         (self.glCompileShader)(shader)
     }
     pub unsafe fn CompressedTexImage1D(
@@ -6834,7 +7089,16 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexImage1D()");
+        trace!(
+            "Calling glCompressedTexImage1D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:p})",
+            target,
+            level,
+            internalformat,
+            width,
+            border,
+            imageSize,
+            data
+        );
         (self.glCompressedTexImage1D)(
             target,
             level,
@@ -6857,7 +7121,17 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexImage2D()");
+        trace!(
+            "Calling glCompressedTexImage2D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?}, {:p})",
+            target,
+            level,
+            internalformat,
+            width,
+            height,
+            border,
+            imageSize,
+            data
+        );
         (self.glCompressedTexImage2D)(
             target,
             level,
@@ -6882,7 +7156,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexImage3D()");
+        trace!("Calling glCompressedTexImage3D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:p})", target,level,internalformat,width,height,depth,border,imageSize,data);
         (self.glCompressedTexImage3D)(
             target,
             level,
@@ -6906,7 +7180,16 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexSubImage1D()");
+        trace!(
+            "Calling glCompressedTexSubImage1D({:#X}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})",
+            target,
+            level,
+            xoffset,
+            width,
+            format,
+            imageSize,
+            data
+        );
         (self.glCompressedTexSubImage1D)(target, level, xoffset, width, format, imageSize, data)
     }
     pub unsafe fn CompressedTexSubImage2D(
@@ -6922,7 +7205,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexSubImage2D()");
+        trace!("Calling glCompressedTexSubImage2D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})", target,level,xoffset,yoffset,width,height,format,imageSize,data);
         (self.glCompressedTexSubImage2D)(
             target, level, xoffset, yoffset, width, height, format, imageSize, data,
         )
@@ -6942,7 +7225,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTexSubImage3D()");
+        trace!("Calling glCompressedTexSubImage3D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})", target,level,xoffset,yoffset,zoffset,width,height,depth,format,imageSize,data);
         (self.glCompressedTexSubImage3D)(
             target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data,
         )
@@ -6958,7 +7241,16 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTextureSubImage1D()");
+        trace!(
+            "Calling glCompressedTextureSubImage1D({:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})",
+            texture,
+            level,
+            xoffset,
+            width,
+            format,
+            imageSize,
+            data
+        );
         (self.glCompressedTextureSubImage1D)(
             texture, level, xoffset, width, format, imageSize, data,
         )
@@ -6976,7 +7268,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTextureSubImage2D()");
+        trace!("Calling glCompressedTextureSubImage2D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})", texture,level,xoffset,yoffset,width,height,format,imageSize,data);
         (self.glCompressedTextureSubImage2D)(
             texture, level, xoffset, yoffset, width, height, format, imageSize, data,
         )
@@ -6996,7 +7288,7 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CompressedTextureSubImage3D()");
+        trace!("Calling glCompressedTextureSubImage3D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:p})", texture,level,xoffset,yoffset,zoffset,width,height,depth,format,imageSize,data);
         (self.glCompressedTextureSubImage3D)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize,
             data,
@@ -7011,7 +7303,14 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyBufferSubData()");
+        trace!(
+            "Calling glCopyBufferSubData({:#X}, {:#X}, {:?}, {:?}, {:?})",
+            readTarget,
+            writeTarget,
+            readOffset,
+            writeOffset,
+            size
+        );
         (self.glCopyBufferSubData)(readTarget, writeTarget, readOffset, writeOffset, size)
     }
     pub unsafe fn CopyImageSubData(
@@ -7033,7 +7332,7 @@ impl Gl {
         srcDepth: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyImageSubData()");
+        trace!("Calling glCopyImageSubData({:?}, {:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})", srcName,srcTarget,srcLevel,srcX,srcY,srcZ,dstName,dstTarget,dstLevel,dstX,dstY,dstZ,srcWidth,srcHeight,srcDepth);
         (self.glCopyImageSubData)(
             srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX,
             dstY, dstZ, srcWidth, srcHeight, srcDepth,
@@ -7048,7 +7347,14 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyNamedBufferSubData()");
+        trace!(
+            "Calling glCopyNamedBufferSubData({:?}, {:?}, {:?}, {:?}, {:?})",
+            readBuffer,
+            writeBuffer,
+            readOffset,
+            writeOffset,
+            size
+        );
         (self.glCopyNamedBufferSubData)(readBuffer, writeBuffer, readOffset, writeOffset, size)
     }
     pub unsafe fn CopyTexImage1D(
@@ -7062,7 +7368,16 @@ impl Gl {
         border: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTexImage1D()");
+        trace!(
+            "Calling glCopyTexImage1D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            level,
+            internalformat,
+            x,
+            y,
+            width,
+            border
+        );
         (self.glCopyTexImage1D)(target, level, internalformat, x, y, width, border)
     }
     pub unsafe fn CopyTexImage2D(
@@ -7077,7 +7392,17 @@ impl Gl {
         border: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTexImage2D()");
+        trace!(
+            "Calling glCopyTexImage2D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            level,
+            internalformat,
+            x,
+            y,
+            width,
+            height,
+            border
+        );
         (self.glCopyTexImage2D)(target, level, internalformat, x, y, width, height, border)
     }
     pub unsafe fn CopyTexSubImage1D(
@@ -7090,7 +7415,15 @@ impl Gl {
         width: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTexSubImage1D()");
+        trace!(
+            "Calling glCopyTexSubImage1D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            level,
+            xoffset,
+            x,
+            y,
+            width
+        );
         (self.glCopyTexSubImage1D)(target, level, xoffset, x, y, width)
     }
     pub unsafe fn CopyTexSubImage2D(
@@ -7105,7 +7438,17 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTexSubImage2D()");
+        trace!(
+            "Calling glCopyTexSubImage2D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            level,
+            xoffset,
+            yoffset,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glCopyTexSubImage2D)(target, level, xoffset, yoffset, x, y, width, height)
     }
     pub unsafe fn CopyTexSubImage3D(
@@ -7121,7 +7464,18 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTexSubImage3D()");
+        trace!(
+            "Calling glCopyTexSubImage3D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            level,
+            xoffset,
+            yoffset,
+            zoffset,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glCopyTexSubImage3D)(
             target, level, xoffset, yoffset, zoffset, x, y, width, height,
         )
@@ -7136,7 +7490,15 @@ impl Gl {
         width: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTextureSubImage1D()");
+        trace!(
+            "Calling glCopyTextureSubImage1D({:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            level,
+            xoffset,
+            x,
+            y,
+            width
+        );
         (self.glCopyTextureSubImage1D)(texture, level, xoffset, x, y, width)
     }
     pub unsafe fn CopyTextureSubImage2D(
@@ -7151,7 +7513,17 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTextureSubImage2D()");
+        trace!(
+            "Calling glCopyTextureSubImage2D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            level,
+            xoffset,
+            yoffset,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glCopyTextureSubImage2D)(texture, level, xoffset, yoffset, x, y, width, height)
     }
     pub unsafe fn CopyTextureSubImage3D(
@@ -7167,49 +7539,64 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CopyTextureSubImage3D()");
+        trace!(
+            "Calling glCopyTextureSubImage3D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            level,
+            xoffset,
+            yoffset,
+            zoffset,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glCopyTextureSubImage3D)(
             texture, level, xoffset, yoffset, zoffset, x, y, width, height,
         )
     }
     pub unsafe fn CreateBuffers(&self, n: GLsizei, buffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateBuffers()");
+        trace!("Calling glCreateBuffers({:?}, {:p})", n, buffers);
         (self.glCreateBuffers)(n, buffers)
     }
     pub unsafe fn CreateFramebuffers(&self, n: GLsizei, framebuffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateFramebuffers()");
+        trace!("Calling glCreateFramebuffers({:?}, {:p})", n, framebuffers);
         (self.glCreateFramebuffers)(n, framebuffers)
     }
     pub unsafe fn CreateProgram(&self) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateProgram()");
+        trace!("Calling glCreateProgram()",);
         (self.glCreateProgram)()
     }
     pub unsafe fn CreateProgramPipelines(&self, n: GLsizei, pipelines: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateProgramPipelines()");
+        trace!("Calling glCreateProgramPipelines({:?}, {:p})", n, pipelines);
         (self.glCreateProgramPipelines)(n, pipelines)
     }
     pub unsafe fn CreateQueries(&self, target: GLenum, n: GLsizei, ids: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateQueries()");
+        trace!("Calling glCreateQueries({:#X}, {:?}, {:p})", target, n, ids);
         (self.glCreateQueries)(target, n, ids)
     }
     pub unsafe fn CreateRenderbuffers(&self, n: GLsizei, renderbuffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateRenderbuffers()");
+        trace!(
+            "Calling glCreateRenderbuffers({:?}, {:p})",
+            n,
+            renderbuffers
+        );
         (self.glCreateRenderbuffers)(n, renderbuffers)
     }
     pub unsafe fn CreateSamplers(&self, n: GLsizei, samplers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateSamplers()");
+        trace!("Calling glCreateSamplers({:?}, {:p})", n, samplers);
         (self.glCreateSamplers)(n, samplers)
     }
     pub unsafe fn CreateShader(&self, r#type: GLenum) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateShader()");
+        trace!("Calling glCreateShader({:#X})", r#type);
         (self.glCreateShader)(r#type)
     }
     pub unsafe fn CreateShaderProgramv(
@@ -7219,32 +7606,46 @@ impl Gl {
         strings: *const *const GLchar,
     ) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateShaderProgramv()");
+        trace!(
+            "Calling glCreateShaderProgramv({:#X}, {:?}, {:p})",
+            r#type,
+            count,
+            strings
+        );
         (self.glCreateShaderProgramv)(r#type, count, strings)
     }
     pub unsafe fn CreateTextures(&self, target: GLenum, n: GLsizei, textures: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateTextures()");
+        trace!(
+            "Calling glCreateTextures({:#X}, {:?}, {:p})",
+            target,
+            n,
+            textures
+        );
         (self.glCreateTextures)(target, n, textures)
     }
     pub unsafe fn CreateTransformFeedbacks(&self, n: GLsizei, ids: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateTransformFeedbacks()");
+        trace!("Calling glCreateTransformFeedbacks({:?}, {:p})", n, ids);
         (self.glCreateTransformFeedbacks)(n, ids)
     }
     pub unsafe fn CreateVertexArrays(&self, n: GLsizei, arrays: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CreateVertexArrays()");
+        trace!("Calling glCreateVertexArrays({:?}, {:p})", n, arrays);
         (self.glCreateVertexArrays)(n, arrays)
     }
     pub unsafe fn CullFace(&self, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling CullFace()");
+        trace!("Calling glCullFace({:#X})", mode);
         (self.glCullFace)(mode)
     }
     pub unsafe fn DebugMessageCallback(&self, callback: GLDEBUGPROC, userParam: *const c_void) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DebugMessageCallback()");
+        trace!(
+            "Calling glDebugMessageCallback({:?}, {:p})",
+            transmute::<_, Option<fn()>>(callback),
+            userParam
+        );
         (self.glDebugMessageCallback)(callback, userParam)
     }
     pub unsafe fn DebugMessageControl(
@@ -7257,7 +7658,15 @@ impl Gl {
         enabled: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DebugMessageControl()");
+        trace!(
+            "Calling glDebugMessageControl({:#X}, {:#X}, {:#X}, {:?}, {:p}, {:?})",
+            source,
+            r#type,
+            severity,
+            count,
+            ids,
+            enabled
+        );
         (self.glDebugMessageControl)(source, r#type, severity, count, ids, enabled)
     }
     pub unsafe fn DebugMessageInsert(
@@ -7270,122 +7679,143 @@ impl Gl {
         buf: *const GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DebugMessageInsert()");
+        trace!(
+            "Calling glDebugMessageInsert({:#X}, {:#X}, {:?}, {:#X}, {:?}, {:p})",
+            source,
+            r#type,
+            id,
+            severity,
+            length,
+            buf
+        );
         (self.glDebugMessageInsert)(source, r#type, id, severity, length, buf)
     }
     pub unsafe fn DeleteBuffers(&self, n: GLsizei, buffers: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteBuffers()");
+        trace!("Calling glDeleteBuffers({:?}, {:p})", n, buffers);
         (self.glDeleteBuffers)(n, buffers)
     }
     pub unsafe fn DeleteFramebuffers(&self, n: GLsizei, framebuffers: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteFramebuffers()");
+        trace!("Calling glDeleteFramebuffers({:?}, {:p})", n, framebuffers);
         (self.glDeleteFramebuffers)(n, framebuffers)
     }
     pub unsafe fn DeleteProgram(&self, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteProgram()");
+        trace!("Calling glDeleteProgram({:?})", program);
         (self.glDeleteProgram)(program)
     }
     pub unsafe fn DeleteProgramPipelines(&self, n: GLsizei, pipelines: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteProgramPipelines()");
+        trace!("Calling glDeleteProgramPipelines({:?}, {:p})", n, pipelines);
         (self.glDeleteProgramPipelines)(n, pipelines)
     }
     pub unsafe fn DeleteQueries(&self, n: GLsizei, ids: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteQueries()");
+        trace!("Calling glDeleteQueries({:?}, {:p})", n, ids);
         (self.glDeleteQueries)(n, ids)
     }
     pub unsafe fn DeleteRenderbuffers(&self, n: GLsizei, renderbuffers: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteRenderbuffers()");
+        trace!(
+            "Calling glDeleteRenderbuffers({:?}, {:p})",
+            n,
+            renderbuffers
+        );
         (self.glDeleteRenderbuffers)(n, renderbuffers)
     }
     pub unsafe fn DeleteSamplers(&self, count: GLsizei, samplers: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteSamplers()");
+        trace!("Calling glDeleteSamplers({:?}, {:p})", count, samplers);
         (self.glDeleteSamplers)(count, samplers)
     }
     pub unsafe fn DeleteShader(&self, shader: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteShader()");
+        trace!("Calling glDeleteShader({:?})", shader);
         (self.glDeleteShader)(shader)
     }
     pub unsafe fn DeleteSync(&self, sync: GLsync) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteSync()");
+        trace!("Calling glDeleteSync({:?})", sync);
         (self.glDeleteSync)(sync)
     }
     pub unsafe fn DeleteTextures(&self, n: GLsizei, textures: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteTextures()");
+        trace!("Calling glDeleteTextures({:?}, {:p})", n, textures);
         (self.glDeleteTextures)(n, textures)
     }
     pub unsafe fn DeleteTransformFeedbacks(&self, n: GLsizei, ids: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteTransformFeedbacks()");
+        trace!("Calling glDeleteTransformFeedbacks({:?}, {:p})", n, ids);
         (self.glDeleteTransformFeedbacks)(n, ids)
     }
     pub unsafe fn DeleteVertexArrays(&self, n: GLsizei, arrays: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DeleteVertexArrays()");
+        trace!("Calling glDeleteVertexArrays({:?}, {:p})", n, arrays);
         (self.glDeleteVertexArrays)(n, arrays)
     }
     pub unsafe fn DepthFunc(&self, func: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthFunc()");
+        trace!("Calling glDepthFunc({:#X})", func);
         (self.glDepthFunc)(func)
     }
     pub unsafe fn DepthMask(&self, flag: GLboolean) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthMask()");
+        trace!("Calling glDepthMask({:?})", flag);
         (self.glDepthMask)(flag)
     }
     pub unsafe fn DepthRange(&self, n: GLdouble, f: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthRange()");
+        trace!("Calling glDepthRange({:?}, {:?})", n, f);
         (self.glDepthRange)(n, f)
     }
     pub unsafe fn DepthRangeArrayv(&self, first: GLuint, count: GLsizei, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthRangeArrayv()");
+        trace!(
+            "Calling glDepthRangeArrayv({:?}, {:?}, {:p})",
+            first,
+            count,
+            v
+        );
         (self.glDepthRangeArrayv)(first, count, v)
     }
     pub unsafe fn DepthRangeIndexed(&self, index: GLuint, n: GLdouble, f: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthRangeIndexed()");
+        trace!("Calling glDepthRangeIndexed({:?}, {:?}, {:?})", index, n, f);
         (self.glDepthRangeIndexed)(index, n, f)
     }
     pub unsafe fn DepthRangef(&self, n: GLfloat, f: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DepthRangef()");
+        trace!("Calling glDepthRangef({:?}, {:?})", n, f);
         (self.glDepthRangef)(n, f)
     }
     pub unsafe fn DetachShader(&self, program: GLuint, shader: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DetachShader()");
+        trace!("Calling glDetachShader({:?}, {:?})", program, shader);
         (self.glDetachShader)(program, shader)
     }
     pub unsafe fn Disable(&self, cap: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Disable()");
+        trace!("Calling glDisable({:#X})", cap);
         (self.glDisable)(cap)
     }
     pub unsafe fn DisableVertexArrayAttrib(&self, vaobj: GLuint, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DisableVertexArrayAttrib()");
+        trace!(
+            "Calling glDisableVertexArrayAttrib({:?}, {:?})",
+            vaobj,
+            index
+        );
         (self.glDisableVertexArrayAttrib)(vaobj, index)
     }
     pub unsafe fn DisableVertexAttribArray(&self, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DisableVertexAttribArray()");
+        trace!("Calling glDisableVertexAttribArray({:?})", index);
         (self.glDisableVertexAttribArray)(index)
     }
     pub unsafe fn Disablei(&self, target: GLenum, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Disablei()");
+        trace!("Calling glDisablei({:#X}, {:?})", target, index);
         (self.glDisablei)(target, index)
     }
     pub unsafe fn DispatchCompute(
@@ -7395,22 +7825,32 @@ impl Gl {
         num_groups_z: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DispatchCompute()");
+        trace!(
+            "Calling glDispatchCompute({:?}, {:?}, {:?})",
+            num_groups_x,
+            num_groups_y,
+            num_groups_z
+        );
         (self.glDispatchCompute)(num_groups_x, num_groups_y, num_groups_z)
     }
     pub unsafe fn DispatchComputeIndirect(&self, indirect: GLintptr) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DispatchComputeIndirect()");
+        trace!("Calling glDispatchComputeIndirect({:?})", indirect);
         (self.glDispatchComputeIndirect)(indirect)
     }
     pub unsafe fn DrawArrays(&self, mode: GLenum, first: GLint, count: GLsizei) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawArrays()");
+        trace!(
+            "Calling glDrawArrays({:#X}, {:?}, {:?})",
+            mode,
+            first,
+            count
+        );
         (self.glDrawArrays)(mode, first, count)
     }
     pub unsafe fn DrawArraysIndirect(&self, mode: GLenum, indirect: *const c_void) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawArraysIndirect()");
+        trace!("Calling glDrawArraysIndirect({:#X}, {:p})", mode, indirect);
         (self.glDrawArraysIndirect)(mode, indirect)
     }
     pub unsafe fn DrawArraysInstanced(
@@ -7421,7 +7861,13 @@ impl Gl {
         instancecount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawArraysInstanced()");
+        trace!(
+            "Calling glDrawArraysInstanced({:#X}, {:?}, {:?}, {:?})",
+            mode,
+            first,
+            count,
+            instancecount
+        );
         (self.glDrawArraysInstanced)(mode, first, count, instancecount)
     }
     pub unsafe fn DrawArraysInstancedBaseInstance(
@@ -7433,17 +7879,24 @@ impl Gl {
         baseinstance: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawArraysInstancedBaseInstance()");
+        trace!(
+            "Calling glDrawArraysInstancedBaseInstance({:#X}, {:?}, {:?}, {:?}, {:?})",
+            mode,
+            first,
+            count,
+            instancecount,
+            baseinstance
+        );
         (self.glDrawArraysInstancedBaseInstance)(mode, first, count, instancecount, baseinstance)
     }
     pub unsafe fn DrawBuffer(&self, buf: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawBuffer()");
+        trace!("Calling glDrawBuffer({:#X})", buf);
         (self.glDrawBuffer)(buf)
     }
     pub unsafe fn DrawBuffers(&self, n: GLsizei, bufs: *const GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawBuffers()");
+        trace!("Calling glDrawBuffers({:?}, {:p})", n, bufs);
         (self.glDrawBuffers)(n, bufs)
     }
     pub unsafe fn DrawElements(
@@ -7454,7 +7907,13 @@ impl Gl {
         indices: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElements()");
+        trace!(
+            "Calling glDrawElements({:#X}, {:?}, {:#X}, {:p})",
+            mode,
+            count,
+            r#type,
+            indices
+        );
         (self.glDrawElements)(mode, count, r#type, indices)
     }
     pub unsafe fn DrawElementsBaseVertex(
@@ -7466,7 +7925,14 @@ impl Gl {
         basevertex: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsBaseVertex()");
+        trace!(
+            "Calling glDrawElementsBaseVertex({:#X}, {:?}, {:#X}, {:p}, {:?})",
+            mode,
+            count,
+            r#type,
+            indices,
+            basevertex
+        );
         (self.glDrawElementsBaseVertex)(mode, count, r#type, indices, basevertex)
     }
     pub unsafe fn DrawElementsIndirect(
@@ -7476,7 +7942,12 @@ impl Gl {
         indirect: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsIndirect()");
+        trace!(
+            "Calling glDrawElementsIndirect({:#X}, {:#X}, {:p})",
+            mode,
+            r#type,
+            indirect
+        );
         (self.glDrawElementsIndirect)(mode, r#type, indirect)
     }
     pub unsafe fn DrawElementsInstanced(
@@ -7488,7 +7959,14 @@ impl Gl {
         instancecount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsInstanced()");
+        trace!(
+            "Calling glDrawElementsInstanced({:#X}, {:?}, {:#X}, {:p}, {:?})",
+            mode,
+            count,
+            r#type,
+            indices,
+            instancecount
+        );
         (self.glDrawElementsInstanced)(mode, count, r#type, indices, instancecount)
     }
     pub unsafe fn DrawElementsInstancedBaseInstance(
@@ -7501,7 +7979,15 @@ impl Gl {
         baseinstance: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsInstancedBaseInstance()");
+        trace!(
+            "Calling glDrawElementsInstancedBaseInstance({:#X}, {:?}, {:#X}, {:p}, {:?}, {:?})",
+            mode,
+            count,
+            r#type,
+            indices,
+            instancecount,
+            baseinstance
+        );
         (self.glDrawElementsInstancedBaseInstance)(
             mode,
             count,
@@ -7521,7 +8007,15 @@ impl Gl {
         basevertex: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsInstancedBaseVertex()");
+        trace!(
+            "Calling glDrawElementsInstancedBaseVertex({:#X}, {:?}, {:#X}, {:p}, {:?}, {:?})",
+            mode,
+            count,
+            r#type,
+            indices,
+            instancecount,
+            basevertex
+        );
         (self.glDrawElementsInstancedBaseVertex)(
             mode,
             count,
@@ -7542,7 +8036,7 @@ impl Gl {
         baseinstance: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawElementsInstancedBaseVertexBaseInstance()");
+        trace!("Calling glDrawElementsInstancedBaseVertexBaseInstance({:#X}, {:?}, {:#X}, {:p}, {:?}, {:?}, {:?})", mode,count,r#type,indices,instancecount,basevertex,baseinstance);
         (self.glDrawElementsInstancedBaseVertexBaseInstance)(
             mode,
             count,
@@ -7563,7 +8057,15 @@ impl Gl {
         indices: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawRangeElements()");
+        trace!(
+            "Calling glDrawRangeElements({:#X}, {:?}, {:?}, {:?}, {:#X}, {:p})",
+            mode,
+            start,
+            end,
+            count,
+            r#type,
+            indices
+        );
         (self.glDrawRangeElements)(mode, start, end, count, r#type, indices)
     }
     pub unsafe fn DrawRangeElementsBaseVertex(
@@ -7577,12 +8079,21 @@ impl Gl {
         basevertex: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawRangeElementsBaseVertex()");
+        trace!(
+            "Calling glDrawRangeElementsBaseVertex({:#X}, {:?}, {:?}, {:?}, {:#X}, {:p}, {:?})",
+            mode,
+            start,
+            end,
+            count,
+            r#type,
+            indices,
+            basevertex
+        );
         (self.glDrawRangeElementsBaseVertex)(mode, start, end, count, r#type, indices, basevertex)
     }
     pub unsafe fn DrawTransformFeedback(&self, mode: GLenum, id: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawTransformFeedback()");
+        trace!("Calling glDrawTransformFeedback({:#X}, {:?})", mode, id);
         (self.glDrawTransformFeedback)(mode, id)
     }
     pub unsafe fn DrawTransformFeedbackInstanced(
@@ -7592,12 +8103,22 @@ impl Gl {
         instancecount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawTransformFeedbackInstanced()");
+        trace!(
+            "Calling glDrawTransformFeedbackInstanced({:#X}, {:?}, {:?})",
+            mode,
+            id,
+            instancecount
+        );
         (self.glDrawTransformFeedbackInstanced)(mode, id, instancecount)
     }
     pub unsafe fn DrawTransformFeedbackStream(&self, mode: GLenum, id: GLuint, stream: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawTransformFeedbackStream()");
+        trace!(
+            "Calling glDrawTransformFeedbackStream({:#X}, {:?}, {:?})",
+            mode,
+            id,
+            stream
+        );
         (self.glDrawTransformFeedbackStream)(mode, id, stream)
     }
     pub unsafe fn DrawTransformFeedbackStreamInstanced(
@@ -7608,62 +8129,72 @@ impl Gl {
         instancecount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling DrawTransformFeedbackStreamInstanced()");
+        trace!(
+            "Calling glDrawTransformFeedbackStreamInstanced({:#X}, {:?}, {:?}, {:?})",
+            mode,
+            id,
+            stream,
+            instancecount
+        );
         (self.glDrawTransformFeedbackStreamInstanced)(mode, id, stream, instancecount)
     }
     pub unsafe fn Enable(&self, cap: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Enable()");
+        trace!("Calling glEnable({:#X})", cap);
         (self.glEnable)(cap)
     }
     pub unsafe fn EnableVertexArrayAttrib(&self, vaobj: GLuint, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EnableVertexArrayAttrib()");
+        trace!(
+            "Calling glEnableVertexArrayAttrib({:?}, {:?})",
+            vaobj,
+            index
+        );
         (self.glEnableVertexArrayAttrib)(vaobj, index)
     }
     pub unsafe fn EnableVertexAttribArray(&self, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EnableVertexAttribArray()");
+        trace!("Calling glEnableVertexAttribArray({:?})", index);
         (self.glEnableVertexAttribArray)(index)
     }
     pub unsafe fn Enablei(&self, target: GLenum, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Enablei()");
+        trace!("Calling glEnablei({:#X}, {:?})", target, index);
         (self.glEnablei)(target, index)
     }
     pub unsafe fn EndConditionalRender(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EndConditionalRender()");
+        trace!("Calling glEndConditionalRender()",);
         (self.glEndConditionalRender)()
     }
     pub unsafe fn EndQuery(&self, target: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EndQuery()");
+        trace!("Calling glEndQuery({:#X})", target);
         (self.glEndQuery)(target)
     }
     pub unsafe fn EndQueryIndexed(&self, target: GLenum, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EndQueryIndexed()");
+        trace!("Calling glEndQueryIndexed({:#X}, {:?})", target, index);
         (self.glEndQueryIndexed)(target, index)
     }
     pub unsafe fn EndTransformFeedback(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling EndTransformFeedback()");
+        trace!("Calling glEndTransformFeedback()",);
         (self.glEndTransformFeedback)()
     }
     pub unsafe fn FenceSync(&self, condition: GLenum, flags: GLbitfield) -> GLsync {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FenceSync()");
+        trace!("Calling glFenceSync({:#X}, {:?})", condition, flags);
         (self.glFenceSync)(condition, flags)
     }
     pub unsafe fn Finish(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Finish()");
+        trace!("Calling glFinish()",);
         (self.glFinish)()
     }
     pub unsafe fn Flush(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Flush()");
+        trace!("Calling glFlush()",);
         (self.glFlush)()
     }
     pub unsafe fn FlushMappedBufferRange(
@@ -7673,7 +8204,12 @@ impl Gl {
         length: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FlushMappedBufferRange()");
+        trace!(
+            "Calling glFlushMappedBufferRange({:#X}, {:?}, {:?})",
+            target,
+            offset,
+            length
+        );
         (self.glFlushMappedBufferRange)(target, offset, length)
     }
     pub unsafe fn FlushMappedNamedBufferRange(
@@ -7683,12 +8219,22 @@ impl Gl {
         length: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FlushMappedNamedBufferRange()");
+        trace!(
+            "Calling glFlushMappedNamedBufferRange({:?}, {:?}, {:?})",
+            buffer,
+            offset,
+            length
+        );
         (self.glFlushMappedNamedBufferRange)(buffer, offset, length)
     }
     pub unsafe fn FramebufferParameteri(&self, target: GLenum, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferParameteri()");
+        trace!(
+            "Calling glFramebufferParameteri({:#X}, {:#X}, {:?})",
+            target,
+            pname,
+            param
+        );
         (self.glFramebufferParameteri)(target, pname, param)
     }
     pub unsafe fn FramebufferRenderbuffer(
@@ -7699,7 +8245,13 @@ impl Gl {
         renderbuffer: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferRenderbuffer()");
+        trace!(
+            "Calling glFramebufferRenderbuffer({:#X}, {:#X}, {:#X}, {:?})",
+            target,
+            attachment,
+            renderbuffertarget,
+            renderbuffer
+        );
         (self.glFramebufferRenderbuffer)(target, attachment, renderbuffertarget, renderbuffer)
     }
     pub unsafe fn FramebufferTexture(
@@ -7710,7 +8262,13 @@ impl Gl {
         level: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferTexture()");
+        trace!(
+            "Calling glFramebufferTexture({:#X}, {:#X}, {:?}, {:?})",
+            target,
+            attachment,
+            texture,
+            level
+        );
         (self.glFramebufferTexture)(target, attachment, texture, level)
     }
     pub unsafe fn FramebufferTexture1D(
@@ -7722,7 +8280,14 @@ impl Gl {
         level: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferTexture1D()");
+        trace!(
+            "Calling glFramebufferTexture1D({:#X}, {:#X}, {:#X}, {:?}, {:?})",
+            target,
+            attachment,
+            textarget,
+            texture,
+            level
+        );
         (self.glFramebufferTexture1D)(target, attachment, textarget, texture, level)
     }
     pub unsafe fn FramebufferTexture2D(
@@ -7734,7 +8299,14 @@ impl Gl {
         level: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferTexture2D()");
+        trace!(
+            "Calling glFramebufferTexture2D({:#X}, {:#X}, {:#X}, {:?}, {:?})",
+            target,
+            attachment,
+            textarget,
+            texture,
+            level
+        );
         (self.glFramebufferTexture2D)(target, attachment, textarget, texture, level)
     }
     pub unsafe fn FramebufferTexture3D(
@@ -7747,7 +8319,15 @@ impl Gl {
         zoffset: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferTexture3D()");
+        trace!(
+            "Calling glFramebufferTexture3D({:#X}, {:#X}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            attachment,
+            textarget,
+            texture,
+            level,
+            zoffset
+        );
         (self.glFramebufferTexture3D)(target, attachment, textarget, texture, level, zoffset)
     }
     pub unsafe fn FramebufferTextureLayer(
@@ -7759,67 +8339,74 @@ impl Gl {
         layer: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FramebufferTextureLayer()");
+        trace!(
+            "Calling glFramebufferTextureLayer({:#X}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            attachment,
+            texture,
+            level,
+            layer
+        );
         (self.glFramebufferTextureLayer)(target, attachment, texture, level, layer)
     }
     pub unsafe fn FrontFace(&self, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling FrontFace()");
+        trace!("Calling glFrontFace({:#X})", mode);
         (self.glFrontFace)(mode)
     }
     pub unsafe fn GenBuffers(&self, n: GLsizei, buffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenBuffers()");
+        trace!("Calling glGenBuffers({:?}, {:p})", n, buffers);
         (self.glGenBuffers)(n, buffers)
     }
     pub unsafe fn GenFramebuffers(&self, n: GLsizei, framebuffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenFramebuffers()");
+        trace!("Calling glGenFramebuffers({:?}, {:p})", n, framebuffers);
         (self.glGenFramebuffers)(n, framebuffers)
     }
     pub unsafe fn GenProgramPipelines(&self, n: GLsizei, pipelines: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenProgramPipelines()");
+        trace!("Calling glGenProgramPipelines({:?}, {:p})", n, pipelines);
         (self.glGenProgramPipelines)(n, pipelines)
     }
     pub unsafe fn GenQueries(&self, n: GLsizei, ids: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenQueries()");
+        trace!("Calling glGenQueries({:?}, {:p})", n, ids);
         (self.glGenQueries)(n, ids)
     }
     pub unsafe fn GenRenderbuffers(&self, n: GLsizei, renderbuffers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenRenderbuffers()");
+        trace!("Calling glGenRenderbuffers({:?}, {:p})", n, renderbuffers);
         (self.glGenRenderbuffers)(n, renderbuffers)
     }
     pub unsafe fn GenSamplers(&self, count: GLsizei, samplers: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenSamplers()");
+        trace!("Calling glGenSamplers({:?}, {:p})", count, samplers);
         (self.glGenSamplers)(count, samplers)
     }
     pub unsafe fn GenTextures(&self, n: GLsizei, textures: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenTextures()");
+        trace!("Calling glGenTextures({:?}, {:p})", n, textures);
         (self.glGenTextures)(n, textures)
     }
     pub unsafe fn GenTransformFeedbacks(&self, n: GLsizei, ids: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenTransformFeedbacks()");
+        trace!("Calling glGenTransformFeedbacks({:?}, {:p})", n, ids);
         (self.glGenTransformFeedbacks)(n, ids)
     }
     pub unsafe fn GenVertexArrays(&self, n: GLsizei, arrays: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenVertexArrays()");
+        trace!("Calling glGenVertexArrays({:?}, {:p})", n, arrays);
         (self.glGenVertexArrays)(n, arrays)
     }
     pub unsafe fn GenerateMipmap(&self, target: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenerateMipmap()");
+        trace!("Calling glGenerateMipmap({:#X})", target);
         (self.glGenerateMipmap)(target)
     }
     pub unsafe fn GenerateTextureMipmap(&self, texture: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GenerateTextureMipmap()");
+        trace!("Calling glGenerateTextureMipmap({:?})", texture);
         (self.glGenerateTextureMipmap)(texture)
     }
     pub unsafe fn GetActiveAtomicCounterBufferiv(
@@ -7830,7 +8417,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveAtomicCounterBufferiv()");
+        trace!(
+            "Calling glGetActiveAtomicCounterBufferiv({:?}, {:?}, {:#X}, {:p})",
+            program,
+            bufferIndex,
+            pname,
+            params
+        );
         (self.glGetActiveAtomicCounterBufferiv)(program, bufferIndex, pname, params)
     }
     pub unsafe fn GetActiveAttrib(
@@ -7844,7 +8437,16 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveAttrib()");
+        trace!(
+            "Calling glGetActiveAttrib({:?}, {:?}, {:?}, {:p}, {:p}, {:p}, {:p})",
+            program,
+            index,
+            bufSize,
+            length,
+            size,
+            r#type,
+            name
+        );
         (self.glGetActiveAttrib)(program, index, bufSize, length, size, r#type, name)
     }
     pub unsafe fn GetActiveSubroutineName(
@@ -7857,7 +8459,15 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveSubroutineName()");
+        trace!(
+            "Calling glGetActiveSubroutineName({:?}, {:#X}, {:?}, {:?}, {:p}, {:p})",
+            program,
+            shadertype,
+            index,
+            bufSize,
+            length,
+            name
+        );
         (self.glGetActiveSubroutineName)(program, shadertype, index, bufSize, length, name)
     }
     pub unsafe fn GetActiveSubroutineUniformName(
@@ -7870,7 +8480,15 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveSubroutineUniformName()");
+        trace!(
+            "Calling glGetActiveSubroutineUniformName({:?}, {:#X}, {:?}, {:?}, {:p}, {:p})",
+            program,
+            shadertype,
+            index,
+            bufSize,
+            length,
+            name
+        );
         (self.glGetActiveSubroutineUniformName)(program, shadertype, index, bufSize, length, name)
     }
     pub unsafe fn GetActiveSubroutineUniformiv(
@@ -7882,7 +8500,14 @@ impl Gl {
         values: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveSubroutineUniformiv()");
+        trace!(
+            "Calling glGetActiveSubroutineUniformiv({:?}, {:#X}, {:?}, {:#X}, {:p})",
+            program,
+            shadertype,
+            index,
+            pname,
+            values
+        );
         (self.glGetActiveSubroutineUniformiv)(program, shadertype, index, pname, values)
     }
     pub unsafe fn GetActiveUniform(
@@ -7896,7 +8521,16 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveUniform()");
+        trace!(
+            "Calling glGetActiveUniform({:?}, {:?}, {:?}, {:p}, {:p}, {:p}, {:p})",
+            program,
+            index,
+            bufSize,
+            length,
+            size,
+            r#type,
+            name
+        );
         (self.glGetActiveUniform)(program, index, bufSize, length, size, r#type, name)
     }
     pub unsafe fn GetActiveUniformBlockName(
@@ -7908,7 +8542,14 @@ impl Gl {
         uniformBlockName: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveUniformBlockName()");
+        trace!(
+            "Calling glGetActiveUniformBlockName({:?}, {:?}, {:?}, {:p}, {:p})",
+            program,
+            uniformBlockIndex,
+            bufSize,
+            length,
+            uniformBlockName
+        );
         (self.glGetActiveUniformBlockName)(
             program,
             uniformBlockIndex,
@@ -7925,7 +8566,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveUniformBlockiv()");
+        trace!(
+            "Calling glGetActiveUniformBlockiv({:?}, {:?}, {:#X}, {:p})",
+            program,
+            uniformBlockIndex,
+            pname,
+            params
+        );
         (self.glGetActiveUniformBlockiv)(program, uniformBlockIndex, pname, params)
     }
     pub unsafe fn GetActiveUniformName(
@@ -7937,7 +8584,14 @@ impl Gl {
         uniformName: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveUniformName()");
+        trace!(
+            "Calling glGetActiveUniformName({:?}, {:?}, {:?}, {:p}, {:p})",
+            program,
+            uniformIndex,
+            bufSize,
+            length,
+            uniformName
+        );
         (self.glGetActiveUniformName)(program, uniformIndex, bufSize, length, uniformName)
     }
     pub unsafe fn GetActiveUniformsiv(
@@ -7949,7 +8603,14 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetActiveUniformsiv()");
+        trace!(
+            "Calling glGetActiveUniformsiv({:?}, {:?}, {:p}, {:#X}, {:p})",
+            program,
+            uniformCount,
+            uniformIndices,
+            pname,
+            params
+        );
         (self.glGetActiveUniformsiv)(program, uniformCount, uniformIndices, pname, params)
     }
     pub unsafe fn GetAttachedShaders(
@@ -7960,22 +8621,33 @@ impl Gl {
         shaders: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetAttachedShaders()");
+        trace!(
+            "Calling glGetAttachedShaders({:?}, {:?}, {:p}, {:p})",
+            program,
+            maxCount,
+            count,
+            shaders
+        );
         (self.glGetAttachedShaders)(program, maxCount, count, shaders)
     }
     pub unsafe fn GetAttribLocation(&self, program: GLuint, name: *const GLchar) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetAttribLocation()");
+        trace!("Calling glGetAttribLocation({:?}, {:p})", program, name);
         (self.glGetAttribLocation)(program, name)
     }
     pub unsafe fn GetBooleani_v(&self, target: GLenum, index: GLuint, data: *mut GLboolean) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBooleani_v()");
+        trace!(
+            "Calling glGetBooleani_v({:#X}, {:?}, {:p})",
+            target,
+            index,
+            data
+        );
         (self.glGetBooleani_v)(target, index, data)
     }
     pub unsafe fn GetBooleanv(&self, pname: GLenum, data: *mut GLboolean) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBooleanv()");
+        trace!("Calling glGetBooleanv({:#X}, {:p})", pname, data);
         (self.glGetBooleanv)(pname, data)
     }
     pub unsafe fn GetBufferParameteri64v(
@@ -7985,12 +8657,22 @@ impl Gl {
         params: *mut GLint64,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBufferParameteri64v()");
+        trace!(
+            "Calling glGetBufferParameteri64v({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetBufferParameteri64v)(target, pname, params)
     }
     pub unsafe fn GetBufferParameteriv(&self, target: GLenum, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBufferParameteriv()");
+        trace!(
+            "Calling glGetBufferParameteriv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetBufferParameteriv)(target, pname, params)
     }
     pub unsafe fn GetBufferPointerv(
@@ -8000,7 +8682,12 @@ impl Gl {
         params: *mut *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBufferPointerv()");
+        trace!(
+            "Calling glGetBufferPointerv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetBufferPointerv)(target, pname, params)
     }
     pub unsafe fn GetBufferSubData(
@@ -8011,12 +8698,23 @@ impl Gl {
         data: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetBufferSubData()");
+        trace!(
+            "Calling glGetBufferSubData({:#X}, {:?}, {:?}, {:p})",
+            target,
+            offset,
+            size,
+            data
+        );
         (self.glGetBufferSubData)(target, offset, size, data)
     }
     pub unsafe fn GetCompressedTexImage(&self, target: GLenum, level: GLint, img: *mut c_void) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetCompressedTexImage()");
+        trace!(
+            "Calling glGetCompressedTexImage({:#X}, {:?}, {:p})",
+            target,
+            level,
+            img
+        );
         (self.glGetCompressedTexImage)(target, level, img)
     }
     pub unsafe fn GetCompressedTextureImage(
@@ -8027,7 +8725,13 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetCompressedTextureImage()");
+        trace!(
+            "Calling glGetCompressedTextureImage({:?}, {:?}, {:?}, {:p})",
+            texture,
+            level,
+            bufSize,
+            pixels
+        );
         (self.glGetCompressedTextureImage)(texture, level, bufSize, pixels)
     }
     pub unsafe fn GetCompressedTextureSubImage(
@@ -8044,7 +8748,7 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetCompressedTextureSubImage()");
+        trace!("Calling glGetCompressedTextureSubImage({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:p})", texture,level,xoffset,yoffset,zoffset,width,height,depth,bufSize,pixels);
         (self.glGetCompressedTextureSubImage)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth, bufSize, pixels,
         )
@@ -8061,44 +8765,64 @@ impl Gl {
         messageLog: *mut GLchar,
     ) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetDebugMessageLog()");
+        trace!(
+            "Calling glGetDebugMessageLog({:?}, {:?}, {:p}, {:p}, {:p}, {:p}, {:p}, {:p})",
+            count,
+            bufSize,
+            sources,
+            types,
+            ids,
+            severities,
+            lengths,
+            messageLog
+        );
         (self.glGetDebugMessageLog)(
             count, bufSize, sources, types, ids, severities, lengths, messageLog,
         )
     }
     pub unsafe fn GetDoublei_v(&self, target: GLenum, index: GLuint, data: *mut GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetDoublei_v()");
+        trace!(
+            "Calling glGetDoublei_v({:#X}, {:?}, {:p})",
+            target,
+            index,
+            data
+        );
         (self.glGetDoublei_v)(target, index, data)
     }
     pub unsafe fn GetDoublev(&self, pname: GLenum, data: *mut GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetDoublev()");
+        trace!("Calling glGetDoublev({:#X}, {:p})", pname, data);
         (self.glGetDoublev)(pname, data)
     }
     pub unsafe fn GetError(&self) -> GLenum {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetError()");
+        trace!("Calling glGetError()",);
         (self.glGetError)()
     }
     pub unsafe fn GetFloati_v(&self, target: GLenum, index: GLuint, data: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFloati_v()");
+        trace!(
+            "Calling glGetFloati_v({:#X}, {:?}, {:p})",
+            target,
+            index,
+            data
+        );
         (self.glGetFloati_v)(target, index, data)
     }
     pub unsafe fn GetFloatv(&self, pname: GLenum, data: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFloatv()");
+        trace!("Calling glGetFloatv({:#X}, {:p})", pname, data);
         (self.glGetFloatv)(pname, data)
     }
     pub unsafe fn GetFragDataIndex(&self, program: GLuint, name: *const GLchar) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFragDataIndex()");
+        trace!("Calling glGetFragDataIndex({:?}, {:p})", program, name);
         (self.glGetFragDataIndex)(program, name)
     }
     pub unsafe fn GetFragDataLocation(&self, program: GLuint, name: *const GLchar) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFragDataLocation()");
+        trace!("Calling glGetFragDataLocation({:?}, {:p})", program, name);
         (self.glGetFragDataLocation)(program, name)
     }
     pub unsafe fn GetFramebufferAttachmentParameteriv(
@@ -8109,7 +8833,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFramebufferAttachmentParameteriv()");
+        trace!(
+            "Calling glGetFramebufferAttachmentParameteriv({:#X}, {:#X}, {:#X}, {:p})",
+            target,
+            attachment,
+            pname,
+            params
+        );
         (self.glGetFramebufferAttachmentParameteriv)(target, attachment, pname, params)
     }
     pub unsafe fn GetFramebufferParameteriv(
@@ -8119,32 +8849,47 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetFramebufferParameteriv()");
+        trace!(
+            "Calling glGetFramebufferParameteriv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetFramebufferParameteriv)(target, pname, params)
     }
     pub unsafe fn GetGraphicsResetStatus(&self) -> GLenum {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetGraphicsResetStatus()");
+        trace!("Calling glGetGraphicsResetStatus()",);
         (self.glGetGraphicsResetStatus)()
     }
     pub unsafe fn GetInteger64i_v(&self, target: GLenum, index: GLuint, data: *mut GLint64) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetInteger64i_v()");
+        trace!(
+            "Calling glGetInteger64i_v({:#X}, {:?}, {:p})",
+            target,
+            index,
+            data
+        );
         (self.glGetInteger64i_v)(target, index, data)
     }
     pub unsafe fn GetInteger64v(&self, pname: GLenum, data: *mut GLint64) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetInteger64v()");
+        trace!("Calling glGetInteger64v({:#X}, {:p})", pname, data);
         (self.glGetInteger64v)(pname, data)
     }
     pub unsafe fn GetIntegeri_v(&self, target: GLenum, index: GLuint, data: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetIntegeri_v()");
+        trace!(
+            "Calling glGetIntegeri_v({:#X}, {:?}, {:p})",
+            target,
+            index,
+            data
+        );
         (self.glGetIntegeri_v)(target, index, data)
     }
     pub unsafe fn GetIntegerv(&self, pname: GLenum, data: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetIntegerv()");
+        trace!("Calling glGetIntegerv({:#X}, {:p})", pname, data);
         (self.glGetIntegerv)(pname, data)
     }
     pub unsafe fn GetInternalformati64v(
@@ -8156,7 +8901,14 @@ impl Gl {
         params: *mut GLint64,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetInternalformati64v()");
+        trace!(
+            "Calling glGetInternalformati64v({:#X}, {:#X}, {:#X}, {:?}, {:p})",
+            target,
+            internalformat,
+            pname,
+            count,
+            params
+        );
         (self.glGetInternalformati64v)(target, internalformat, pname, count, params)
     }
     pub unsafe fn GetInternalformativ(
@@ -8168,12 +8920,24 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetInternalformativ()");
+        trace!(
+            "Calling glGetInternalformativ({:#X}, {:#X}, {:#X}, {:?}, {:p})",
+            target,
+            internalformat,
+            pname,
+            count,
+            params
+        );
         (self.glGetInternalformativ)(target, internalformat, pname, count, params)
     }
     pub unsafe fn GetMultisamplefv(&self, pname: GLenum, index: GLuint, val: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetMultisamplefv()");
+        trace!(
+            "Calling glGetMultisamplefv({:#X}, {:?}, {:p})",
+            pname,
+            index,
+            val
+        );
         (self.glGetMultisamplefv)(pname, index, val)
     }
     pub unsafe fn GetNamedBufferParameteri64v(
@@ -8183,7 +8947,12 @@ impl Gl {
         params: *mut GLint64,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedBufferParameteri64v()");
+        trace!(
+            "Calling glGetNamedBufferParameteri64v({:?}, {:#X}, {:p})",
+            buffer,
+            pname,
+            params
+        );
         (self.glGetNamedBufferParameteri64v)(buffer, pname, params)
     }
     pub unsafe fn GetNamedBufferParameteriv(
@@ -8193,7 +8962,12 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedBufferParameteriv()");
+        trace!(
+            "Calling glGetNamedBufferParameteriv({:?}, {:#X}, {:p})",
+            buffer,
+            pname,
+            params
+        );
         (self.glGetNamedBufferParameteriv)(buffer, pname, params)
     }
     pub unsafe fn GetNamedBufferPointerv(
@@ -8203,7 +8977,12 @@ impl Gl {
         params: *mut *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedBufferPointerv()");
+        trace!(
+            "Calling glGetNamedBufferPointerv({:?}, {:#X}, {:p})",
+            buffer,
+            pname,
+            params
+        );
         (self.glGetNamedBufferPointerv)(buffer, pname, params)
     }
     pub unsafe fn GetNamedBufferSubData(
@@ -8214,7 +8993,13 @@ impl Gl {
         data: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedBufferSubData()");
+        trace!(
+            "Calling glGetNamedBufferSubData({:?}, {:?}, {:?}, {:p})",
+            buffer,
+            offset,
+            size,
+            data
+        );
         (self.glGetNamedBufferSubData)(buffer, offset, size, data)
     }
     pub unsafe fn GetNamedFramebufferAttachmentParameteriv(
@@ -8225,7 +9010,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedFramebufferAttachmentParameteriv()");
+        trace!(
+            "Calling glGetNamedFramebufferAttachmentParameteriv({:?}, {:#X}, {:#X}, {:p})",
+            framebuffer,
+            attachment,
+            pname,
+            params
+        );
         (self.glGetNamedFramebufferAttachmentParameteriv)(framebuffer, attachment, pname, params)
     }
     pub unsafe fn GetNamedFramebufferParameteriv(
@@ -8235,7 +9026,12 @@ impl Gl {
         param: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedFramebufferParameteriv()");
+        trace!(
+            "Calling glGetNamedFramebufferParameteriv({:?}, {:#X}, {:p})",
+            framebuffer,
+            pname,
+            param
+        );
         (self.glGetNamedFramebufferParameteriv)(framebuffer, pname, param)
     }
     pub unsafe fn GetNamedRenderbufferParameteriv(
@@ -8245,7 +9041,12 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetNamedRenderbufferParameteriv()");
+        trace!(
+            "Calling glGetNamedRenderbufferParameteriv({:?}, {:#X}, {:p})",
+            renderbuffer,
+            pname,
+            params
+        );
         (self.glGetNamedRenderbufferParameteriv)(renderbuffer, pname, params)
     }
     pub unsafe fn GetObjectLabel(
@@ -8257,7 +9058,14 @@ impl Gl {
         label: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetObjectLabel()");
+        trace!(
+            "Calling glGetObjectLabel({:#X}, {:?}, {:?}, {:p}, {:p})",
+            identifier,
+            name,
+            bufSize,
+            length,
+            label
+        );
         (self.glGetObjectLabel)(identifier, name, bufSize, length, label)
     }
     pub unsafe fn GetObjectPtrLabel(
@@ -8268,12 +9076,18 @@ impl Gl {
         label: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetObjectPtrLabel()");
+        trace!(
+            "Calling glGetObjectPtrLabel({:p}, {:?}, {:p}, {:p})",
+            ptr,
+            bufSize,
+            length,
+            label
+        );
         (self.glGetObjectPtrLabel)(ptr, bufSize, length, label)
     }
     pub unsafe fn GetPointerv(&self, pname: GLenum, params: *mut *mut c_void) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetPointerv()");
+        trace!("Calling glGetPointerv({:#X}, {:p})", pname, params);
         (self.glGetPointerv)(pname, params)
     }
     pub unsafe fn GetProgramBinary(
@@ -8285,7 +9099,14 @@ impl Gl {
         binary: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramBinary()");
+        trace!(
+            "Calling glGetProgramBinary({:?}, {:?}, {:p}, {:p}, {:p})",
+            program,
+            bufSize,
+            length,
+            binaryFormat,
+            binary
+        );
         (self.glGetProgramBinary)(program, bufSize, length, binaryFormat, binary)
     }
     pub unsafe fn GetProgramInfoLog(
@@ -8296,7 +9117,13 @@ impl Gl {
         infoLog: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramInfoLog()");
+        trace!(
+            "Calling glGetProgramInfoLog({:?}, {:?}, {:p}, {:p})",
+            program,
+            bufSize,
+            length,
+            infoLog
+        );
         (self.glGetProgramInfoLog)(program, bufSize, length, infoLog)
     }
     pub unsafe fn GetProgramInterfaceiv(
@@ -8307,7 +9134,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramInterfaceiv()");
+        trace!(
+            "Calling glGetProgramInterfaceiv({:?}, {:#X}, {:#X}, {:p})",
+            program,
+            programInterface,
+            pname,
+            params
+        );
         (self.glGetProgramInterfaceiv)(program, programInterface, pname, params)
     }
     pub unsafe fn GetProgramPipelineInfoLog(
@@ -8318,12 +9151,23 @@ impl Gl {
         infoLog: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramPipelineInfoLog()");
+        trace!(
+            "Calling glGetProgramPipelineInfoLog({:?}, {:?}, {:p}, {:p})",
+            pipeline,
+            bufSize,
+            length,
+            infoLog
+        );
         (self.glGetProgramPipelineInfoLog)(pipeline, bufSize, length, infoLog)
     }
     pub unsafe fn GetProgramPipelineiv(&self, pipeline: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramPipelineiv()");
+        trace!(
+            "Calling glGetProgramPipelineiv({:?}, {:#X}, {:p})",
+            pipeline,
+            pname,
+            params
+        );
         (self.glGetProgramPipelineiv)(pipeline, pname, params)
     }
     pub unsafe fn GetProgramResourceIndex(
@@ -8333,7 +9177,12 @@ impl Gl {
         name: *const GLchar,
     ) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramResourceIndex()");
+        trace!(
+            "Calling glGetProgramResourceIndex({:?}, {:#X}, {:p})",
+            program,
+            programInterface,
+            name
+        );
         (self.glGetProgramResourceIndex)(program, programInterface, name)
     }
     pub unsafe fn GetProgramResourceLocation(
@@ -8343,7 +9192,12 @@ impl Gl {
         name: *const GLchar,
     ) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramResourceLocation()");
+        trace!(
+            "Calling glGetProgramResourceLocation({:?}, {:#X}, {:p})",
+            program,
+            programInterface,
+            name
+        );
         (self.glGetProgramResourceLocation)(program, programInterface, name)
     }
     pub unsafe fn GetProgramResourceLocationIndex(
@@ -8353,7 +9207,12 @@ impl Gl {
         name: *const GLchar,
     ) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramResourceLocationIndex()");
+        trace!(
+            "Calling glGetProgramResourceLocationIndex({:?}, {:#X}, {:p})",
+            program,
+            programInterface,
+            name
+        );
         (self.glGetProgramResourceLocationIndex)(program, programInterface, name)
     }
     pub unsafe fn GetProgramResourceName(
@@ -8366,7 +9225,15 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramResourceName()");
+        trace!(
+            "Calling glGetProgramResourceName({:?}, {:#X}, {:?}, {:?}, {:p}, {:p})",
+            program,
+            programInterface,
+            index,
+            bufSize,
+            length,
+            name
+        );
         (self.glGetProgramResourceName)(program, programInterface, index, bufSize, length, name)
     }
     pub unsafe fn GetProgramResourceiv(
@@ -8381,7 +9248,17 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramResourceiv()");
+        trace!(
+            "Calling glGetProgramResourceiv({:?}, {:#X}, {:?}, {:?}, {:p}, {:?}, {:p}, {:p})",
+            program,
+            programInterface,
+            index,
+            propCount,
+            props,
+            count,
+            length,
+            params
+        );
         (self.glGetProgramResourceiv)(
             program,
             programInterface,
@@ -8401,12 +9278,23 @@ impl Gl {
         values: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramStageiv()");
+        trace!(
+            "Calling glGetProgramStageiv({:?}, {:#X}, {:#X}, {:p})",
+            program,
+            shadertype,
+            pname,
+            values
+        );
         (self.glGetProgramStageiv)(program, shadertype, pname, values)
     }
     pub unsafe fn GetProgramiv(&self, program: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetProgramiv()");
+        trace!(
+            "Calling glGetProgramiv({:?}, {:#X}, {:p})",
+            program,
+            pname,
+            params
+        );
         (self.glGetProgramiv)(program, pname, params)
     }
     pub unsafe fn GetQueryBufferObjecti64v(
@@ -8417,7 +9305,13 @@ impl Gl {
         offset: GLintptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryBufferObjecti64v()");
+        trace!(
+            "Calling glGetQueryBufferObjecti64v({:?}, {:?}, {:#X}, {:?})",
+            id,
+            buffer,
+            pname,
+            offset
+        );
         (self.glGetQueryBufferObjecti64v)(id, buffer, pname, offset)
     }
     pub unsafe fn GetQueryBufferObjectiv(
@@ -8428,7 +9322,13 @@ impl Gl {
         offset: GLintptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryBufferObjectiv()");
+        trace!(
+            "Calling glGetQueryBufferObjectiv({:?}, {:?}, {:#X}, {:?})",
+            id,
+            buffer,
+            pname,
+            offset
+        );
         (self.glGetQueryBufferObjectiv)(id, buffer, pname, offset)
     }
     pub unsafe fn GetQueryBufferObjectui64v(
@@ -8439,7 +9339,13 @@ impl Gl {
         offset: GLintptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryBufferObjectui64v()");
+        trace!(
+            "Calling glGetQueryBufferObjectui64v({:?}, {:?}, {:#X}, {:?})",
+            id,
+            buffer,
+            pname,
+            offset
+        );
         (self.glGetQueryBufferObjectui64v)(id, buffer, pname, offset)
     }
     pub unsafe fn GetQueryBufferObjectuiv(
@@ -8450,7 +9356,13 @@ impl Gl {
         offset: GLintptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryBufferObjectuiv()");
+        trace!(
+            "Calling glGetQueryBufferObjectuiv({:?}, {:?}, {:#X}, {:?})",
+            id,
+            buffer,
+            pname,
+            offset
+        );
         (self.glGetQueryBufferObjectuiv)(id, buffer, pname, offset)
     }
     pub unsafe fn GetQueryIndexediv(
@@ -8461,32 +9373,63 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryIndexediv()");
+        trace!(
+            "Calling glGetQueryIndexediv({:#X}, {:?}, {:#X}, {:p})",
+            target,
+            index,
+            pname,
+            params
+        );
         (self.glGetQueryIndexediv)(target, index, pname, params)
     }
     pub unsafe fn GetQueryObjecti64v(&self, id: GLuint, pname: GLenum, params: *mut GLint64) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryObjecti64v()");
+        trace!(
+            "Calling glGetQueryObjecti64v({:?}, {:#X}, {:p})",
+            id,
+            pname,
+            params
+        );
         (self.glGetQueryObjecti64v)(id, pname, params)
     }
     pub unsafe fn GetQueryObjectiv(&self, id: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryObjectiv()");
+        trace!(
+            "Calling glGetQueryObjectiv({:?}, {:#X}, {:p})",
+            id,
+            pname,
+            params
+        );
         (self.glGetQueryObjectiv)(id, pname, params)
     }
     pub unsafe fn GetQueryObjectui64v(&self, id: GLuint, pname: GLenum, params: *mut GLuint64) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryObjectui64v()");
+        trace!(
+            "Calling glGetQueryObjectui64v({:?}, {:#X}, {:p})",
+            id,
+            pname,
+            params
+        );
         (self.glGetQueryObjectui64v)(id, pname, params)
     }
     pub unsafe fn GetQueryObjectuiv(&self, id: GLuint, pname: GLenum, params: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryObjectuiv()");
+        trace!(
+            "Calling glGetQueryObjectuiv({:?}, {:#X}, {:p})",
+            id,
+            pname,
+            params
+        );
         (self.glGetQueryObjectuiv)(id, pname, params)
     }
     pub unsafe fn GetQueryiv(&self, target: GLenum, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetQueryiv()");
+        trace!(
+            "Calling glGetQueryiv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetQueryiv)(target, pname, params)
     }
     pub unsafe fn GetRenderbufferParameteriv(
@@ -8496,7 +9439,12 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetRenderbufferParameteriv()");
+        trace!(
+            "Calling glGetRenderbufferParameteriv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetRenderbufferParameteriv)(target, pname, params)
     }
     pub unsafe fn GetSamplerParameterIiv(
@@ -8506,7 +9454,12 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSamplerParameterIiv()");
+        trace!(
+            "Calling glGetSamplerParameterIiv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            params
+        );
         (self.glGetSamplerParameterIiv)(sampler, pname, params)
     }
     pub unsafe fn GetSamplerParameterIuiv(
@@ -8516,7 +9469,12 @@ impl Gl {
         params: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSamplerParameterIuiv()");
+        trace!(
+            "Calling glGetSamplerParameterIuiv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            params
+        );
         (self.glGetSamplerParameterIuiv)(sampler, pname, params)
     }
     pub unsafe fn GetSamplerParameterfv(
@@ -8526,12 +9484,22 @@ impl Gl {
         params: *mut GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSamplerParameterfv()");
+        trace!(
+            "Calling glGetSamplerParameterfv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            params
+        );
         (self.glGetSamplerParameterfv)(sampler, pname, params)
     }
     pub unsafe fn GetSamplerParameteriv(&self, sampler: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSamplerParameteriv()");
+        trace!(
+            "Calling glGetSamplerParameteriv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            params
+        );
         (self.glGetSamplerParameteriv)(sampler, pname, params)
     }
     pub unsafe fn GetShaderInfoLog(
@@ -8542,7 +9510,13 @@ impl Gl {
         infoLog: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetShaderInfoLog()");
+        trace!(
+            "Calling glGetShaderInfoLog({:?}, {:?}, {:p}, {:p})",
+            shader,
+            bufSize,
+            length,
+            infoLog
+        );
         (self.glGetShaderInfoLog)(shader, bufSize, length, infoLog)
     }
     pub unsafe fn GetShaderPrecisionFormat(
@@ -8553,7 +9527,13 @@ impl Gl {
         precision: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetShaderPrecisionFormat()");
+        trace!(
+            "Calling glGetShaderPrecisionFormat({:#X}, {:#X}, {:p}, {:p})",
+            shadertype,
+            precisiontype,
+            range,
+            precision
+        );
         (self.glGetShaderPrecisionFormat)(shadertype, precisiontype, range, precision)
     }
     pub unsafe fn GetShaderSource(
@@ -8564,22 +9544,33 @@ impl Gl {
         source: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetShaderSource()");
+        trace!(
+            "Calling glGetShaderSource({:?}, {:?}, {:p}, {:p})",
+            shader,
+            bufSize,
+            length,
+            source
+        );
         (self.glGetShaderSource)(shader, bufSize, length, source)
     }
     pub unsafe fn GetShaderiv(&self, shader: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetShaderiv()");
+        trace!(
+            "Calling glGetShaderiv({:?}, {:#X}, {:p})",
+            shader,
+            pname,
+            params
+        );
         (self.glGetShaderiv)(shader, pname, params)
     }
     pub unsafe fn GetString(&self, name: GLenum) -> *const GLubyte {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetString()");
+        trace!("Calling glGetString({:#X})", name);
         (self.glGetString)(name)
     }
     pub unsafe fn GetStringi(&self, name: GLenum, index: GLuint) -> *const GLubyte {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetStringi()");
+        trace!("Calling glGetStringi({:#X}, {:?})", name, index);
         (self.glGetStringi)(name, index)
     }
     pub unsafe fn GetSubroutineIndex(
@@ -8589,7 +9580,12 @@ impl Gl {
         name: *const GLchar,
     ) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSubroutineIndex()");
+        trace!(
+            "Calling glGetSubroutineIndex({:?}, {:#X}, {:p})",
+            program,
+            shadertype,
+            name
+        );
         (self.glGetSubroutineIndex)(program, shadertype, name)
     }
     pub unsafe fn GetSubroutineUniformLocation(
@@ -8599,7 +9595,12 @@ impl Gl {
         name: *const GLchar,
     ) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSubroutineUniformLocation()");
+        trace!(
+            "Calling glGetSubroutineUniformLocation({:?}, {:#X}, {:p})",
+            program,
+            shadertype,
+            name
+        );
         (self.glGetSubroutineUniformLocation)(program, shadertype, name)
     }
     pub unsafe fn GetSynciv(
@@ -8611,7 +9612,14 @@ impl Gl {
         values: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetSynciv()");
+        trace!(
+            "Calling glGetSynciv({:?}, {:#X}, {:?}, {:p}, {:p})",
+            sync,
+            pname,
+            count,
+            length,
+            values
+        );
         (self.glGetSynciv)(sync, pname, count, length, values)
     }
     pub unsafe fn GetTexImage(
@@ -8623,7 +9631,14 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexImage()");
+        trace!(
+            "Calling glGetTexImage({:#X}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            format,
+            r#type,
+            pixels
+        );
         (self.glGetTexImage)(target, level, format, r#type, pixels)
     }
     pub unsafe fn GetTexLevelParameterfv(
@@ -8634,7 +9649,13 @@ impl Gl {
         params: *mut GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexLevelParameterfv()");
+        trace!(
+            "Calling glGetTexLevelParameterfv({:#X}, {:?}, {:#X}, {:p})",
+            target,
+            level,
+            pname,
+            params
+        );
         (self.glGetTexLevelParameterfv)(target, level, pname, params)
     }
     pub unsafe fn GetTexLevelParameteriv(
@@ -8645,27 +9666,53 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexLevelParameteriv()");
+        trace!(
+            "Calling glGetTexLevelParameteriv({:#X}, {:?}, {:#X}, {:p})",
+            target,
+            level,
+            pname,
+            params
+        );
         (self.glGetTexLevelParameteriv)(target, level, pname, params)
     }
     pub unsafe fn GetTexParameterIiv(&self, target: GLenum, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexParameterIiv()");
+        trace!(
+            "Calling glGetTexParameterIiv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetTexParameterIiv)(target, pname, params)
     }
     pub unsafe fn GetTexParameterIuiv(&self, target: GLenum, pname: GLenum, params: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexParameterIuiv()");
+        trace!(
+            "Calling glGetTexParameterIuiv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetTexParameterIuiv)(target, pname, params)
     }
     pub unsafe fn GetTexParameterfv(&self, target: GLenum, pname: GLenum, params: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexParameterfv()");
+        trace!(
+            "Calling glGetTexParameterfv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetTexParameterfv)(target, pname, params)
     }
     pub unsafe fn GetTexParameteriv(&self, target: GLenum, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTexParameteriv()");
+        trace!(
+            "Calling glGetTexParameteriv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glGetTexParameteriv)(target, pname, params)
     }
     pub unsafe fn GetTextureImage(
@@ -8678,7 +9725,15 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureImage()");
+        trace!(
+            "Calling glGetTextureImage({:?}, {:?}, {:#X}, {:#X}, {:?}, {:p})",
+            texture,
+            level,
+            format,
+            r#type,
+            bufSize,
+            pixels
+        );
         (self.glGetTextureImage)(texture, level, format, r#type, bufSize, pixels)
     }
     pub unsafe fn GetTextureLevelParameterfv(
@@ -8689,7 +9744,13 @@ impl Gl {
         params: *mut GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureLevelParameterfv()");
+        trace!(
+            "Calling glGetTextureLevelParameterfv({:?}, {:?}, {:#X}, {:p})",
+            texture,
+            level,
+            pname,
+            params
+        );
         (self.glGetTextureLevelParameterfv)(texture, level, pname, params)
     }
     pub unsafe fn GetTextureLevelParameteriv(
@@ -8700,7 +9761,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureLevelParameteriv()");
+        trace!(
+            "Calling glGetTextureLevelParameteriv({:?}, {:?}, {:#X}, {:p})",
+            texture,
+            level,
+            pname,
+            params
+        );
         (self.glGetTextureLevelParameteriv)(texture, level, pname, params)
     }
     pub unsafe fn GetTextureParameterIiv(
@@ -8710,7 +9777,12 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureParameterIiv()");
+        trace!(
+            "Calling glGetTextureParameterIiv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glGetTextureParameterIiv)(texture, pname, params)
     }
     pub unsafe fn GetTextureParameterIuiv(
@@ -8720,7 +9792,12 @@ impl Gl {
         params: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureParameterIuiv()");
+        trace!(
+            "Calling glGetTextureParameterIuiv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glGetTextureParameterIuiv)(texture, pname, params)
     }
     pub unsafe fn GetTextureParameterfv(
@@ -8730,12 +9807,22 @@ impl Gl {
         params: *mut GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureParameterfv()");
+        trace!(
+            "Calling glGetTextureParameterfv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glGetTextureParameterfv)(texture, pname, params)
     }
     pub unsafe fn GetTextureParameteriv(&self, texture: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureParameteriv()");
+        trace!(
+            "Calling glGetTextureParameteriv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glGetTextureParameteriv)(texture, pname, params)
     }
     pub unsafe fn GetTextureSubImage(
@@ -8754,7 +9841,7 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTextureSubImage()");
+        trace!("Calling glGetTextureSubImage({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:?}, {:p})", texture,level,xoffset,yoffset,zoffset,width,height,depth,format,r#type,bufSize,pixels);
         (self.glGetTextureSubImage)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth, format, r#type,
             bufSize, pixels,
@@ -8771,7 +9858,16 @@ impl Gl {
         name: *mut GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTransformFeedbackVarying()");
+        trace!(
+            "Calling glGetTransformFeedbackVarying({:?}, {:?}, {:?}, {:p}, {:p}, {:p}, {:p})",
+            program,
+            index,
+            bufSize,
+            length,
+            size,
+            r#type,
+            name
+        );
         (self.glGetTransformFeedbackVarying)(program, index, bufSize, length, size, r#type, name)
     }
     pub unsafe fn GetTransformFeedbacki64_v(
@@ -8782,7 +9878,13 @@ impl Gl {
         param: *mut GLint64,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTransformFeedbacki64_v()");
+        trace!(
+            "Calling glGetTransformFeedbacki64_v({:?}, {:#X}, {:?}, {:p})",
+            xfb,
+            pname,
+            index,
+            param
+        );
         (self.glGetTransformFeedbacki64_v)(xfb, pname, index, param)
     }
     pub unsafe fn GetTransformFeedbacki_v(
@@ -8793,12 +9895,23 @@ impl Gl {
         param: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTransformFeedbacki_v()");
+        trace!(
+            "Calling glGetTransformFeedbacki_v({:?}, {:#X}, {:?}, {:p})",
+            xfb,
+            pname,
+            index,
+            param
+        );
         (self.glGetTransformFeedbacki_v)(xfb, pname, index, param)
     }
     pub unsafe fn GetTransformFeedbackiv(&self, xfb: GLuint, pname: GLenum, param: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetTransformFeedbackiv()");
+        trace!(
+            "Calling glGetTransformFeedbackiv({:?}, {:#X}, {:p})",
+            xfb,
+            pname,
+            param
+        );
         (self.glGetTransformFeedbackiv)(xfb, pname, param)
     }
     pub unsafe fn GetUniformBlockIndex(
@@ -8807,7 +9920,11 @@ impl Gl {
         uniformBlockName: *const GLchar,
     ) -> GLuint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformBlockIndex()");
+        trace!(
+            "Calling glGetUniformBlockIndex({:?}, {:p})",
+            program,
+            uniformBlockName
+        );
         (self.glGetUniformBlockIndex)(program, uniformBlockName)
     }
     pub unsafe fn GetUniformIndices(
@@ -8818,12 +9935,18 @@ impl Gl {
         uniformIndices: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformIndices()");
+        trace!(
+            "Calling glGetUniformIndices({:?}, {:?}, {:p}, {:p})",
+            program,
+            uniformCount,
+            uniformNames,
+            uniformIndices
+        );
         (self.glGetUniformIndices)(program, uniformCount, uniformNames, uniformIndices)
     }
     pub unsafe fn GetUniformLocation(&self, program: GLuint, name: *const GLchar) -> GLint {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformLocation()");
+        trace!("Calling glGetUniformLocation({:?}, {:p})", program, name);
         (self.glGetUniformLocation)(program, name)
     }
     pub unsafe fn GetUniformSubroutineuiv(
@@ -8833,27 +9956,52 @@ impl Gl {
         params: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformSubroutineuiv()");
+        trace!(
+            "Calling glGetUniformSubroutineuiv({:#X}, {:?}, {:p})",
+            shadertype,
+            location,
+            params
+        );
         (self.glGetUniformSubroutineuiv)(shadertype, location, params)
     }
     pub unsafe fn GetUniformdv(&self, program: GLuint, location: GLint, params: *mut GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformdv()");
+        trace!(
+            "Calling glGetUniformdv({:?}, {:?}, {:p})",
+            program,
+            location,
+            params
+        );
         (self.glGetUniformdv)(program, location, params)
     }
     pub unsafe fn GetUniformfv(&self, program: GLuint, location: GLint, params: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformfv()");
+        trace!(
+            "Calling glGetUniformfv({:?}, {:?}, {:p})",
+            program,
+            location,
+            params
+        );
         (self.glGetUniformfv)(program, location, params)
     }
     pub unsafe fn GetUniformiv(&self, program: GLuint, location: GLint, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformiv()");
+        trace!(
+            "Calling glGetUniformiv({:?}, {:?}, {:p})",
+            program,
+            location,
+            params
+        );
         (self.glGetUniformiv)(program, location, params)
     }
     pub unsafe fn GetUniformuiv(&self, program: GLuint, location: GLint, params: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetUniformuiv()");
+        trace!(
+            "Calling glGetUniformuiv({:?}, {:?}, {:p})",
+            program,
+            location,
+            params
+        );
         (self.glGetUniformuiv)(program, location, params)
     }
     pub unsafe fn GetVertexArrayIndexed64iv(
@@ -8864,7 +10012,13 @@ impl Gl {
         param: *mut GLint64,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexArrayIndexed64iv()");
+        trace!(
+            "Calling glGetVertexArrayIndexed64iv({:?}, {:?}, {:#X}, {:p})",
+            vaobj,
+            index,
+            pname,
+            param
+        );
         (self.glGetVertexArrayIndexed64iv)(vaobj, index, pname, param)
     }
     pub unsafe fn GetVertexArrayIndexediv(
@@ -8875,27 +10029,53 @@ impl Gl {
         param: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexArrayIndexediv()");
+        trace!(
+            "Calling glGetVertexArrayIndexediv({:?}, {:?}, {:#X}, {:p})",
+            vaobj,
+            index,
+            pname,
+            param
+        );
         (self.glGetVertexArrayIndexediv)(vaobj, index, pname, param)
     }
     pub unsafe fn GetVertexArrayiv(&self, vaobj: GLuint, pname: GLenum, param: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexArrayiv()");
+        trace!(
+            "Calling glGetVertexArrayiv({:?}, {:#X}, {:p})",
+            vaobj,
+            pname,
+            param
+        );
         (self.glGetVertexArrayiv)(vaobj, pname, param)
     }
     pub unsafe fn GetVertexAttribIiv(&self, index: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribIiv()");
+        trace!(
+            "Calling glGetVertexAttribIiv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribIiv)(index, pname, params)
     }
     pub unsafe fn GetVertexAttribIuiv(&self, index: GLuint, pname: GLenum, params: *mut GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribIuiv()");
+        trace!(
+            "Calling glGetVertexAttribIuiv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribIuiv)(index, pname, params)
     }
     pub unsafe fn GetVertexAttribLdv(&self, index: GLuint, pname: GLenum, params: *mut GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribLdv()");
+        trace!(
+            "Calling glGetVertexAttribLdv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribLdv)(index, pname, params)
     }
     pub unsafe fn GetVertexAttribPointerv(
@@ -8905,22 +10085,42 @@ impl Gl {
         pointer: *mut *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribPointerv()");
+        trace!(
+            "Calling glGetVertexAttribPointerv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            pointer
+        );
         (self.glGetVertexAttribPointerv)(index, pname, pointer)
     }
     pub unsafe fn GetVertexAttribdv(&self, index: GLuint, pname: GLenum, params: *mut GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribdv()");
+        trace!(
+            "Calling glGetVertexAttribdv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribdv)(index, pname, params)
     }
     pub unsafe fn GetVertexAttribfv(&self, index: GLuint, pname: GLenum, params: *mut GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribfv()");
+        trace!(
+            "Calling glGetVertexAttribfv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribfv)(index, pname, params)
     }
     pub unsafe fn GetVertexAttribiv(&self, index: GLuint, pname: GLenum, params: *mut GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetVertexAttribiv()");
+        trace!(
+            "Calling glGetVertexAttribiv({:?}, {:#X}, {:p})",
+            index,
+            pname,
+            params
+        );
         (self.glGetVertexAttribiv)(index, pname, params)
     }
     pub unsafe fn GetnCompressedTexImage(
@@ -8931,7 +10131,13 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnCompressedTexImage()");
+        trace!(
+            "Calling glGetnCompressedTexImage({:#X}, {:?}, {:?}, {:p})",
+            target,
+            lod,
+            bufSize,
+            pixels
+        );
         (self.glGetnCompressedTexImage)(target, lod, bufSize, pixels)
     }
     pub unsafe fn GetnTexImage(
@@ -8944,7 +10150,15 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnTexImage()");
+        trace!(
+            "Calling glGetnTexImage({:#X}, {:?}, {:#X}, {:#X}, {:?}, {:p})",
+            target,
+            level,
+            format,
+            r#type,
+            bufSize,
+            pixels
+        );
         (self.glGetnTexImage)(target, level, format, r#type, bufSize, pixels)
     }
     pub unsafe fn GetnUniformdv(
@@ -8955,7 +10169,13 @@ impl Gl {
         params: *mut GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnUniformdv()");
+        trace!(
+            "Calling glGetnUniformdv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            bufSize,
+            params
+        );
         (self.glGetnUniformdv)(program, location, bufSize, params)
     }
     pub unsafe fn GetnUniformfv(
@@ -8966,7 +10186,13 @@ impl Gl {
         params: *mut GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnUniformfv()");
+        trace!(
+            "Calling glGetnUniformfv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            bufSize,
+            params
+        );
         (self.glGetnUniformfv)(program, location, bufSize, params)
     }
     pub unsafe fn GetnUniformiv(
@@ -8977,7 +10203,13 @@ impl Gl {
         params: *mut GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnUniformiv()");
+        trace!(
+            "Calling glGetnUniformiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            bufSize,
+            params
+        );
         (self.glGetnUniformiv)(program, location, bufSize, params)
     }
     pub unsafe fn GetnUniformuiv(
@@ -8988,17 +10220,23 @@ impl Gl {
         params: *mut GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling GetnUniformuiv()");
+        trace!(
+            "Calling glGetnUniformuiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            bufSize,
+            params
+        );
         (self.glGetnUniformuiv)(program, location, bufSize, params)
     }
     pub unsafe fn Hint(&self, target: GLenum, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Hint()");
+        trace!("Calling glHint({:#X}, {:#X})", target, mode);
         (self.glHint)(target, mode)
     }
     pub unsafe fn InvalidateBufferData(&self, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateBufferData()");
+        trace!("Calling glInvalidateBufferData({:?})", buffer);
         (self.glInvalidateBufferData)(buffer)
     }
     pub unsafe fn InvalidateBufferSubData(
@@ -9008,7 +10246,12 @@ impl Gl {
         length: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateBufferSubData()");
+        trace!(
+            "Calling glInvalidateBufferSubData({:?}, {:?}, {:?})",
+            buffer,
+            offset,
+            length
+        );
         (self.glInvalidateBufferSubData)(buffer, offset, length)
     }
     pub unsafe fn InvalidateFramebuffer(
@@ -9018,7 +10261,12 @@ impl Gl {
         attachments: *const GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateFramebuffer()");
+        trace!(
+            "Calling glInvalidateFramebuffer({:#X}, {:?}, {:p})",
+            target,
+            numAttachments,
+            attachments
+        );
         (self.glInvalidateFramebuffer)(target, numAttachments, attachments)
     }
     pub unsafe fn InvalidateNamedFramebufferData(
@@ -9028,7 +10276,12 @@ impl Gl {
         attachments: *const GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateNamedFramebufferData()");
+        trace!(
+            "Calling glInvalidateNamedFramebufferData({:?}, {:?}, {:p})",
+            framebuffer,
+            numAttachments,
+            attachments
+        );
         (self.glInvalidateNamedFramebufferData)(framebuffer, numAttachments, attachments)
     }
     pub unsafe fn InvalidateNamedFramebufferSubData(
@@ -9042,7 +10295,16 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateNamedFramebufferSubData()");
+        trace!(
+            "Calling glInvalidateNamedFramebufferSubData({:?}, {:?}, {:p}, {:?}, {:?}, {:?}, {:?})",
+            framebuffer,
+            numAttachments,
+            attachments,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glInvalidateNamedFramebufferSubData)(
             framebuffer,
             numAttachments,
@@ -9064,12 +10326,21 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateSubFramebuffer()");
+        trace!(
+            "Calling glInvalidateSubFramebuffer({:#X}, {:?}, {:p}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            numAttachments,
+            attachments,
+            x,
+            y,
+            width,
+            height
+        );
         (self.glInvalidateSubFramebuffer)(target, numAttachments, attachments, x, y, width, height)
     }
     pub unsafe fn InvalidateTexImage(&self, texture: GLuint, level: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateTexImage()");
+        trace!("Calling glInvalidateTexImage({:?}, {:?})", texture, level);
         (self.glInvalidateTexImage)(texture, level)
     }
     pub unsafe fn InvalidateTexSubImage(
@@ -9084,99 +10355,109 @@ impl Gl {
         depth: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling InvalidateTexSubImage()");
+        trace!(
+            "Calling glInvalidateTexSubImage({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            level,
+            xoffset,
+            yoffset,
+            zoffset,
+            width,
+            height,
+            depth
+        );
         (self.glInvalidateTexSubImage)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth,
         )
     }
     pub unsafe fn IsBuffer(&self, buffer: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsBuffer()");
+        trace!("Calling glIsBuffer({:?})", buffer);
         (self.glIsBuffer)(buffer)
     }
     pub unsafe fn IsEnabled(&self, cap: GLenum) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsEnabled()");
+        trace!("Calling glIsEnabled({:#X})", cap);
         (self.glIsEnabled)(cap)
     }
     pub unsafe fn IsEnabledi(&self, target: GLenum, index: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsEnabledi()");
+        trace!("Calling glIsEnabledi({:#X}, {:?})", target, index);
         (self.glIsEnabledi)(target, index)
     }
     pub unsafe fn IsFramebuffer(&self, framebuffer: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsFramebuffer()");
+        trace!("Calling glIsFramebuffer({:?})", framebuffer);
         (self.glIsFramebuffer)(framebuffer)
     }
     pub unsafe fn IsProgram(&self, program: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsProgram()");
+        trace!("Calling glIsProgram({:?})", program);
         (self.glIsProgram)(program)
     }
     pub unsafe fn IsProgramPipeline(&self, pipeline: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsProgramPipeline()");
+        trace!("Calling glIsProgramPipeline({:?})", pipeline);
         (self.glIsProgramPipeline)(pipeline)
     }
     pub unsafe fn IsQuery(&self, id: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsQuery()");
+        trace!("Calling glIsQuery({:?})", id);
         (self.glIsQuery)(id)
     }
     pub unsafe fn IsRenderbuffer(&self, renderbuffer: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsRenderbuffer()");
+        trace!("Calling glIsRenderbuffer({:?})", renderbuffer);
         (self.glIsRenderbuffer)(renderbuffer)
     }
     pub unsafe fn IsSampler(&self, sampler: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsSampler()");
+        trace!("Calling glIsSampler({:?})", sampler);
         (self.glIsSampler)(sampler)
     }
     pub unsafe fn IsShader(&self, shader: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsShader()");
+        trace!("Calling glIsShader({:?})", shader);
         (self.glIsShader)(shader)
     }
     pub unsafe fn IsSync(&self, sync: GLsync) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsSync()");
+        trace!("Calling glIsSync({:?})", sync);
         (self.glIsSync)(sync)
     }
     pub unsafe fn IsTexture(&self, texture: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsTexture()");
+        trace!("Calling glIsTexture({:?})", texture);
         (self.glIsTexture)(texture)
     }
     pub unsafe fn IsTransformFeedback(&self, id: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsTransformFeedback()");
+        trace!("Calling glIsTransformFeedback({:?})", id);
         (self.glIsTransformFeedback)(id)
     }
     pub unsafe fn IsVertexArray(&self, array: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling IsVertexArray()");
+        trace!("Calling glIsVertexArray({:?})", array);
         (self.glIsVertexArray)(array)
     }
     pub unsafe fn LineWidth(&self, width: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling LineWidth()");
+        trace!("Calling glLineWidth({:?})", width);
         (self.glLineWidth)(width)
     }
     pub unsafe fn LinkProgram(&self, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling LinkProgram()");
+        trace!("Calling glLinkProgram({:?})", program);
         (self.glLinkProgram)(program)
     }
     pub unsafe fn LogicOp(&self, opcode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling LogicOp()");
+        trace!("Calling glLogicOp({:#X})", opcode);
         (self.glLogicOp)(opcode)
     }
     pub unsafe fn MapBuffer(&self, target: GLenum, access: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MapBuffer()");
+        trace!("Calling glMapBuffer({:#X}, {:#X})", target, access);
         (self.glMapBuffer)(target, access)
     }
     pub unsafe fn MapBufferRange(
@@ -9187,12 +10468,18 @@ impl Gl {
         access: GLbitfield,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MapBufferRange()");
+        trace!(
+            "Calling glMapBufferRange({:#X}, {:?}, {:?}, {:?})",
+            target,
+            offset,
+            length,
+            access
+        );
         (self.glMapBufferRange)(target, offset, length, access)
     }
     pub unsafe fn MapNamedBuffer(&self, buffer: GLuint, access: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MapNamedBuffer()");
+        trace!("Calling glMapNamedBuffer({:?}, {:#X})", buffer, access);
         (self.glMapNamedBuffer)(buffer, access)
     }
     pub unsafe fn MapNamedBufferRange(
@@ -9203,22 +10490,28 @@ impl Gl {
         access: GLbitfield,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MapNamedBufferRange()");
+        trace!(
+            "Calling glMapNamedBufferRange({:?}, {:?}, {:?}, {:?})",
+            buffer,
+            offset,
+            length,
+            access
+        );
         (self.glMapNamedBufferRange)(buffer, offset, length, access)
     }
     pub unsafe fn MemoryBarrier(&self, barriers: GLbitfield) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MemoryBarrier()");
+        trace!("Calling glMemoryBarrier({:?})", barriers);
         (self.glMemoryBarrier)(barriers)
     }
     pub unsafe fn MemoryBarrierByRegion(&self, barriers: GLbitfield) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MemoryBarrierByRegion()");
+        trace!("Calling glMemoryBarrierByRegion({:?})", barriers);
         (self.glMemoryBarrierByRegion)(barriers)
     }
     pub unsafe fn MinSampleShading(&self, value: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MinSampleShading()");
+        trace!("Calling glMinSampleShading({:?})", value);
         (self.glMinSampleShading)(value)
     }
     pub unsafe fn MultiDrawArrays(
@@ -9229,7 +10522,13 @@ impl Gl {
         drawcount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawArrays()");
+        trace!(
+            "Calling glMultiDrawArrays({:#X}, {:p}, {:p}, {:?})",
+            mode,
+            first,
+            count,
+            drawcount
+        );
         (self.glMultiDrawArrays)(mode, first, count, drawcount)
     }
     pub unsafe fn MultiDrawArraysIndirect(
@@ -9240,7 +10539,13 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawArraysIndirect()");
+        trace!(
+            "Calling glMultiDrawArraysIndirect({:#X}, {:p}, {:?}, {:?})",
+            mode,
+            indirect,
+            drawcount,
+            stride
+        );
         (self.glMultiDrawArraysIndirect)(mode, indirect, drawcount, stride)
     }
     pub unsafe fn MultiDrawArraysIndirectCount(
@@ -9252,7 +10557,14 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawArraysIndirectCount()");
+        trace!(
+            "Calling glMultiDrawArraysIndirectCount({:#X}, {:p}, {:?}, {:?}, {:?})",
+            mode,
+            indirect,
+            drawcount,
+            maxdrawcount,
+            stride
+        );
         (self.glMultiDrawArraysIndirectCount)(mode, indirect, drawcount, maxdrawcount, stride)
     }
     pub unsafe fn MultiDrawElements(
@@ -9264,7 +10576,14 @@ impl Gl {
         drawcount: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawElements()");
+        trace!(
+            "Calling glMultiDrawElements({:#X}, {:p}, {:#X}, {:p}, {:?})",
+            mode,
+            count,
+            r#type,
+            indices,
+            drawcount
+        );
         (self.glMultiDrawElements)(mode, count, r#type, indices, drawcount)
     }
     pub unsafe fn MultiDrawElementsBaseVertex(
@@ -9277,7 +10596,15 @@ impl Gl {
         basevertex: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawElementsBaseVertex()");
+        trace!(
+            "Calling glMultiDrawElementsBaseVertex({:#X}, {:p}, {:#X}, {:p}, {:?}, {:p})",
+            mode,
+            count,
+            r#type,
+            indices,
+            drawcount,
+            basevertex
+        );
         (self.glMultiDrawElementsBaseVertex)(mode, count, r#type, indices, drawcount, basevertex)
     }
     pub unsafe fn MultiDrawElementsIndirect(
@@ -9289,7 +10616,14 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawElementsIndirect()");
+        trace!(
+            "Calling glMultiDrawElementsIndirect({:#X}, {:#X}, {:p}, {:?}, {:?})",
+            mode,
+            r#type,
+            indirect,
+            drawcount,
+            stride
+        );
         (self.glMultiDrawElementsIndirect)(mode, r#type, indirect, drawcount, stride)
     }
     pub unsafe fn MultiDrawElementsIndirectCount(
@@ -9302,7 +10636,15 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling MultiDrawElementsIndirectCount()");
+        trace!(
+            "Calling glMultiDrawElementsIndirectCount({:#X}, {:#X}, {:p}, {:?}, {:?}, {:?})",
+            mode,
+            r#type,
+            indirect,
+            drawcount,
+            maxdrawcount,
+            stride
+        );
         (self.glMultiDrawElementsIndirectCount)(
             mode,
             r#type,
@@ -9320,7 +10662,13 @@ impl Gl {
         usage: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedBufferData()");
+        trace!(
+            "Calling glNamedBufferData({:?}, {:?}, {:p}, {:#X})",
+            buffer,
+            size,
+            data,
+            usage
+        );
         (self.glNamedBufferData)(buffer, size, data, usage)
     }
     pub unsafe fn NamedBufferStorage(
@@ -9331,7 +10679,13 @@ impl Gl {
         flags: GLbitfield,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedBufferStorage()");
+        trace!(
+            "Calling glNamedBufferStorage({:?}, {:?}, {:p}, {:?})",
+            buffer,
+            size,
+            data,
+            flags
+        );
         (self.glNamedBufferStorage)(buffer, size, data, flags)
     }
     pub unsafe fn NamedBufferSubData(
@@ -9342,12 +10696,22 @@ impl Gl {
         data: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedBufferSubData()");
+        trace!(
+            "Calling glNamedBufferSubData({:?}, {:?}, {:?}, {:p})",
+            buffer,
+            offset,
+            size,
+            data
+        );
         (self.glNamedBufferSubData)(buffer, offset, size, data)
     }
     pub unsafe fn NamedFramebufferDrawBuffer(&self, framebuffer: GLuint, buf: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferDrawBuffer()");
+        trace!(
+            "Calling glNamedFramebufferDrawBuffer({:?}, {:#X})",
+            framebuffer,
+            buf
+        );
         (self.glNamedFramebufferDrawBuffer)(framebuffer, buf)
     }
     pub unsafe fn NamedFramebufferDrawBuffers(
@@ -9357,7 +10721,12 @@ impl Gl {
         bufs: *const GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferDrawBuffers()");
+        trace!(
+            "Calling glNamedFramebufferDrawBuffers({:?}, {:?}, {:p})",
+            framebuffer,
+            n,
+            bufs
+        );
         (self.glNamedFramebufferDrawBuffers)(framebuffer, n, bufs)
     }
     pub unsafe fn NamedFramebufferParameteri(
@@ -9367,12 +10736,21 @@ impl Gl {
         param: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferParameteri()");
+        trace!(
+            "Calling glNamedFramebufferParameteri({:?}, {:#X}, {:?})",
+            framebuffer,
+            pname,
+            param
+        );
         (self.glNamedFramebufferParameteri)(framebuffer, pname, param)
     }
     pub unsafe fn NamedFramebufferReadBuffer(&self, framebuffer: GLuint, src: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferReadBuffer()");
+        trace!(
+            "Calling glNamedFramebufferReadBuffer({:?}, {:#X})",
+            framebuffer,
+            src
+        );
         (self.glNamedFramebufferReadBuffer)(framebuffer, src)
     }
     pub unsafe fn NamedFramebufferRenderbuffer(
@@ -9383,7 +10761,13 @@ impl Gl {
         renderbuffer: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferRenderbuffer()");
+        trace!(
+            "Calling glNamedFramebufferRenderbuffer({:?}, {:#X}, {:#X}, {:?})",
+            framebuffer,
+            attachment,
+            renderbuffertarget,
+            renderbuffer
+        );
         (self.glNamedFramebufferRenderbuffer)(
             framebuffer,
             attachment,
@@ -9399,7 +10783,13 @@ impl Gl {
         level: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferTexture()");
+        trace!(
+            "Calling glNamedFramebufferTexture({:?}, {:#X}, {:?}, {:?})",
+            framebuffer,
+            attachment,
+            texture,
+            level
+        );
         (self.glNamedFramebufferTexture)(framebuffer, attachment, texture, level)
     }
     pub unsafe fn NamedFramebufferTextureLayer(
@@ -9411,7 +10801,14 @@ impl Gl {
         layer: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedFramebufferTextureLayer()");
+        trace!(
+            "Calling glNamedFramebufferTextureLayer({:?}, {:#X}, {:?}, {:?}, {:?})",
+            framebuffer,
+            attachment,
+            texture,
+            level,
+            layer
+        );
         (self.glNamedFramebufferTextureLayer)(framebuffer, attachment, texture, level, layer)
     }
     pub unsafe fn NamedRenderbufferStorage(
@@ -9422,7 +10819,13 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedRenderbufferStorage()");
+        trace!(
+            "Calling glNamedRenderbufferStorage({:?}, {:#X}, {:?}, {:?})",
+            renderbuffer,
+            internalformat,
+            width,
+            height
+        );
         (self.glNamedRenderbufferStorage)(renderbuffer, internalformat, width, height)
     }
     pub unsafe fn NamedRenderbufferStorageMultisample(
@@ -9434,7 +10837,14 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling NamedRenderbufferStorageMultisample()");
+        trace!(
+            "Calling glNamedRenderbufferStorageMultisample({:?}, {:?}, {:#X}, {:?}, {:?})",
+            renderbuffer,
+            samples,
+            internalformat,
+            width,
+            height
+        );
         (self.glNamedRenderbufferStorageMultisample)(
             renderbuffer,
             samples,
@@ -9451,87 +10861,103 @@ impl Gl {
         label: *const GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ObjectLabel()");
+        trace!(
+            "Calling glObjectLabel({:#X}, {:?}, {:?}, {:p})",
+            identifier,
+            name,
+            length,
+            label
+        );
         (self.glObjectLabel)(identifier, name, length, label)
     }
     pub unsafe fn ObjectPtrLabel(&self, ptr: *const c_void, length: GLsizei, label: *const GLchar) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ObjectPtrLabel()");
+        trace!(
+            "Calling glObjectPtrLabel({:p}, {:?}, {:p})",
+            ptr,
+            length,
+            label
+        );
         (self.glObjectPtrLabel)(ptr, length, label)
     }
     pub unsafe fn PatchParameterfv(&self, pname: GLenum, values: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PatchParameterfv()");
+        trace!("Calling glPatchParameterfv({:#X}, {:p})", pname, values);
         (self.glPatchParameterfv)(pname, values)
     }
     pub unsafe fn PatchParameteri(&self, pname: GLenum, value: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PatchParameteri()");
+        trace!("Calling glPatchParameteri({:#X}, {:?})", pname, value);
         (self.glPatchParameteri)(pname, value)
     }
     pub unsafe fn PauseTransformFeedback(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PauseTransformFeedback()");
+        trace!("Calling glPauseTransformFeedback()",);
         (self.glPauseTransformFeedback)()
     }
     pub unsafe fn PixelStoref(&self, pname: GLenum, param: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PixelStoref()");
+        trace!("Calling glPixelStoref({:#X}, {:?})", pname, param);
         (self.glPixelStoref)(pname, param)
     }
     pub unsafe fn PixelStorei(&self, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PixelStorei()");
+        trace!("Calling glPixelStorei({:#X}, {:?})", pname, param);
         (self.glPixelStorei)(pname, param)
     }
     pub unsafe fn PointParameterf(&self, pname: GLenum, param: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PointParameterf()");
+        trace!("Calling glPointParameterf({:#X}, {:?})", pname, param);
         (self.glPointParameterf)(pname, param)
     }
     pub unsafe fn PointParameterfv(&self, pname: GLenum, params: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PointParameterfv()");
+        trace!("Calling glPointParameterfv({:#X}, {:p})", pname, params);
         (self.glPointParameterfv)(pname, params)
     }
     pub unsafe fn PointParameteri(&self, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PointParameteri()");
+        trace!("Calling glPointParameteri({:#X}, {:?})", pname, param);
         (self.glPointParameteri)(pname, param)
     }
     pub unsafe fn PointParameteriv(&self, pname: GLenum, params: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PointParameteriv()");
+        trace!("Calling glPointParameteriv({:#X}, {:p})", pname, params);
         (self.glPointParameteriv)(pname, params)
     }
     pub unsafe fn PointSize(&self, size: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PointSize()");
+        trace!("Calling glPointSize({:?})", size);
         (self.glPointSize)(size)
     }
     pub unsafe fn PolygonMode(&self, face: GLenum, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PolygonMode()");
+        trace!("Calling glPolygonMode({:#X}, {:#X})", face, mode);
         (self.glPolygonMode)(face, mode)
     }
     pub unsafe fn PolygonOffset(&self, factor: GLfloat, units: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PolygonOffset()");
+        trace!("Calling glPolygonOffset({:?}, {:?})", factor, units);
         (self.glPolygonOffset)(factor, units)
     }
     pub unsafe fn PolygonOffsetClamp(&self, factor: GLfloat, units: GLfloat, clamp: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PolygonOffsetClamp()");
+        trace!(
+            "Calling glPolygonOffsetClamp({:?}, {:?}, {:?})",
+            factor,
+            units,
+            clamp
+        );
         (self.glPolygonOffsetClamp)(factor, units, clamp)
     }
     pub unsafe fn PopDebugGroup(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PopDebugGroup()");
+        trace!("Calling glPopDebugGroup()",);
         (self.glPopDebugGroup)()
     }
     pub unsafe fn PrimitiveRestartIndex(&self, index: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PrimitiveRestartIndex()");
+        trace!("Calling glPrimitiveRestartIndex({:?})", index);
         (self.glPrimitiveRestartIndex)(index)
     }
     pub unsafe fn ProgramBinary(
@@ -9542,17 +10968,33 @@ impl Gl {
         length: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramBinary()");
+        trace!(
+            "Calling glProgramBinary({:?}, {:#X}, {:p}, {:?})",
+            program,
+            binaryFormat,
+            binary,
+            length
+        );
         (self.glProgramBinary)(program, binaryFormat, binary, length)
     }
     pub unsafe fn ProgramParameteri(&self, program: GLuint, pname: GLenum, value: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramParameteri()");
+        trace!(
+            "Calling glProgramParameteri({:?}, {:#X}, {:?})",
+            program,
+            pname,
+            value
+        );
         (self.glProgramParameteri)(program, pname, value)
     }
     pub unsafe fn ProgramUniform1d(&self, program: GLuint, location: GLint, v0: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1d()");
+        trace!(
+            "Calling glProgramUniform1d({:?}, {:?}, {:?})",
+            program,
+            location,
+            v0
+        );
         (self.glProgramUniform1d)(program, location, v0)
     }
     pub unsafe fn ProgramUniform1dv(
@@ -9563,12 +11005,23 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1dv()");
+        trace!(
+            "Calling glProgramUniform1dv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform1dv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform1f(&self, program: GLuint, location: GLint, v0: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1f()");
+        trace!(
+            "Calling glProgramUniform1f({:?}, {:?}, {:?})",
+            program,
+            location,
+            v0
+        );
         (self.glProgramUniform1f)(program, location, v0)
     }
     pub unsafe fn ProgramUniform1fv(
@@ -9579,12 +11032,23 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1fv()");
+        trace!(
+            "Calling glProgramUniform1fv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform1fv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform1i(&self, program: GLuint, location: GLint, v0: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1i()");
+        trace!(
+            "Calling glProgramUniform1i({:?}, {:?}, {:?})",
+            program,
+            location,
+            v0
+        );
         (self.glProgramUniform1i)(program, location, v0)
     }
     pub unsafe fn ProgramUniform1iv(
@@ -9595,12 +11059,23 @@ impl Gl {
         value: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1iv()");
+        trace!(
+            "Calling glProgramUniform1iv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform1iv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform1ui(&self, program: GLuint, location: GLint, v0: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1ui()");
+        trace!(
+            "Calling glProgramUniform1ui({:?}, {:?}, {:?})",
+            program,
+            location,
+            v0
+        );
         (self.glProgramUniform1ui)(program, location, v0)
     }
     pub unsafe fn ProgramUniform1uiv(
@@ -9611,7 +11086,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform1uiv()");
+        trace!(
+            "Calling glProgramUniform1uiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform1uiv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform2d(
@@ -9622,7 +11103,13 @@ impl Gl {
         v1: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2d()");
+        trace!(
+            "Calling glProgramUniform2d({:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1
+        );
         (self.glProgramUniform2d)(program, location, v0, v1)
     }
     pub unsafe fn ProgramUniform2dv(
@@ -9633,7 +11120,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2dv()");
+        trace!(
+            "Calling glProgramUniform2dv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform2dv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform2f(
@@ -9644,7 +11137,13 @@ impl Gl {
         v1: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2f()");
+        trace!(
+            "Calling glProgramUniform2f({:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1
+        );
         (self.glProgramUniform2f)(program, location, v0, v1)
     }
     pub unsafe fn ProgramUniform2fv(
@@ -9655,12 +11154,24 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2fv()");
+        trace!(
+            "Calling glProgramUniform2fv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform2fv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform2i(&self, program: GLuint, location: GLint, v0: GLint, v1: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2i()");
+        trace!(
+            "Calling glProgramUniform2i({:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1
+        );
         (self.glProgramUniform2i)(program, location, v0, v1)
     }
     pub unsafe fn ProgramUniform2iv(
@@ -9671,7 +11182,13 @@ impl Gl {
         value: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2iv()");
+        trace!(
+            "Calling glProgramUniform2iv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform2iv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform2ui(
@@ -9682,7 +11199,13 @@ impl Gl {
         v1: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2ui()");
+        trace!(
+            "Calling glProgramUniform2ui({:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1
+        );
         (self.glProgramUniform2ui)(program, location, v0, v1)
     }
     pub unsafe fn ProgramUniform2uiv(
@@ -9693,7 +11216,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform2uiv()");
+        trace!(
+            "Calling glProgramUniform2uiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform2uiv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform3d(
@@ -9705,7 +11234,14 @@ impl Gl {
         v2: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3d()");
+        trace!(
+            "Calling glProgramUniform3d({:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glProgramUniform3d)(program, location, v0, v1, v2)
     }
     pub unsafe fn ProgramUniform3dv(
@@ -9716,7 +11252,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3dv()");
+        trace!(
+            "Calling glProgramUniform3dv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform3dv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform3f(
@@ -9728,7 +11270,14 @@ impl Gl {
         v2: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3f()");
+        trace!(
+            "Calling glProgramUniform3f({:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glProgramUniform3f)(program, location, v0, v1, v2)
     }
     pub unsafe fn ProgramUniform3fv(
@@ -9739,7 +11288,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3fv()");
+        trace!(
+            "Calling glProgramUniform3fv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform3fv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform3i(
@@ -9751,7 +11306,14 @@ impl Gl {
         v2: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3i()");
+        trace!(
+            "Calling glProgramUniform3i({:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glProgramUniform3i)(program, location, v0, v1, v2)
     }
     pub unsafe fn ProgramUniform3iv(
@@ -9762,7 +11324,13 @@ impl Gl {
         value: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3iv()");
+        trace!(
+            "Calling glProgramUniform3iv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform3iv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform3ui(
@@ -9774,7 +11342,14 @@ impl Gl {
         v2: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3ui()");
+        trace!(
+            "Calling glProgramUniform3ui({:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glProgramUniform3ui)(program, location, v0, v1, v2)
     }
     pub unsafe fn ProgramUniform3uiv(
@@ -9785,7 +11360,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform3uiv()");
+        trace!(
+            "Calling glProgramUniform3uiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform3uiv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform4d(
@@ -9798,7 +11379,15 @@ impl Gl {
         v3: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4d()");
+        trace!(
+            "Calling glProgramUniform4d({:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glProgramUniform4d)(program, location, v0, v1, v2, v3)
     }
     pub unsafe fn ProgramUniform4dv(
@@ -9809,7 +11398,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4dv()");
+        trace!(
+            "Calling glProgramUniform4dv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform4dv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform4f(
@@ -9822,7 +11417,15 @@ impl Gl {
         v3: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4f()");
+        trace!(
+            "Calling glProgramUniform4f({:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glProgramUniform4f)(program, location, v0, v1, v2, v3)
     }
     pub unsafe fn ProgramUniform4fv(
@@ -9833,7 +11436,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4fv()");
+        trace!(
+            "Calling glProgramUniform4fv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform4fv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform4i(
@@ -9846,7 +11455,15 @@ impl Gl {
         v3: GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4i()");
+        trace!(
+            "Calling glProgramUniform4i({:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glProgramUniform4i)(program, location, v0, v1, v2, v3)
     }
     pub unsafe fn ProgramUniform4iv(
@@ -9857,7 +11474,13 @@ impl Gl {
         value: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4iv()");
+        trace!(
+            "Calling glProgramUniform4iv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform4iv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniform4ui(
@@ -9870,7 +11493,15 @@ impl Gl {
         v3: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4ui()");
+        trace!(
+            "Calling glProgramUniform4ui({:?}, {:?}, {:?}, {:?}, {:?}, {:?})",
+            program,
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glProgramUniform4ui)(program, location, v0, v1, v2, v3)
     }
     pub unsafe fn ProgramUniform4uiv(
@@ -9881,7 +11512,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniform4uiv()");
+        trace!(
+            "Calling glProgramUniform4uiv({:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            value
+        );
         (self.glProgramUniform4uiv)(program, location, count, value)
     }
     pub unsafe fn ProgramUniformMatrix2dv(
@@ -9893,7 +11530,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2dv()");
+        trace!(
+            "Calling glProgramUniformMatrix2dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix2fv(
@@ -9905,7 +11549,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2fv()");
+        trace!(
+            "Calling glProgramUniformMatrix2fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix2x3dv(
@@ -9917,7 +11568,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2x3dv()");
+        trace!(
+            "Calling glProgramUniformMatrix2x3dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2x3dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix2x3fv(
@@ -9929,7 +11587,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2x3fv()");
+        trace!(
+            "Calling glProgramUniformMatrix2x3fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2x3fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix2x4dv(
@@ -9941,7 +11606,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2x4dv()");
+        trace!(
+            "Calling glProgramUniformMatrix2x4dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2x4dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix2x4fv(
@@ -9953,7 +11625,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix2x4fv()");
+        trace!(
+            "Calling glProgramUniformMatrix2x4fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix2x4fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3dv(
@@ -9965,7 +11644,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3dv()");
+        trace!(
+            "Calling glProgramUniformMatrix3dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3fv(
@@ -9977,7 +11663,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3fv()");
+        trace!(
+            "Calling glProgramUniformMatrix3fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3x2dv(
@@ -9989,7 +11682,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3x2dv()");
+        trace!(
+            "Calling glProgramUniformMatrix3x2dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3x2dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3x2fv(
@@ -10001,7 +11701,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3x2fv()");
+        trace!(
+            "Calling glProgramUniformMatrix3x2fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3x2fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3x4dv(
@@ -10013,7 +11720,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3x4dv()");
+        trace!(
+            "Calling glProgramUniformMatrix3x4dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3x4dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix3x4fv(
@@ -10025,7 +11739,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix3x4fv()");
+        trace!(
+            "Calling glProgramUniformMatrix3x4fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix3x4fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4dv(
@@ -10037,7 +11758,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4dv()");
+        trace!(
+            "Calling glProgramUniformMatrix4dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4fv(
@@ -10049,7 +11777,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4fv()");
+        trace!(
+            "Calling glProgramUniformMatrix4fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4x2dv(
@@ -10061,7 +11796,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4x2dv()");
+        trace!(
+            "Calling glProgramUniformMatrix4x2dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4x2dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4x2fv(
@@ -10073,7 +11815,14 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4x2fv()");
+        trace!(
+            "Calling glProgramUniformMatrix4x2fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4x2fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4x3dv(
@@ -10085,7 +11834,14 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4x3dv()");
+        trace!(
+            "Calling glProgramUniformMatrix4x3dv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4x3dv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProgramUniformMatrix4x3fv(
@@ -10097,12 +11853,19 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProgramUniformMatrix4x3fv()");
+        trace!(
+            "Calling glProgramUniformMatrix4x3fv({:?}, {:?}, {:?}, {:?}, {:p})",
+            program,
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glProgramUniformMatrix4x3fv)(program, location, count, transpose, value)
     }
     pub unsafe fn ProvokingVertex(&self, mode: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ProvokingVertex()");
+        trace!("Calling glProvokingVertex({:#X})", mode);
         (self.glProvokingVertex)(mode)
     }
     pub unsafe fn PushDebugGroup(
@@ -10113,17 +11876,23 @@ impl Gl {
         message: *const GLchar,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling PushDebugGroup()");
+        trace!(
+            "Calling glPushDebugGroup({:#X}, {:?}, {:?}, {:p})",
+            source,
+            id,
+            length,
+            message
+        );
         (self.glPushDebugGroup)(source, id, length, message)
     }
     pub unsafe fn QueryCounter(&self, id: GLuint, target: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling QueryCounter()");
+        trace!("Calling glQueryCounter({:?}, {:#X})", id, target);
         (self.glQueryCounter)(id, target)
     }
     pub unsafe fn ReadBuffer(&self, src: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ReadBuffer()");
+        trace!("Calling glReadBuffer({:#X})", src);
         (self.glReadBuffer)(src)
     }
     pub unsafe fn ReadPixels(
@@ -10137,7 +11906,16 @@ impl Gl {
         pixels: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ReadPixels()");
+        trace!(
+            "Calling glReadPixels({:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            x,
+            y,
+            width,
+            height,
+            format,
+            r#type,
+            pixels
+        );
         (self.glReadPixels)(x, y, width, height, format, r#type, pixels)
     }
     pub unsafe fn ReadnPixels(
@@ -10152,12 +11930,22 @@ impl Gl {
         data: *mut c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ReadnPixels()");
+        trace!(
+            "Calling glReadnPixels({:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:?}, {:p})",
+            x,
+            y,
+            width,
+            height,
+            format,
+            r#type,
+            bufSize,
+            data
+        );
         (self.glReadnPixels)(x, y, width, height, format, r#type, bufSize, data)
     }
     pub unsafe fn ReleaseShaderCompiler(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ReleaseShaderCompiler()");
+        trace!("Calling glReleaseShaderCompiler()",);
         (self.glReleaseShaderCompiler)()
     }
     pub unsafe fn RenderbufferStorage(
@@ -10168,7 +11956,13 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling RenderbufferStorage()");
+        trace!(
+            "Calling glRenderbufferStorage({:#X}, {:#X}, {:?}, {:?})",
+            target,
+            internalformat,
+            width,
+            height
+        );
         (self.glRenderbufferStorage)(target, internalformat, width, height)
     }
     pub unsafe fn RenderbufferStorageMultisample(
@@ -10180,27 +11974,39 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling RenderbufferStorageMultisample()");
+        trace!(
+            "Calling glRenderbufferStorageMultisample({:#X}, {:?}, {:#X}, {:?}, {:?})",
+            target,
+            samples,
+            internalformat,
+            width,
+            height
+        );
         (self.glRenderbufferStorageMultisample)(target, samples, internalformat, width, height)
     }
     pub unsafe fn ResumeTransformFeedback(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ResumeTransformFeedback()");
+        trace!("Calling glResumeTransformFeedback()",);
         (self.glResumeTransformFeedback)()
     }
     pub unsafe fn SampleCoverage(&self, value: GLfloat, invert: GLboolean) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SampleCoverage()");
+        trace!("Calling glSampleCoverage({:?}, {:?})", value, invert);
         (self.glSampleCoverage)(value, invert)
     }
     pub unsafe fn SampleMaski(&self, maskNumber: GLuint, mask: GLbitfield) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SampleMaski()");
+        trace!("Calling glSampleMaski({:?}, {:?})", maskNumber, mask);
         (self.glSampleMaski)(maskNumber, mask)
     }
     pub unsafe fn SamplerParameterIiv(&self, sampler: GLuint, pname: GLenum, param: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameterIiv()");
+        trace!(
+            "Calling glSamplerParameterIiv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameterIiv)(sampler, pname, param)
     }
     pub unsafe fn SamplerParameterIuiv(
@@ -10210,37 +12016,68 @@ impl Gl {
         param: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameterIuiv()");
+        trace!(
+            "Calling glSamplerParameterIuiv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameterIuiv)(sampler, pname, param)
     }
     pub unsafe fn SamplerParameterf(&self, sampler: GLuint, pname: GLenum, param: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameterf()");
+        trace!(
+            "Calling glSamplerParameterf({:?}, {:#X}, {:?})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameterf)(sampler, pname, param)
     }
     pub unsafe fn SamplerParameterfv(&self, sampler: GLuint, pname: GLenum, param: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameterfv()");
+        trace!(
+            "Calling glSamplerParameterfv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameterfv)(sampler, pname, param)
     }
     pub unsafe fn SamplerParameteri(&self, sampler: GLuint, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameteri()");
+        trace!(
+            "Calling glSamplerParameteri({:?}, {:#X}, {:?})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameteri)(sampler, pname, param)
     }
     pub unsafe fn SamplerParameteriv(&self, sampler: GLuint, pname: GLenum, param: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SamplerParameteriv()");
+        trace!(
+            "Calling glSamplerParameteriv({:?}, {:#X}, {:p})",
+            sampler,
+            pname,
+            param
+        );
         (self.glSamplerParameteriv)(sampler, pname, param)
     }
     pub unsafe fn Scissor(&self, x: GLint, y: GLint, width: GLsizei, height: GLsizei) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Scissor()");
+        trace!(
+            "Calling glScissor({:?}, {:?}, {:?}, {:?})",
+            x,
+            y,
+            width,
+            height
+        );
         (self.glScissor)(x, y, width, height)
     }
     pub unsafe fn ScissorArrayv(&self, first: GLuint, count: GLsizei, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ScissorArrayv()");
+        trace!("Calling glScissorArrayv({:?}, {:?}, {:p})", first, count, v);
         (self.glScissorArrayv)(first, count, v)
     }
     pub unsafe fn ScissorIndexed(
@@ -10252,12 +12089,19 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ScissorIndexed()");
+        trace!(
+            "Calling glScissorIndexed({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            left,
+            bottom,
+            width,
+            height
+        );
         (self.glScissorIndexed)(index, left, bottom, width, height)
     }
     pub unsafe fn ScissorIndexedv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ScissorIndexedv()");
+        trace!("Calling glScissorIndexedv({:?}, {:p})", index, v);
         (self.glScissorIndexedv)(index, v)
     }
     pub unsafe fn ShaderBinary(
@@ -10269,7 +12113,14 @@ impl Gl {
         length: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ShaderBinary()");
+        trace!(
+            "Calling glShaderBinary({:?}, {:p}, {:#X}, {:p}, {:?})",
+            count,
+            shaders,
+            binaryFormat,
+            binary,
+            length
+        );
         (self.glShaderBinary)(count, shaders, binaryFormat, binary, length)
     }
     pub unsafe fn ShaderSource(
@@ -10280,7 +12131,13 @@ impl Gl {
         length: *const GLint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ShaderSource()");
+        trace!(
+            "Calling glShaderSource({:?}, {:?}, {:p}, {:p})",
+            shader,
+            count,
+            string,
+            length
+        );
         (self.glShaderSource)(shader, count, string, length)
     }
     pub unsafe fn ShaderStorageBlockBinding(
@@ -10290,7 +12147,12 @@ impl Gl {
         storageBlockBinding: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ShaderStorageBlockBinding()");
+        trace!(
+            "Calling glShaderStorageBlockBinding({:?}, {:?}, {:?})",
+            program,
+            storageBlockIndex,
+            storageBlockBinding
+        );
         (self.glShaderStorageBlockBinding)(program, storageBlockIndex, storageBlockBinding)
     }
     pub unsafe fn SpecializeShader(
@@ -10302,7 +12164,14 @@ impl Gl {
         pConstantValue: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling SpecializeShader()");
+        trace!(
+            "Calling glSpecializeShader({:?}, {:p}, {:?}, {:p}, {:p})",
+            shader,
+            pEntryPoint,
+            numSpecializationConstants,
+            pConstantIndex,
+            pConstantValue
+        );
         (self.glSpecializeShader)(
             shader,
             pEntryPoint,
@@ -10313,7 +12182,12 @@ impl Gl {
     }
     pub unsafe fn StencilFunc(&self, func: GLenum, r#ref: GLint, mask: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilFunc()");
+        trace!(
+            "Calling glStencilFunc({:#X}, {:?}, {:?})",
+            func,
+            r#ref,
+            mask
+        );
         (self.glStencilFunc)(func, r#ref, mask)
     }
     pub unsafe fn StencilFuncSeparate(
@@ -10324,22 +12198,33 @@ impl Gl {
         mask: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilFuncSeparate()");
+        trace!(
+            "Calling glStencilFuncSeparate({:#X}, {:#X}, {:?}, {:?})",
+            face,
+            func,
+            r#ref,
+            mask
+        );
         (self.glStencilFuncSeparate)(face, func, r#ref, mask)
     }
     pub unsafe fn StencilMask(&self, mask: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilMask()");
+        trace!("Calling glStencilMask({:?})", mask);
         (self.glStencilMask)(mask)
     }
     pub unsafe fn StencilMaskSeparate(&self, face: GLenum, mask: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilMaskSeparate()");
+        trace!("Calling glStencilMaskSeparate({:#X}, {:?})", face, mask);
         (self.glStencilMaskSeparate)(face, mask)
     }
     pub unsafe fn StencilOp(&self, fail: GLenum, zfail: GLenum, zpass: GLenum) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilOp()");
+        trace!(
+            "Calling glStencilOp({:#X}, {:#X}, {:#X})",
+            fail,
+            zfail,
+            zpass
+        );
         (self.glStencilOp)(fail, zfail, zpass)
     }
     pub unsafe fn StencilOpSeparate(
@@ -10350,12 +12235,23 @@ impl Gl {
         dppass: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling StencilOpSeparate()");
+        trace!(
+            "Calling glStencilOpSeparate({:#X}, {:#X}, {:#X}, {:#X})",
+            face,
+            sfail,
+            dpfail,
+            dppass
+        );
         (self.glStencilOpSeparate)(face, sfail, dpfail, dppass)
     }
     pub unsafe fn TexBuffer(&self, target: GLenum, internalformat: GLenum, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexBuffer()");
+        trace!(
+            "Calling glTexBuffer({:#X}, {:#X}, {:?})",
+            target,
+            internalformat,
+            buffer
+        );
         (self.glTexBuffer)(target, internalformat, buffer)
     }
     pub unsafe fn TexBufferRange(
@@ -10367,7 +12263,14 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexBufferRange()");
+        trace!(
+            "Calling glTexBufferRange({:#X}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            internalformat,
+            buffer,
+            offset,
+            size
+        );
         (self.glTexBufferRange)(target, internalformat, buffer, offset, size)
     }
     pub unsafe fn TexImage1D(
@@ -10382,7 +12285,17 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexImage1D()");
+        trace!(
+            "Calling glTexImage1D({:#X}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            internalformat,
+            width,
+            border,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTexImage1D)(
             target,
             level,
@@ -10407,7 +12320,18 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexImage2D()");
+        trace!(
+            "Calling glTexImage2D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            internalformat,
+            width,
+            height,
+            border,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTexImage2D)(
             target,
             level,
@@ -10430,7 +12354,15 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexImage2DMultisample()");
+        trace!(
+            "Calling glTexImage2DMultisample({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            samples,
+            internalformat,
+            width,
+            height,
+            fixedsamplelocations
+        );
         (self.glTexImage2DMultisample)(
             target,
             samples,
@@ -10454,7 +12386,19 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexImage3D()");
+        trace!(
+            "Calling glTexImage3D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            internalformat,
+            width,
+            height,
+            depth,
+            border,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTexImage3D)(
             target,
             level,
@@ -10479,7 +12423,16 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexImage3DMultisample()");
+        trace!(
+            "Calling glTexImage3DMultisample({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            samples,
+            internalformat,
+            width,
+            height,
+            depth,
+            fixedsamplelocations
+        );
         (self.glTexImage3DMultisample)(
             target,
             samples,
@@ -10492,32 +12445,62 @@ impl Gl {
     }
     pub unsafe fn TexParameterIiv(&self, target: GLenum, pname: GLenum, params: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameterIiv()");
+        trace!(
+            "Calling glTexParameterIiv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glTexParameterIiv)(target, pname, params)
     }
     pub unsafe fn TexParameterIuiv(&self, target: GLenum, pname: GLenum, params: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameterIuiv()");
+        trace!(
+            "Calling glTexParameterIuiv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glTexParameterIuiv)(target, pname, params)
     }
     pub unsafe fn TexParameterf(&self, target: GLenum, pname: GLenum, param: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameterf()");
+        trace!(
+            "Calling glTexParameterf({:#X}, {:#X}, {:?})",
+            target,
+            pname,
+            param
+        );
         (self.glTexParameterf)(target, pname, param)
     }
     pub unsafe fn TexParameterfv(&self, target: GLenum, pname: GLenum, params: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameterfv()");
+        trace!(
+            "Calling glTexParameterfv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glTexParameterfv)(target, pname, params)
     }
     pub unsafe fn TexParameteri(&self, target: GLenum, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameteri()");
+        trace!(
+            "Calling glTexParameteri({:#X}, {:#X}, {:?})",
+            target,
+            pname,
+            param
+        );
         (self.glTexParameteri)(target, pname, param)
     }
     pub unsafe fn TexParameteriv(&self, target: GLenum, pname: GLenum, params: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexParameteriv()");
+        trace!(
+            "Calling glTexParameteriv({:#X}, {:#X}, {:p})",
+            target,
+            pname,
+            params
+        );
         (self.glTexParameteriv)(target, pname, params)
     }
     pub unsafe fn TexStorage1D(
@@ -10528,7 +12511,13 @@ impl Gl {
         width: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexStorage1D()");
+        trace!(
+            "Calling glTexStorage1D({:#X}, {:?}, {:#X}, {:?})",
+            target,
+            levels,
+            internalformat,
+            width
+        );
         (self.glTexStorage1D)(target, levels, internalformat, width)
     }
     pub unsafe fn TexStorage2D(
@@ -10540,7 +12529,14 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexStorage2D()");
+        trace!(
+            "Calling glTexStorage2D({:#X}, {:?}, {:#X}, {:?}, {:?})",
+            target,
+            levels,
+            internalformat,
+            width,
+            height
+        );
         (self.glTexStorage2D)(target, levels, internalformat, width, height)
     }
     pub unsafe fn TexStorage2DMultisample(
@@ -10553,7 +12549,15 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexStorage2DMultisample()");
+        trace!(
+            "Calling glTexStorage2DMultisample({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            samples,
+            internalformat,
+            width,
+            height,
+            fixedsamplelocations
+        );
         (self.glTexStorage2DMultisample)(
             target,
             samples,
@@ -10573,7 +12577,15 @@ impl Gl {
         depth: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexStorage3D()");
+        trace!(
+            "Calling glTexStorage3D({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?})",
+            target,
+            levels,
+            internalformat,
+            width,
+            height,
+            depth
+        );
         (self.glTexStorage3D)(target, levels, internalformat, width, height, depth)
     }
     pub unsafe fn TexStorage3DMultisample(
@@ -10587,7 +12599,16 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexStorage3DMultisample()");
+        trace!(
+            "Calling glTexStorage3DMultisample({:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?})",
+            target,
+            samples,
+            internalformat,
+            width,
+            height,
+            depth,
+            fixedsamplelocations
+        );
         (self.glTexStorage3DMultisample)(
             target,
             samples,
@@ -10609,7 +12630,16 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexSubImage1D()");
+        trace!(
+            "Calling glTexSubImage1D({:#X}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            xoffset,
+            width,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTexSubImage1D)(target, level, xoffset, width, format, r#type, pixels)
     }
     pub unsafe fn TexSubImage2D(
@@ -10625,7 +12655,18 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexSubImage2D()");
+        trace!(
+            "Calling glTexSubImage2D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            target,
+            level,
+            xoffset,
+            yoffset,
+            width,
+            height,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTexSubImage2D)(
             target, level, xoffset, yoffset, width, height, format, r#type, pixels,
         )
@@ -10645,19 +12686,24 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TexSubImage3D()");
+        trace!("Calling glTexSubImage3D({:#X}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})", target,level,xoffset,yoffset,zoffset,width,height,depth,format,r#type,pixels);
         (self.glTexSubImage3D)(
             target, level, xoffset, yoffset, zoffset, width, height, depth, format, r#type, pixels,
         )
     }
     pub unsafe fn TextureBarrier(&self) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureBarrier()");
+        trace!("Calling glTextureBarrier()",);
         (self.glTextureBarrier)()
     }
     pub unsafe fn TextureBuffer(&self, texture: GLuint, internalformat: GLenum, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureBuffer()");
+        trace!(
+            "Calling glTextureBuffer({:?}, {:#X}, {:?})",
+            texture,
+            internalformat,
+            buffer
+        );
         (self.glTextureBuffer)(texture, internalformat, buffer)
     }
     pub unsafe fn TextureBufferRange(
@@ -10669,12 +12715,24 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureBufferRange()");
+        trace!(
+            "Calling glTextureBufferRange({:?}, {:#X}, {:?}, {:?}, {:?})",
+            texture,
+            internalformat,
+            buffer,
+            offset,
+            size
+        );
         (self.glTextureBufferRange)(texture, internalformat, buffer, offset, size)
     }
     pub unsafe fn TextureParameterIiv(&self, texture: GLuint, pname: GLenum, params: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameterIiv()");
+        trace!(
+            "Calling glTextureParameterIiv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glTextureParameterIiv)(texture, pname, params)
     }
     pub unsafe fn TextureParameterIuiv(
@@ -10684,27 +12742,52 @@ impl Gl {
         params: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameterIuiv()");
+        trace!(
+            "Calling glTextureParameterIuiv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            params
+        );
         (self.glTextureParameterIuiv)(texture, pname, params)
     }
     pub unsafe fn TextureParameterf(&self, texture: GLuint, pname: GLenum, param: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameterf()");
+        trace!(
+            "Calling glTextureParameterf({:?}, {:#X}, {:?})",
+            texture,
+            pname,
+            param
+        );
         (self.glTextureParameterf)(texture, pname, param)
     }
     pub unsafe fn TextureParameterfv(&self, texture: GLuint, pname: GLenum, param: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameterfv()");
+        trace!(
+            "Calling glTextureParameterfv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            param
+        );
         (self.glTextureParameterfv)(texture, pname, param)
     }
     pub unsafe fn TextureParameteri(&self, texture: GLuint, pname: GLenum, param: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameteri()");
+        trace!(
+            "Calling glTextureParameteri({:?}, {:#X}, {:?})",
+            texture,
+            pname,
+            param
+        );
         (self.glTextureParameteri)(texture, pname, param)
     }
     pub unsafe fn TextureParameteriv(&self, texture: GLuint, pname: GLenum, param: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureParameteriv()");
+        trace!(
+            "Calling glTextureParameteriv({:?}, {:#X}, {:p})",
+            texture,
+            pname,
+            param
+        );
         (self.glTextureParameteriv)(texture, pname, param)
     }
     pub unsafe fn TextureStorage1D(
@@ -10715,7 +12798,13 @@ impl Gl {
         width: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureStorage1D()");
+        trace!(
+            "Calling glTextureStorage1D({:?}, {:?}, {:#X}, {:?})",
+            texture,
+            levels,
+            internalformat,
+            width
+        );
         (self.glTextureStorage1D)(texture, levels, internalformat, width)
     }
     pub unsafe fn TextureStorage2D(
@@ -10727,7 +12816,14 @@ impl Gl {
         height: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureStorage2D()");
+        trace!(
+            "Calling glTextureStorage2D({:?}, {:?}, {:#X}, {:?}, {:?})",
+            texture,
+            levels,
+            internalformat,
+            width,
+            height
+        );
         (self.glTextureStorage2D)(texture, levels, internalformat, width, height)
     }
     pub unsafe fn TextureStorage2DMultisample(
@@ -10740,7 +12836,15 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureStorage2DMultisample()");
+        trace!(
+            "Calling glTextureStorage2DMultisample({:?}, {:?}, {:#X}, {:?}, {:?}, {:?})",
+            texture,
+            samples,
+            internalformat,
+            width,
+            height,
+            fixedsamplelocations
+        );
         (self.glTextureStorage2DMultisample)(
             texture,
             samples,
@@ -10760,7 +12864,15 @@ impl Gl {
         depth: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureStorage3D()");
+        trace!(
+            "Calling glTextureStorage3D({:?}, {:?}, {:#X}, {:?}, {:?}, {:?})",
+            texture,
+            levels,
+            internalformat,
+            width,
+            height,
+            depth
+        );
         (self.glTextureStorage3D)(texture, levels, internalformat, width, height, depth)
     }
     pub unsafe fn TextureStorage3DMultisample(
@@ -10774,7 +12886,16 @@ impl Gl {
         fixedsamplelocations: GLboolean,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureStorage3DMultisample()");
+        trace!(
+            "Calling glTextureStorage3DMultisample({:?}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            samples,
+            internalformat,
+            width,
+            height,
+            depth,
+            fixedsamplelocations
+        );
         (self.glTextureStorage3DMultisample)(
             texture,
             samples,
@@ -10796,7 +12917,16 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureSubImage1D()");
+        trace!(
+            "Calling glTextureSubImage1D({:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            texture,
+            level,
+            xoffset,
+            width,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTextureSubImage1D)(texture, level, xoffset, width, format, r#type, pixels)
     }
     pub unsafe fn TextureSubImage2D(
@@ -10812,7 +12942,18 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureSubImage2D()");
+        trace!(
+            "Calling glTextureSubImage2D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})",
+            texture,
+            level,
+            xoffset,
+            yoffset,
+            width,
+            height,
+            format,
+            r#type,
+            pixels
+        );
         (self.glTextureSubImage2D)(
             texture, level, xoffset, yoffset, width, height, format, r#type, pixels,
         )
@@ -10832,7 +12973,7 @@ impl Gl {
         pixels: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureSubImage3D()");
+        trace!("Calling glTextureSubImage3D({:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:?}, {:#X}, {:#X}, {:p})", texture,level,xoffset,yoffset,zoffset,width,height,depth,format,r#type,pixels);
         (self.glTextureSubImage3D)(
             texture, level, xoffset, yoffset, zoffset, width, height, depth, format, r#type, pixels,
         )
@@ -10849,7 +12990,17 @@ impl Gl {
         numlayers: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TextureView()");
+        trace!(
+            "Calling glTextureView({:?}, {:#X}, {:?}, {:#X}, {:?}, {:?}, {:?}, {:?})",
+            texture,
+            target,
+            origtexture,
+            internalformat,
+            minlevel,
+            numlevels,
+            minlayer,
+            numlayers
+        );
         (self.glTextureView)(
             texture,
             target,
@@ -10863,7 +13014,12 @@ impl Gl {
     }
     pub unsafe fn TransformFeedbackBufferBase(&self, xfb: GLuint, index: GLuint, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TransformFeedbackBufferBase()");
+        trace!(
+            "Calling glTransformFeedbackBufferBase({:?}, {:?}, {:?})",
+            xfb,
+            index,
+            buffer
+        );
         (self.glTransformFeedbackBufferBase)(xfb, index, buffer)
     }
     pub unsafe fn TransformFeedbackBufferRange(
@@ -10875,7 +13031,14 @@ impl Gl {
         size: GLsizeiptr,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TransformFeedbackBufferRange()");
+        trace!(
+            "Calling glTransformFeedbackBufferRange({:?}, {:?}, {:?}, {:?}, {:?})",
+            xfb,
+            index,
+            buffer,
+            offset,
+            size
+        );
         (self.glTransformFeedbackBufferRange)(xfb, index, buffer, offset, size)
     }
     pub unsafe fn TransformFeedbackVaryings(
@@ -10886,127 +13049,217 @@ impl Gl {
         bufferMode: GLenum,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling TransformFeedbackVaryings()");
+        trace!(
+            "Calling glTransformFeedbackVaryings({:?}, {:?}, {:p}, {:#X})",
+            program,
+            count,
+            varyings,
+            bufferMode
+        );
         (self.glTransformFeedbackVaryings)(program, count, varyings, bufferMode)
     }
     pub unsafe fn Uniform1d(&self, location: GLint, x: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1d()");
+        trace!("Calling glUniform1d({:?}, {:?})", location, x);
         (self.glUniform1d)(location, x)
     }
     pub unsafe fn Uniform1dv(&self, location: GLint, count: GLsizei, value: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1dv()");
+        trace!(
+            "Calling glUniform1dv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform1dv)(location, count, value)
     }
     pub unsafe fn Uniform1f(&self, location: GLint, v0: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1f()");
+        trace!("Calling glUniform1f({:?}, {:?})", location, v0);
         (self.glUniform1f)(location, v0)
     }
     pub unsafe fn Uniform1fv(&self, location: GLint, count: GLsizei, value: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1fv()");
+        trace!(
+            "Calling glUniform1fv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform1fv)(location, count, value)
     }
     pub unsafe fn Uniform1i(&self, location: GLint, v0: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1i()");
+        trace!("Calling glUniform1i({:?}, {:?})", location, v0);
         (self.glUniform1i)(location, v0)
     }
     pub unsafe fn Uniform1iv(&self, location: GLint, count: GLsizei, value: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1iv()");
+        trace!(
+            "Calling glUniform1iv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform1iv)(location, count, value)
     }
     pub unsafe fn Uniform1ui(&self, location: GLint, v0: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1ui()");
+        trace!("Calling glUniform1ui({:?}, {:?})", location, v0);
         (self.glUniform1ui)(location, v0)
     }
     pub unsafe fn Uniform1uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform1uiv()");
+        trace!(
+            "Calling glUniform1uiv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform1uiv)(location, count, value)
     }
     pub unsafe fn Uniform2d(&self, location: GLint, x: GLdouble, y: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2d()");
+        trace!("Calling glUniform2d({:?}, {:?}, {:?})", location, x, y);
         (self.glUniform2d)(location, x, y)
     }
     pub unsafe fn Uniform2dv(&self, location: GLint, count: GLsizei, value: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2dv()");
+        trace!(
+            "Calling glUniform2dv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform2dv)(location, count, value)
     }
     pub unsafe fn Uniform2f(&self, location: GLint, v0: GLfloat, v1: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2f()");
+        trace!("Calling glUniform2f({:?}, {:?}, {:?})", location, v0, v1);
         (self.glUniform2f)(location, v0, v1)
     }
     pub unsafe fn Uniform2fv(&self, location: GLint, count: GLsizei, value: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2fv()");
+        trace!(
+            "Calling glUniform2fv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform2fv)(location, count, value)
     }
     pub unsafe fn Uniform2i(&self, location: GLint, v0: GLint, v1: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2i()");
+        trace!("Calling glUniform2i({:?}, {:?}, {:?})", location, v0, v1);
         (self.glUniform2i)(location, v0, v1)
     }
     pub unsafe fn Uniform2iv(&self, location: GLint, count: GLsizei, value: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2iv()");
+        trace!(
+            "Calling glUniform2iv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform2iv)(location, count, value)
     }
     pub unsafe fn Uniform2ui(&self, location: GLint, v0: GLuint, v1: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2ui()");
+        trace!("Calling glUniform2ui({:?}, {:?}, {:?})", location, v0, v1);
         (self.glUniform2ui)(location, v0, v1)
     }
     pub unsafe fn Uniform2uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform2uiv()");
+        trace!(
+            "Calling glUniform2uiv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform2uiv)(location, count, value)
     }
     pub unsafe fn Uniform3d(&self, location: GLint, x: GLdouble, y: GLdouble, z: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3d()");
+        trace!(
+            "Calling glUniform3d({:?}, {:?}, {:?}, {:?})",
+            location,
+            x,
+            y,
+            z
+        );
         (self.glUniform3d)(location, x, y, z)
     }
     pub unsafe fn Uniform3dv(&self, location: GLint, count: GLsizei, value: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3dv()");
+        trace!(
+            "Calling glUniform3dv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform3dv)(location, count, value)
     }
     pub unsafe fn Uniform3f(&self, location: GLint, v0: GLfloat, v1: GLfloat, v2: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3f()");
+        trace!(
+            "Calling glUniform3f({:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glUniform3f)(location, v0, v1, v2)
     }
     pub unsafe fn Uniform3fv(&self, location: GLint, count: GLsizei, value: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3fv()");
+        trace!(
+            "Calling glUniform3fv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform3fv)(location, count, value)
     }
     pub unsafe fn Uniform3i(&self, location: GLint, v0: GLint, v1: GLint, v2: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3i()");
+        trace!(
+            "Calling glUniform3i({:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glUniform3i)(location, v0, v1, v2)
     }
     pub unsafe fn Uniform3iv(&self, location: GLint, count: GLsizei, value: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3iv()");
+        trace!(
+            "Calling glUniform3iv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform3iv)(location, count, value)
     }
     pub unsafe fn Uniform3ui(&self, location: GLint, v0: GLuint, v1: GLuint, v2: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3ui()");
+        trace!(
+            "Calling glUniform3ui({:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2
+        );
         (self.glUniform3ui)(location, v0, v1, v2)
     }
     pub unsafe fn Uniform3uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform3uiv()");
+        trace!(
+            "Calling glUniform3uiv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform3uiv)(location, count, value)
     }
     pub unsafe fn Uniform4d(
@@ -11018,12 +13271,24 @@ impl Gl {
         w: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4d()");
+        trace!(
+            "Calling glUniform4d({:?}, {:?}, {:?}, {:?}, {:?})",
+            location,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glUniform4d)(location, x, y, z, w)
     }
     pub unsafe fn Uniform4dv(&self, location: GLint, count: GLsizei, value: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4dv()");
+        trace!(
+            "Calling glUniform4dv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform4dv)(location, count, value)
     }
     pub unsafe fn Uniform4f(
@@ -11035,22 +13300,46 @@ impl Gl {
         v3: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4f()");
+        trace!(
+            "Calling glUniform4f({:?}, {:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glUniform4f)(location, v0, v1, v2, v3)
     }
     pub unsafe fn Uniform4fv(&self, location: GLint, count: GLsizei, value: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4fv()");
+        trace!(
+            "Calling glUniform4fv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform4fv)(location, count, value)
     }
     pub unsafe fn Uniform4i(&self, location: GLint, v0: GLint, v1: GLint, v2: GLint, v3: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4i()");
+        trace!(
+            "Calling glUniform4i({:?}, {:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glUniform4i)(location, v0, v1, v2, v3)
     }
     pub unsafe fn Uniform4iv(&self, location: GLint, count: GLsizei, value: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4iv()");
+        trace!(
+            "Calling glUniform4iv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform4iv)(location, count, value)
     }
     pub unsafe fn Uniform4ui(
@@ -11062,12 +13351,24 @@ impl Gl {
         v3: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4ui()");
+        trace!(
+            "Calling glUniform4ui({:?}, {:?}, {:?}, {:?}, {:?})",
+            location,
+            v0,
+            v1,
+            v2,
+            v3
+        );
         (self.glUniform4ui)(location, v0, v1, v2, v3)
     }
     pub unsafe fn Uniform4uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Uniform4uiv()");
+        trace!(
+            "Calling glUniform4uiv({:?}, {:?}, {:p})",
+            location,
+            count,
+            value
+        );
         (self.glUniform4uiv)(location, count, value)
     }
     pub unsafe fn UniformBlockBinding(
@@ -11077,7 +13378,12 @@ impl Gl {
         uniformBlockBinding: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformBlockBinding()");
+        trace!(
+            "Calling glUniformBlockBinding({:?}, {:?}, {:?})",
+            program,
+            uniformBlockIndex,
+            uniformBlockBinding
+        );
         (self.glUniformBlockBinding)(program, uniformBlockIndex, uniformBlockBinding)
     }
     pub unsafe fn UniformMatrix2dv(
@@ -11088,7 +13394,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2dv()");
+        trace!(
+            "Calling glUniformMatrix2dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix2fv(
@@ -11099,7 +13411,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2fv()");
+        trace!(
+            "Calling glUniformMatrix2fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix2x3dv(
@@ -11110,7 +13428,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2x3dv()");
+        trace!(
+            "Calling glUniformMatrix2x3dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2x3dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix2x3fv(
@@ -11121,7 +13445,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2x3fv()");
+        trace!(
+            "Calling glUniformMatrix2x3fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2x3fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix2x4dv(
@@ -11132,7 +13462,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2x4dv()");
+        trace!(
+            "Calling glUniformMatrix2x4dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2x4dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix2x4fv(
@@ -11143,7 +13479,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix2x4fv()");
+        trace!(
+            "Calling glUniformMatrix2x4fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix2x4fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3dv(
@@ -11154,7 +13496,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3dv()");
+        trace!(
+            "Calling glUniformMatrix3dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3fv(
@@ -11165,7 +13513,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3fv()");
+        trace!(
+            "Calling glUniformMatrix3fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3x2dv(
@@ -11176,7 +13530,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3x2dv()");
+        trace!(
+            "Calling glUniformMatrix3x2dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3x2dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3x2fv(
@@ -11187,7 +13547,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3x2fv()");
+        trace!(
+            "Calling glUniformMatrix3x2fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3x2fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3x4dv(
@@ -11198,7 +13564,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3x4dv()");
+        trace!(
+            "Calling glUniformMatrix3x4dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3x4dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix3x4fv(
@@ -11209,7 +13581,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix3x4fv()");
+        trace!(
+            "Calling glUniformMatrix3x4fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix3x4fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4dv(
@@ -11220,7 +13598,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4dv()");
+        trace!(
+            "Calling glUniformMatrix4dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4fv(
@@ -11231,7 +13615,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4fv()");
+        trace!(
+            "Calling glUniformMatrix4fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4x2dv(
@@ -11242,7 +13632,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4x2dv()");
+        trace!(
+            "Calling glUniformMatrix4x2dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4x2dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4x2fv(
@@ -11253,7 +13649,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4x2fv()");
+        trace!(
+            "Calling glUniformMatrix4x2fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4x2fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4x3dv(
@@ -11264,7 +13666,13 @@ impl Gl {
         value: *const GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4x3dv()");
+        trace!(
+            "Calling glUniformMatrix4x3dv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4x3dv)(location, count, transpose, value)
     }
     pub unsafe fn UniformMatrix4x3fv(
@@ -11275,7 +13683,13 @@ impl Gl {
         value: *const GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformMatrix4x3fv()");
+        trace!(
+            "Calling glUniformMatrix4x3fv({:?}, {:?}, {:?}, {:p})",
+            location,
+            count,
+            transpose,
+            value
+        );
         (self.glUniformMatrix4x3fv)(location, count, transpose, value)
     }
     pub unsafe fn UniformSubroutinesuiv(
@@ -11285,37 +13699,47 @@ impl Gl {
         indices: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UniformSubroutinesuiv()");
+        trace!(
+            "Calling glUniformSubroutinesuiv({:#X}, {:?}, {:p})",
+            shadertype,
+            count,
+            indices
+        );
         (self.glUniformSubroutinesuiv)(shadertype, count, indices)
     }
     pub unsafe fn UnmapBuffer(&self, target: GLenum) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UnmapBuffer()");
+        trace!("Calling glUnmapBuffer({:#X})", target);
         (self.glUnmapBuffer)(target)
     }
     pub unsafe fn UnmapNamedBuffer(&self, buffer: GLuint) -> GLboolean {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UnmapNamedBuffer()");
+        trace!("Calling glUnmapNamedBuffer({:?})", buffer);
         (self.glUnmapNamedBuffer)(buffer)
     }
     pub unsafe fn UseProgram(&self, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UseProgram()");
+        trace!("Calling glUseProgram({:?})", program);
         (self.glUseProgram)(program)
     }
     pub unsafe fn UseProgramStages(&self, pipeline: GLuint, stages: GLbitfield, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling UseProgramStages()");
+        trace!(
+            "Calling glUseProgramStages({:?}, {:?}, {:?})",
+            pipeline,
+            stages,
+            program
+        );
         (self.glUseProgramStages)(pipeline, stages, program)
     }
     pub unsafe fn ValidateProgram(&self, program: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ValidateProgram()");
+        trace!("Calling glValidateProgram({:?})", program);
         (self.glValidateProgram)(program)
     }
     pub unsafe fn ValidateProgramPipeline(&self, pipeline: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ValidateProgramPipeline()");
+        trace!("Calling glValidateProgramPipeline({:?})", pipeline);
         (self.glValidateProgramPipeline)(pipeline)
     }
     pub unsafe fn VertexArrayAttribBinding(
@@ -11325,7 +13749,12 @@ impl Gl {
         bindingindex: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayAttribBinding()");
+        trace!(
+            "Calling glVertexArrayAttribBinding({:?}, {:?}, {:?})",
+            vaobj,
+            attribindex,
+            bindingindex
+        );
         (self.glVertexArrayAttribBinding)(vaobj, attribindex, bindingindex)
     }
     pub unsafe fn VertexArrayAttribFormat(
@@ -11338,7 +13767,15 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayAttribFormat()");
+        trace!(
+            "Calling glVertexArrayAttribFormat({:?}, {:?}, {:?}, {:#X}, {:?}, {:?})",
+            vaobj,
+            attribindex,
+            size,
+            r#type,
+            normalized,
+            relativeoffset
+        );
         (self.glVertexArrayAttribFormat)(
             vaobj,
             attribindex,
@@ -11357,7 +13794,14 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayAttribIFormat()");
+        trace!(
+            "Calling glVertexArrayAttribIFormat({:?}, {:?}, {:?}, {:#X}, {:?})",
+            vaobj,
+            attribindex,
+            size,
+            r#type,
+            relativeoffset
+        );
         (self.glVertexArrayAttribIFormat)(vaobj, attribindex, size, r#type, relativeoffset)
     }
     pub unsafe fn VertexArrayAttribLFormat(
@@ -11369,7 +13813,14 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayAttribLFormat()");
+        trace!(
+            "Calling glVertexArrayAttribLFormat({:?}, {:?}, {:?}, {:#X}, {:?})",
+            vaobj,
+            attribindex,
+            size,
+            r#type,
+            relativeoffset
+        );
         (self.glVertexArrayAttribLFormat)(vaobj, attribindex, size, r#type, relativeoffset)
     }
     pub unsafe fn VertexArrayBindingDivisor(
@@ -11379,12 +13830,21 @@ impl Gl {
         divisor: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayBindingDivisor()");
+        trace!(
+            "Calling glVertexArrayBindingDivisor({:?}, {:?}, {:?})",
+            vaobj,
+            bindingindex,
+            divisor
+        );
         (self.glVertexArrayBindingDivisor)(vaobj, bindingindex, divisor)
     }
     pub unsafe fn VertexArrayElementBuffer(&self, vaobj: GLuint, buffer: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayElementBuffer()");
+        trace!(
+            "Calling glVertexArrayElementBuffer({:?}, {:?})",
+            vaobj,
+            buffer
+        );
         (self.glVertexArrayElementBuffer)(vaobj, buffer)
     }
     pub unsafe fn VertexArrayVertexBuffer(
@@ -11396,7 +13856,14 @@ impl Gl {
         stride: GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayVertexBuffer()");
+        trace!(
+            "Calling glVertexArrayVertexBuffer({:?}, {:?}, {:?}, {:?}, {:?})",
+            vaobj,
+            bindingindex,
+            buffer,
+            offset,
+            stride
+        );
         (self.glVertexArrayVertexBuffer)(vaobj, bindingindex, buffer, offset, stride)
     }
     pub unsafe fn VertexArrayVertexBuffers(
@@ -11409,112 +13876,138 @@ impl Gl {
         strides: *const GLsizei,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexArrayVertexBuffers()");
+        trace!(
+            "Calling glVertexArrayVertexBuffers({:?}, {:?}, {:?}, {:p}, {:p}, {:p})",
+            vaobj,
+            first,
+            count,
+            buffers,
+            offsets,
+            strides
+        );
         (self.glVertexArrayVertexBuffers)(vaobj, first, count, buffers, offsets, strides)
     }
     pub unsafe fn VertexAttrib1d(&self, index: GLuint, x: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1d()");
+        trace!("Calling glVertexAttrib1d({:?}, {:?})", index, x);
         (self.glVertexAttrib1d)(index, x)
     }
     pub unsafe fn VertexAttrib1dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1dv()");
+        trace!("Calling glVertexAttrib1dv({:?}, {:p})", index, v);
         (self.glVertexAttrib1dv)(index, v)
     }
     pub unsafe fn VertexAttrib1f(&self, index: GLuint, x: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1f()");
+        trace!("Calling glVertexAttrib1f({:?}, {:?})", index, x);
         (self.glVertexAttrib1f)(index, x)
     }
     pub unsafe fn VertexAttrib1fv(&self, index: GLuint, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1fv()");
+        trace!("Calling glVertexAttrib1fv({:?}, {:p})", index, v);
         (self.glVertexAttrib1fv)(index, v)
     }
     pub unsafe fn VertexAttrib1s(&self, index: GLuint, x: GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1s()");
+        trace!("Calling glVertexAttrib1s({:?}, {:?})", index, x);
         (self.glVertexAttrib1s)(index, x)
     }
     pub unsafe fn VertexAttrib1sv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib1sv()");
+        trace!("Calling glVertexAttrib1sv({:?}, {:p})", index, v);
         (self.glVertexAttrib1sv)(index, v)
     }
     pub unsafe fn VertexAttrib2d(&self, index: GLuint, x: GLdouble, y: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2d()");
+        trace!("Calling glVertexAttrib2d({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttrib2d)(index, x, y)
     }
     pub unsafe fn VertexAttrib2dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2dv()");
+        trace!("Calling glVertexAttrib2dv({:?}, {:p})", index, v);
         (self.glVertexAttrib2dv)(index, v)
     }
     pub unsafe fn VertexAttrib2f(&self, index: GLuint, x: GLfloat, y: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2f()");
+        trace!("Calling glVertexAttrib2f({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttrib2f)(index, x, y)
     }
     pub unsafe fn VertexAttrib2fv(&self, index: GLuint, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2fv()");
+        trace!("Calling glVertexAttrib2fv({:?}, {:p})", index, v);
         (self.glVertexAttrib2fv)(index, v)
     }
     pub unsafe fn VertexAttrib2s(&self, index: GLuint, x: GLshort, y: GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2s()");
+        trace!("Calling glVertexAttrib2s({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttrib2s)(index, x, y)
     }
     pub unsafe fn VertexAttrib2sv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib2sv()");
+        trace!("Calling glVertexAttrib2sv({:?}, {:p})", index, v);
         (self.glVertexAttrib2sv)(index, v)
     }
     pub unsafe fn VertexAttrib3d(&self, index: GLuint, x: GLdouble, y: GLdouble, z: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3d()");
+        trace!(
+            "Calling glVertexAttrib3d({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttrib3d)(index, x, y, z)
     }
     pub unsafe fn VertexAttrib3dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3dv()");
+        trace!("Calling glVertexAttrib3dv({:?}, {:p})", index, v);
         (self.glVertexAttrib3dv)(index, v)
     }
     pub unsafe fn VertexAttrib3f(&self, index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3f()");
+        trace!(
+            "Calling glVertexAttrib3f({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttrib3f)(index, x, y, z)
     }
     pub unsafe fn VertexAttrib3fv(&self, index: GLuint, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3fv()");
+        trace!("Calling glVertexAttrib3fv({:?}, {:p})", index, v);
         (self.glVertexAttrib3fv)(index, v)
     }
     pub unsafe fn VertexAttrib3s(&self, index: GLuint, x: GLshort, y: GLshort, z: GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3s()");
+        trace!(
+            "Calling glVertexAttrib3s({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttrib3s)(index, x, y, z)
     }
     pub unsafe fn VertexAttrib3sv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib3sv()");
+        trace!("Calling glVertexAttrib3sv({:?}, {:p})", index, v);
         (self.glVertexAttrib3sv)(index, v)
     }
     pub unsafe fn VertexAttrib4Nbv(&self, index: GLuint, v: *const GLbyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nbv()");
+        trace!("Calling glVertexAttrib4Nbv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Nbv)(index, v)
     }
     pub unsafe fn VertexAttrib4Niv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Niv()");
+        trace!("Calling glVertexAttrib4Niv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Niv)(index, v)
     }
     pub unsafe fn VertexAttrib4Nsv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nsv()");
+        trace!("Calling glVertexAttrib4Nsv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Nsv)(index, v)
     }
     pub unsafe fn VertexAttrib4Nub(
@@ -11526,27 +14019,34 @@ impl Gl {
         w: GLubyte,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nub()");
+        trace!(
+            "Calling glVertexAttrib4Nub({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttrib4Nub)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttrib4Nubv(&self, index: GLuint, v: *const GLubyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nubv()");
+        trace!("Calling glVertexAttrib4Nubv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Nubv)(index, v)
     }
     pub unsafe fn VertexAttrib4Nuiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nuiv()");
+        trace!("Calling glVertexAttrib4Nuiv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Nuiv)(index, v)
     }
     pub unsafe fn VertexAttrib4Nusv(&self, index: GLuint, v: *const GLushort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4Nusv()");
+        trace!("Calling glVertexAttrib4Nusv({:?}, {:p})", index, v);
         (self.glVertexAttrib4Nusv)(index, v)
     }
     pub unsafe fn VertexAttrib4bv(&self, index: GLuint, v: *const GLbyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4bv()");
+        trace!("Calling glVertexAttrib4bv({:?}, {:p})", index, v);
         (self.glVertexAttrib4bv)(index, v)
     }
     pub unsafe fn VertexAttrib4d(
@@ -11558,12 +14058,19 @@ impl Gl {
         w: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4d()");
+        trace!(
+            "Calling glVertexAttrib4d({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttrib4d)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttrib4dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4dv()");
+        trace!("Calling glVertexAttrib4dv({:?}, {:p})", index, v);
         (self.glVertexAttrib4dv)(index, v)
     }
     pub unsafe fn VertexAttrib4f(
@@ -11575,17 +14082,24 @@ impl Gl {
         w: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4f()");
+        trace!(
+            "Calling glVertexAttrib4f({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttrib4f)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttrib4fv(&self, index: GLuint, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4fv()");
+        trace!("Calling glVertexAttrib4fv({:?}, {:p})", index, v);
         (self.glVertexAttrib4fv)(index, v)
     }
     pub unsafe fn VertexAttrib4iv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4iv()");
+        trace!("Calling glVertexAttrib4iv({:?}, {:p})", index, v);
         (self.glVertexAttrib4iv)(index, v)
     }
     pub unsafe fn VertexAttrib4s(
@@ -11597,37 +14111,48 @@ impl Gl {
         w: GLshort,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4s()");
+        trace!(
+            "Calling glVertexAttrib4s({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttrib4s)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttrib4sv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4sv()");
+        trace!("Calling glVertexAttrib4sv({:?}, {:p})", index, v);
         (self.glVertexAttrib4sv)(index, v)
     }
     pub unsafe fn VertexAttrib4ubv(&self, index: GLuint, v: *const GLubyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4ubv()");
+        trace!("Calling glVertexAttrib4ubv({:?}, {:p})", index, v);
         (self.glVertexAttrib4ubv)(index, v)
     }
     pub unsafe fn VertexAttrib4uiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4uiv()");
+        trace!("Calling glVertexAttrib4uiv({:?}, {:p})", index, v);
         (self.glVertexAttrib4uiv)(index, v)
     }
     pub unsafe fn VertexAttrib4usv(&self, index: GLuint, v: *const GLushort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttrib4usv()");
+        trace!("Calling glVertexAttrib4usv({:?}, {:p})", index, v);
         (self.glVertexAttrib4usv)(index, v)
     }
     pub unsafe fn VertexAttribBinding(&self, attribindex: GLuint, bindingindex: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribBinding()");
+        trace!(
+            "Calling glVertexAttribBinding({:?}, {:?})",
+            attribindex,
+            bindingindex
+        );
         (self.glVertexAttribBinding)(attribindex, bindingindex)
     }
     pub unsafe fn VertexAttribDivisor(&self, index: GLuint, divisor: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribDivisor()");
+        trace!("Calling glVertexAttribDivisor({:?}, {:?})", index, divisor);
         (self.glVertexAttribDivisor)(index, divisor)
     }
     pub unsafe fn VertexAttribFormat(
@@ -11639,92 +14164,118 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribFormat()");
+        trace!(
+            "Calling glVertexAttribFormat({:?}, {:?}, {:#X}, {:?}, {:?})",
+            attribindex,
+            size,
+            r#type,
+            normalized,
+            relativeoffset
+        );
         (self.glVertexAttribFormat)(attribindex, size, r#type, normalized, relativeoffset)
     }
     pub unsafe fn VertexAttribI1i(&self, index: GLuint, x: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI1i()");
+        trace!("Calling glVertexAttribI1i({:?}, {:?})", index, x);
         (self.glVertexAttribI1i)(index, x)
     }
     pub unsafe fn VertexAttribI1iv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI1iv()");
+        trace!("Calling glVertexAttribI1iv({:?}, {:p})", index, v);
         (self.glVertexAttribI1iv)(index, v)
     }
     pub unsafe fn VertexAttribI1ui(&self, index: GLuint, x: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI1ui()");
+        trace!("Calling glVertexAttribI1ui({:?}, {:?})", index, x);
         (self.glVertexAttribI1ui)(index, x)
     }
     pub unsafe fn VertexAttribI1uiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI1uiv()");
+        trace!("Calling glVertexAttribI1uiv({:?}, {:p})", index, v);
         (self.glVertexAttribI1uiv)(index, v)
     }
     pub unsafe fn VertexAttribI2i(&self, index: GLuint, x: GLint, y: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI2i()");
+        trace!("Calling glVertexAttribI2i({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttribI2i)(index, x, y)
     }
     pub unsafe fn VertexAttribI2iv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI2iv()");
+        trace!("Calling glVertexAttribI2iv({:?}, {:p})", index, v);
         (self.glVertexAttribI2iv)(index, v)
     }
     pub unsafe fn VertexAttribI2ui(&self, index: GLuint, x: GLuint, y: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI2ui()");
+        trace!("Calling glVertexAttribI2ui({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttribI2ui)(index, x, y)
     }
     pub unsafe fn VertexAttribI2uiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI2uiv()");
+        trace!("Calling glVertexAttribI2uiv({:?}, {:p})", index, v);
         (self.glVertexAttribI2uiv)(index, v)
     }
     pub unsafe fn VertexAttribI3i(&self, index: GLuint, x: GLint, y: GLint, z: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI3i()");
+        trace!(
+            "Calling glVertexAttribI3i({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttribI3i)(index, x, y, z)
     }
     pub unsafe fn VertexAttribI3iv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI3iv()");
+        trace!("Calling glVertexAttribI3iv({:?}, {:p})", index, v);
         (self.glVertexAttribI3iv)(index, v)
     }
     pub unsafe fn VertexAttribI3ui(&self, index: GLuint, x: GLuint, y: GLuint, z: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI3ui()");
+        trace!(
+            "Calling glVertexAttribI3ui({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttribI3ui)(index, x, y, z)
     }
     pub unsafe fn VertexAttribI3uiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI3uiv()");
+        trace!("Calling glVertexAttribI3uiv({:?}, {:p})", index, v);
         (self.glVertexAttribI3uiv)(index, v)
     }
     pub unsafe fn VertexAttribI4bv(&self, index: GLuint, v: *const GLbyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4bv()");
+        trace!("Calling glVertexAttribI4bv({:?}, {:p})", index, v);
         (self.glVertexAttribI4bv)(index, v)
     }
     pub unsafe fn VertexAttribI4i(&self, index: GLuint, x: GLint, y: GLint, z: GLint, w: GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4i()");
+        trace!(
+            "Calling glVertexAttribI4i({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttribI4i)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttribI4iv(&self, index: GLuint, v: *const GLint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4iv()");
+        trace!("Calling glVertexAttribI4iv({:?}, {:p})", index, v);
         (self.glVertexAttribI4iv)(index, v)
     }
     pub unsafe fn VertexAttribI4sv(&self, index: GLuint, v: *const GLshort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4sv()");
+        trace!("Calling glVertexAttribI4sv({:?}, {:p})", index, v);
         (self.glVertexAttribI4sv)(index, v)
     }
     pub unsafe fn VertexAttribI4ubv(&self, index: GLuint, v: *const GLubyte) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4ubv()");
+        trace!("Calling glVertexAttribI4ubv({:?}, {:p})", index, v);
         (self.glVertexAttribI4ubv)(index, v)
     }
     pub unsafe fn VertexAttribI4ui(
@@ -11736,17 +14287,24 @@ impl Gl {
         w: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4ui()");
+        trace!(
+            "Calling glVertexAttribI4ui({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttribI4ui)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttribI4uiv(&self, index: GLuint, v: *const GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4uiv()");
+        trace!("Calling glVertexAttribI4uiv({:?}, {:p})", index, v);
         (self.glVertexAttribI4uiv)(index, v)
     }
     pub unsafe fn VertexAttribI4usv(&self, index: GLuint, v: *const GLushort) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribI4usv()");
+        trace!("Calling glVertexAttribI4usv({:?}, {:p})", index, v);
         (self.glVertexAttribI4usv)(index, v)
     }
     pub unsafe fn VertexAttribIFormat(
@@ -11757,7 +14315,13 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribIFormat()");
+        trace!(
+            "Calling glVertexAttribIFormat({:?}, {:?}, {:#X}, {:?})",
+            attribindex,
+            size,
+            r#type,
+            relativeoffset
+        );
         (self.glVertexAttribIFormat)(attribindex, size, r#type, relativeoffset)
     }
     pub unsafe fn VertexAttribIPointer(
@@ -11769,37 +14333,50 @@ impl Gl {
         pointer: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribIPointer()");
+        trace!(
+            "Calling glVertexAttribIPointer({:?}, {:?}, {:#X}, {:?}, {:p})",
+            index,
+            size,
+            r#type,
+            stride,
+            pointer
+        );
         (self.glVertexAttribIPointer)(index, size, r#type, stride, pointer)
     }
     pub unsafe fn VertexAttribL1d(&self, index: GLuint, x: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL1d()");
+        trace!("Calling glVertexAttribL1d({:?}, {:?})", index, x);
         (self.glVertexAttribL1d)(index, x)
     }
     pub unsafe fn VertexAttribL1dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL1dv()");
+        trace!("Calling glVertexAttribL1dv({:?}, {:p})", index, v);
         (self.glVertexAttribL1dv)(index, v)
     }
     pub unsafe fn VertexAttribL2d(&self, index: GLuint, x: GLdouble, y: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL2d()");
+        trace!("Calling glVertexAttribL2d({:?}, {:?}, {:?})", index, x, y);
         (self.glVertexAttribL2d)(index, x, y)
     }
     pub unsafe fn VertexAttribL2dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL2dv()");
+        trace!("Calling glVertexAttribL2dv({:?}, {:p})", index, v);
         (self.glVertexAttribL2dv)(index, v)
     }
     pub unsafe fn VertexAttribL3d(&self, index: GLuint, x: GLdouble, y: GLdouble, z: GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL3d()");
+        trace!(
+            "Calling glVertexAttribL3d({:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z
+        );
         (self.glVertexAttribL3d)(index, x, y, z)
     }
     pub unsafe fn VertexAttribL3dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL3dv()");
+        trace!("Calling glVertexAttribL3dv({:?}, {:p})", index, v);
         (self.glVertexAttribL3dv)(index, v)
     }
     pub unsafe fn VertexAttribL4d(
@@ -11811,12 +14388,19 @@ impl Gl {
         w: GLdouble,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL4d()");
+        trace!(
+            "Calling glVertexAttribL4d({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            z,
+            w
+        );
         (self.glVertexAttribL4d)(index, x, y, z, w)
     }
     pub unsafe fn VertexAttribL4dv(&self, index: GLuint, v: *const GLdouble) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribL4dv()");
+        trace!("Calling glVertexAttribL4dv({:?}, {:p})", index, v);
         (self.glVertexAttribL4dv)(index, v)
     }
     pub unsafe fn VertexAttribLFormat(
@@ -11827,7 +14411,13 @@ impl Gl {
         relativeoffset: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribLFormat()");
+        trace!(
+            "Calling glVertexAttribLFormat({:?}, {:?}, {:#X}, {:?})",
+            attribindex,
+            size,
+            r#type,
+            relativeoffset
+        );
         (self.glVertexAttribLFormat)(attribindex, size, r#type, relativeoffset)
     }
     pub unsafe fn VertexAttribLPointer(
@@ -11839,7 +14429,14 @@ impl Gl {
         pointer: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribLPointer()");
+        trace!(
+            "Calling glVertexAttribLPointer({:?}, {:?}, {:#X}, {:?}, {:p})",
+            index,
+            size,
+            r#type,
+            stride,
+            pointer
+        );
         (self.glVertexAttribLPointer)(index, size, r#type, stride, pointer)
     }
     pub unsafe fn VertexAttribP1ui(
@@ -11850,7 +14447,13 @@ impl Gl {
         value: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP1ui()");
+        trace!(
+            "Calling glVertexAttribP1ui({:?}, {:#X}, {:?}, {:?})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP1ui)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP1uiv(
@@ -11861,7 +14464,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP1uiv()");
+        trace!(
+            "Calling glVertexAttribP1uiv({:?}, {:#X}, {:?}, {:p})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP1uiv)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP2ui(
@@ -11872,7 +14481,13 @@ impl Gl {
         value: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP2ui()");
+        trace!(
+            "Calling glVertexAttribP2ui({:?}, {:#X}, {:?}, {:?})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP2ui)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP2uiv(
@@ -11883,7 +14498,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP2uiv()");
+        trace!(
+            "Calling glVertexAttribP2uiv({:?}, {:#X}, {:?}, {:p})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP2uiv)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP3ui(
@@ -11894,7 +14515,13 @@ impl Gl {
         value: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP3ui()");
+        trace!(
+            "Calling glVertexAttribP3ui({:?}, {:#X}, {:?}, {:?})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP3ui)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP3uiv(
@@ -11905,7 +14532,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP3uiv()");
+        trace!(
+            "Calling glVertexAttribP3uiv({:?}, {:#X}, {:?}, {:p})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP3uiv)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP4ui(
@@ -11916,7 +14549,13 @@ impl Gl {
         value: GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP4ui()");
+        trace!(
+            "Calling glVertexAttribP4ui({:?}, {:#X}, {:?}, {:?})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP4ui)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribP4uiv(
@@ -11927,7 +14566,13 @@ impl Gl {
         value: *const GLuint,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribP4uiv()");
+        trace!(
+            "Calling glVertexAttribP4uiv({:?}, {:#X}, {:?}, {:p})",
+            index,
+            r#type,
+            normalized,
+            value
+        );
         (self.glVertexAttribP4uiv)(index, r#type, normalized, value)
     }
     pub unsafe fn VertexAttribPointer(
@@ -11940,22 +14585,45 @@ impl Gl {
         pointer: *const c_void,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexAttribPointer()");
+        trace!(
+            "Calling glVertexAttribPointer({:?}, {:?}, {:#X}, {:?}, {:?}, {:p})",
+            index,
+            size,
+            r#type,
+            normalized,
+            stride,
+            pointer
+        );
         (self.glVertexAttribPointer)(index, size, r#type, normalized, stride, pointer)
     }
     pub unsafe fn VertexBindingDivisor(&self, bindingindex: GLuint, divisor: GLuint) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling VertexBindingDivisor()");
+        trace!(
+            "Calling glVertexBindingDivisor({:?}, {:?})",
+            bindingindex,
+            divisor
+        );
         (self.glVertexBindingDivisor)(bindingindex, divisor)
     }
     pub unsafe fn Viewport(&self, x: GLint, y: GLint, width: GLsizei, height: GLsizei) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling Viewport()");
+        trace!(
+            "Calling glViewport({:?}, {:?}, {:?}, {:?})",
+            x,
+            y,
+            width,
+            height
+        );
         (self.glViewport)(x, y, width, height)
     }
     pub unsafe fn ViewportArrayv(&self, first: GLuint, count: GLsizei, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ViewportArrayv()");
+        trace!(
+            "Calling glViewportArrayv({:?}, {:?}, {:p})",
+            first,
+            count,
+            v
+        );
         (self.glViewportArrayv)(first, count, v)
     }
     pub unsafe fn ViewportIndexedf(
@@ -11967,17 +14635,24 @@ impl Gl {
         h: GLfloat,
     ) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ViewportIndexedf()");
+        trace!(
+            "Calling glViewportIndexedf({:?}, {:?}, {:?}, {:?}, {:?})",
+            index,
+            x,
+            y,
+            w,
+            h
+        );
         (self.glViewportIndexedf)(index, x, y, w, h)
     }
     pub unsafe fn ViewportIndexedfv(&self, index: GLuint, v: *const GLfloat) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling ViewportIndexedfv()");
+        trace!("Calling glViewportIndexedfv({:?}, {:p})", index, v);
         (self.glViewportIndexedfv)(index, v)
     }
     pub unsafe fn WaitSync(&self, sync: GLsync, flags: GLbitfield, timeout: GLuint64) {
         #[cfg(all(debug_assertions, feature = "tracing", feature = "trace-calls"))]
-        trace!("Calling WaitSync()");
+        trace!("Calling glWaitSync({:?}, {:?}, {:?})", sync, flags, timeout);
         (self.glWaitSync)(sync, flags, timeout)
     }
 }
