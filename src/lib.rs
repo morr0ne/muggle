@@ -302,4 +302,8 @@ impl Context {
     pub unsafe fn end_conditional_render(&self) {
         self.raw.EndConditionalRender()
     }
+
+    pub unsafe fn set_clear_color(&self, red: f32, green: f32, blue: f32, alpha: f32) {
+        self.raw.ClearColor(red, green, blue, alpha)
+    }
 }
