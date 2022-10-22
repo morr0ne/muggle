@@ -14,9 +14,9 @@ repository = "https://github.com/morr0ne/muggle"
 
 [dependencies]
 num_enum = "0.5.7"
-tracing = { version = "0.1.34", optional = true, default-features = false, features = ["std"] }
 muggle_macros = { version = "0.1.0", path = "macros"}
+angel = "0.1.0-alpha.2"
 
 [features]
-trace-errors = ["tracing"]
-trace-calls = ["tracing"]
+trace-errors = ["angel/trace-errors"]
+trace-calls = ["angel/trace-calls"]

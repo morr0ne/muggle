@@ -3,7 +3,7 @@ use num_enum::{FromPrimitive, IntoPrimitive};
 use std::ops::{Add, Sub};
 
 #[doc(hidden)]
-pub use crate::gl::enums::*;
+pub use angel::enums::*;
 
 gl_enum! { ShaderType "SHADER" GL_COMPUTE_SHADER GL_VERTEX_SHADER GL_TESS_CONTROL_SHADER GL_TESS_EVALUATION_SHADER GL_GEOMETRY_SHADER GL_FRAGMENT_SHADER }
 gl_enum! { ShaderParameter GL_SHADER_TYPE GL_DELETE_STATUS GL_COMPILE_STATUS GL_INFO_LOG_LENGTH GL_SHADER_SOURCE_LENGTH }

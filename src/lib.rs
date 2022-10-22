@@ -6,13 +6,10 @@ use std::{
     ffi::{c_void, CStr, CString},
 };
 
-mod gl;
-pub mod phosphorus;
-
 #[doc(hidden)]
-pub use gl::types::*;
-use gl::Gl as RawContext;
-pub use gl::{LoadError, Result};
+pub use angel::types::*;
+use angel::Gl as RawContext;
+pub use angel::{LoadError, Result};
 
 mod enums;
 mod objects;
@@ -29,7 +26,7 @@ impl Context {
         &self.raw
     }
 
-    pub unsafe fn load<F>(loader_function: F) -> gl::Result<Self>
+    pub unsafe fn load<F>(loader_function: F) -> angel::Result<Self>
     where
         F: FnMut(&CStr) -> *const c_void,
     {
@@ -51,7 +48,7 @@ impl Context {
     /// ```
     /// to get the texture unit at index 19
     /// # Errors
-    /// GL_INVALID_ENUM is generated if the texture index is more than  GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1
+    /// GL_INVALID_ENUM is generated if the texture index is more than GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1
     pub unsafe fn set_active_texture(&self, texture: Texture) {
         self.raw.ActiveTexture(texture.inner())
     }
