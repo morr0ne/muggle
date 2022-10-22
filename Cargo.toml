@@ -11,6 +11,7 @@ description = "A typed, correct, and unneeded opengl wrapper that doesn't hide a
 readme = "README.md"
 documentation = "https://docs.rs/muggle"
 repository = "https://github.com/morr0ne/muggle"
+include = ["src/**/*.rs", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
 
 [dependencies]
 num_enum = "0.5.7"
