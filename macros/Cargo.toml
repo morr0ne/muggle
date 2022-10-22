@@ -2,6 +2,13 @@
 name = "muggle_macros"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Federico Maria Morrone <contact@morrone.dev>"]
+description = "Macros for muggle"
+readme = "README.md"
+documentation = "https://docs.rs/muggle_macros"
+repository = "https://github.com/morr0ne/muggle"
+include = ["src/**/*.rs", "../README.md", "../LICENSE-APACHE", "../LICENSE-MIT"]
 
 [lib]
 proc-macro = true
