@@ -300,6 +300,10 @@ impl Context {
         self.raw.EndConditionalRender()
     }
 
+    pub unsafe fn clear(&self, mask: Mask) {
+        self.raw.Clear(mask.inner())
+    }
+
     pub unsafe fn set_clear_color(&self, red: f32, green: f32, blue: f32, alpha: f32) {
         self.raw.ClearColor(red, green, blue, alpha)
     }
