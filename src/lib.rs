@@ -199,12 +199,8 @@ impl Context {
         if len > 0 {
             let mut log = String::with_capacity(len as usize);
             log.extend(std::iter::repeat('\0').take(len as usize));
-            self.raw.GetShaderInfoLog(
-                shader.inner(),
-                len,
-                &mut len,
-                (&mut log[..]).as_mut_ptr().cast(),
-            );
+            self.raw
+                .GetShaderInfoLog(shader.inner(), len, &mut len, log[..].as_mut_ptr().cast());
             log.truncate(len as usize);
             log
         } else {
@@ -218,12 +214,8 @@ impl Context {
         if len > 0 {
             let mut log = String::with_capacity(len as usize);
             log.extend(std::iter::repeat('\0').take(len as usize));
-            self.raw.GetProgramInfoLog(
-                program.inner(),
-                len,
-                &mut len,
-                (&mut log[..]).as_mut_ptr().cast(),
-            );
+            self.raw
+                .GetProgramInfoLog(program.inner(), len, &mut len, log[..].as_mut_ptr().cast());
             log.truncate(len as usize);
             log
         } else {
