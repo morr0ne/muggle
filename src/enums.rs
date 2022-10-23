@@ -1,6 +1,6 @@
 use muggle_macros::gl_enum;
 use num_enum::{FromPrimitive, IntoPrimitive};
-use std::ops::{Add, Sub};
+use std::ops::{Add, BitOr, Sub};
 
 #[doc(hidden)]
 pub use angel::enums::*;
@@ -168,5 +168,26 @@ impl Sub<u32> for Texture {
 
     fn sub(self, rhs: u32) -> Self::Output {
         Texture(self.0 - rhs)
+    }
+}
+
+#[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct Mask(u32);
+
+impl Mask {
+    pub const COLOR_BUFFER_BIT: Self = Self(GL_COLOR_BUFFER_BIT);
+    pub const DEPTH_BUFFER_BIT: Self = Self(GL_DEPTH_BUFFER_BIT);
+    pub const STENCIL_BUFFER_BIT: Self = Self(GL_STENCIL_BUFFER_BIT);
+
+    pub const fn inner(&self) -> u32 {
+        self.0
+    }
+}
+
+impl BitOr for Mask {
+    type Output = Mask;
+
+    fn bitor(self, rhs: Self) -> Self::Output {
+        Mask(self.0 | rhs.0)
     }
 }
