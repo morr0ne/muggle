@@ -98,6 +98,7 @@ pub enum Error {
 }
 
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[repr(transparent)]
 pub struct Texture(u32);
 
 impl Texture {
@@ -172,6 +173,7 @@ impl Sub<u32> for Texture {
 }
 
 #[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[repr(transparent)]
 pub struct Mask(u32);
 
 impl Mask {
