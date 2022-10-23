@@ -112,7 +112,7 @@ impl Context {
         parameter
     }
 
-    pub unsafe fn generate_buffer(&self) -> Buffer {
+    pub unsafe fn generate_buffer(&self) -> Option<Buffer> {
         let mut id = 0;
         self.raw.GenBuffers(1, &mut id);
         Buffer::new(id)
@@ -131,7 +131,7 @@ impl Context {
     //     todo!()
     // }
 
-    pub unsafe fn generate_vertex_array(&self) -> VertexArray {
+    pub unsafe fn generate_vertex_array(&self) -> Option<VertexArray> {
         let mut id = 0;
         self.raw.GenVertexArrays(1, &mut id);
         VertexArray::new(id)
@@ -154,7 +154,7 @@ impl Context {
         );
     }
 
-    pub unsafe fn create_shader(&self, shader_type: ShaderType) -> Shader {
+    pub unsafe fn create_shader(&self, shader_type: ShaderType) -> Option<Shader> {
         Shader::new(self.raw.CreateShader(shader_type.into()))
     }
 
@@ -175,7 +175,7 @@ impl Context {
         self.raw.DeleteShader(shader.inner())
     }
 
-    pub unsafe fn create_program(&self) -> Program {
+    pub unsafe fn create_program(&self) -> Option<Program> {
         Program::new(self.raw.CreateProgram())
     }
 
