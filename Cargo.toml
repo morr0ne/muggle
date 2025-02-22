@@ -5,13 +5,13 @@ members = ["macros"]
 name = "muggle"
 version = "0.1.1"
 edition = "2021"
-license = "MIT OR Apache-2.0"
+license = "Apache-2.0"
 authors = ["Matilde Morrone <contact@morrone.dev>"]
 description = "A typed, correct, and unneeded opengl wrapper that doesn't hide anything but feels more rusty"
 readme = "README.md"
 documentation = "https://docs.rs/muggle"
 repository = "https://github.com/morr0ne/muggle"
-include = ["src/**/*.rs", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
+include = ["src/**/*.rs", "README.md", "LICENSE"]
 
 [dependencies]
 num_enum = "0.5.7"
